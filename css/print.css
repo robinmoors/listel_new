@@ -1,0 +1,605 @@
+body
+
+   {
+
+   margin: 0px;
+
+   padding: 0px;
+
+   background-color: #ffffff;
+
+   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+
+   font-size: 12px;
+
+    }
+
+a
+
+   {
+
+   color: #D58700;
+
+   }
+
+a:hover
+
+   {
+
+   color: #FFBD40;
+
+   }
+
+div
+
+   {
+
+   border:0px solid black;
+
+   }
+
+.hidden
+
+    {
+
+    border:1px solid black;
+
+    }
+
+.pagina
+
+   {
+
+   border:0px solid red;
+
+   width:570px;
+
+   }
+
+.header
+
+   {
+
+    display:none
+
+   }
+
+.inloggen
+
+   {
+
+    display:none
+
+   }
+
+.scheider
+
+   {
+
+    display:none
+
+   }
+
+.kruimelpad
+
+   {
+
+    display:none
+
+   }
+
+.kruimelpadblock
+
+   {
+
+    display:none
+
+   }
+
+.contents
+
+   {
+
+   border:0px solid green;
+
+   text-align:left;
+
+   }
+
+.navigation
+
+   {
+
+    display:none
+
+   }
+
+.navigationblock
+
+   {
+
+    display:none
+
+   }
+
+.navigationblock a:hover
+
+    {
+
+    display:none
+
+    }
+
+.navigationlist
+
+    {
+
+    display:none
+
+    }
+
+.navigationlistitem, .navigationlistitem a
+
+    {
+
+    display:none
+
+    }
+
+.main
+
+   {
+
+    position:absolute;
+
+    top:100px;
+
+    left:0px;
+
+    float:left;
+
+    font-size:12px;
+
+    overflow:auto;
+
+    border:0px solid black;
+
+    page-break-inside: auto;
+
+/*   background-image:url(../images/main_bg.gif);      */
+
+   }
+
+h1{font-size:26px;font-weight:bold;}
+
+h2{font-size:20px;font-weight:bold;}
+
+h3{font-size:16px;font-weight:bold;}
+
+h4{font-size:12px;font-style: italic;}
+
+h5{font-size: 12px;}
+
+.mainblock
+
+   {
+
+    float:left;
+
+    margin:0px 0px 0px 0px;
+
+    page-break-inside: auto;
+
+   }
+
+.footer
+
+   {
+
+    width:!00px;
+
+    height:20px;
+
+    font-size:12px;
+
+    padding-top:3px;
+
+    background-image:url(../images/footer_bg.gif);
+
+   position:absolute;
+
+   bottom:80px;
+
+   }
+
+
+
+.bulletmenu ul{
+
+    display:none
+
+   }
+
+.bulletmenu ul li{
+
+    display:none
+
+   }
+
+ul{
+
+    border: 0px solid black;
+
+    margin:0px 0px 0px 0px;
+
+    padding:0px 0px 0px 0px;
+
+   }
+
+li{
+
+    list-style-image:url(../images/bullet1.gif);
+
+    border: 0px solid black;
+
+    margin:0px 0px 0px 0px;
+
+    padding:0px 0px 0px 0px;
+
+   }
+
+li ul li{
+
+    list-style-image:url(../images/bullet2.gif);
+
+    border: 0px solid black;
+
+    margin:0px 0px 0px 0px;
+
+    padding:0px 0px 0px 0px;
+
+   }
+
+.kader
+
+    {
+
+    border:1px solid #6A4300;
+
+    padding:1px;
+
+    width:522px;
+
+    }
+
+.even
+
+    {
+
+    margin-left:1px;
+
+    padding-left:3px;
+
+    background-color:#ffffff;
+
+    }
+
+.oneven
+
+    {
+
+    margin-left:1px;
+
+    padding-left:3px;
+
+    background-color:#FFFBCE;
+
+    }
+
+.tabeltitel
+
+    {
+
+    background-color:#FFBD40;
+
+    font-weight:bold;
+
+    font-size:larger;
+
+    padding:3px;
+
+    }
+
+
+
+fieldset
+
+    {
+
+    width:570px;
+
+    font-weight:normal;
+
+    float:none;
+
+    clear: both;
+
+    border: 1px solid black;
+
+    background-color:#FDE79D;
+
+    margin-top:5px;
+
+    overflow:auto;
+
+    padding-top:10px;
+
+    }
+
+.label160
+
+   {
+
+   font-size:12px;
+
+   font-weight:normal;
+
+   width:160px;
+
+   text-align:right;
+
+   float:left;
+
+   height:30px;
+
+   border: 0px solid black;
+
+   }
+
+.label220
+
+   {
+
+   font-size:12px;
+
+   font-weight:normal;
+
+   width:220px;
+
+   text-align:right;
+
+   float:left;
+
+   height:30px;
+
+   border: 0px solid black;
+
+   }
+
+.label280
+
+   {
+
+   font-size:12px;
+
+   font-weight:normal;
+
+   width:280px;
+
+   text-align:right;
+
+   float:left;
+
+   height:30px;
+
+   border: 0px solid black;
+
+   }
+
+.waarde
+
+   {
+
+   padding-left:10px;
+
+/*   height:30px; */
+
+   border: 0px solid black;
+
+   }
+
+.invoer
+
+    {
+
+    width:290px;
+
+    }
+
+.waardex
+
+   {
+
+   padding-left:10px;
+
+   border: 0px solid black;
+
+   }
+
+#IIPostCodes {height:100px;}
+
+#IIWoonsituatie {height:100px;}
+
+#IIMantelzorg {height:100px;}
+
+#IIAlarmsysteem {height:80px;}
+
+.inputItem
+
+   {
+
+   clear:both;
+
+/*   height:30px; */
+
+   border: 0px solid black;
+
+    overflow:auto;
+
+   }
+
+.EvaluatieInstrumentItem
+
+   {
+
+   clear:both;
+
+   height:30px;
+
+   border: 0px solid black;
+
+   }
+
+.verplicht
+
+    {
+
+    background-color:#CC6600;
+
+    height:20px;
+
+    }
+
+.verplicht .titel
+
+    {
+
+/* background-image:url(../images/boogje_bg.gif); */
+
+/*    background-repeat:no-repeat; */
+
+    }
+
+.titel
+
+    {
+
+    padding-top:0px;
+
+    padding-right:0px;
+
+    padding-bottom:0px;
+
+    padding-left:100px;
+
+    font-weight:bold;
+
+    height:20px;
+
+    }
+
+.begincel
+
+    {
+
+    padding-top:0px;
+
+    padding-right:0px;
+
+    padding-bottom:0px;
+
+    padding-left:0px;
+
+    font-weight:100;
+
+/* background-image:url(../images/boogje_bg.gif); */
+
+/*    background-repeat:no-repeat; */
+
+    }
+
+.legende
+
+    {
+
+    margin-left:10px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+   color: #6A4300;
+
+    }
+
+.reqfield
+
+    {
+
+    color:#990000;
+
+    elevation:higher;
+
+    display:inline;
+
+    }
+
+.puntlijn
+
+    {
+
+    border-bottom:dotted 1px black;
+
+    height: 30px;
+
+    width: 100px;
+
+    }
+
+.accentcel
+
+    {
+
+    background-color:#FF9900;
+
+    }
+
+th, td
+
+    {
+
+    font-size:12px;
+
+    text-align:left;
+
+    }
+
+.tip {
+
+    font-size:9px;
+
+    font-style:italic;
+
+}
+
+
+
+
+
+
+
+.checkedThing {
+
+   color: red;
+
+   font-weight: bold;
+
+   margin-left: -14px;
+
+   margin-top: -8px;
+
+   font-size: 16px;
+
+}
+
+

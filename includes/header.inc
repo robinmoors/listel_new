@@ -1,0 +1,1 @@
+<div class="header"><a href="welkom.php"><img src="../images/blanco.gif" width="170" height="129" border="0"></a></div>

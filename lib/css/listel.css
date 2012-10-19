@@ -1,0 +1,338 @@
+html, body, div, ,form, h1, h2, h3, h4, h5, h6, li, ul, ol, p {
+    margin: 0;
+    padding: 0;
+}
+@media screen and (min-width:540px){
+    h1{
+        font-size:1.825em;
+    }h2,h3,h4{
+        font-size:1.625em;
+    }#menu{
+        font-size: 1.5em;
+    }.spacer{
+        width: 5px;
+        padding-right:5px;
+    }.fastcontent, .content{
+        display:none;
+    }  
+}
+@media screen and (min-width:850px){
+    h1{font-size:2.375em}
+    h2,h3,h4{font-size:2.113em}
+    #menu{
+        font-size: 2em;
+    }.fastcontent{
+        display:none;
+    }.content{
+        display:inline-block;
+    }
+}
+@media screen and (min-width:1280px){
+    .spacer{
+      width: 50px;
+      padding-right:50px;
+    }.fastcontent{
+        display: inline-block;
+    }
+}
+h1,h2,h3,h4{
+    font-family:Segoe UI Light,Segoe UI,Tahoma,Arial,Verdana,sans-serif;
+    color:rgb(20,20,20);
+    line-height:1.25;
+    font-weight: 300;
+}
+h1{
+   margin-bottom:.35em
+}
+h2{
+    margin-bottom:.55em
+}
+h3{ 
+    margin-bottom: 24px;
+    margin-left: 24px;
+}
+h4{
+    margin-bottom: 24px;
+    margin-left: 24px;
+}
+h5{font-size:1em;}
+body
+{
+    background-color: #BEBCAF; /* #f4a932;  */
+    background-image:url(../images/bg_body.jpg);
+    font-family: Segoe UI,Tahoma,Arial,Verdana,sans-serif; 
+    font-size: 12px;
+}
+form
+{
+    border:solid 0px black;
+}
+a
+{
+    color: #D58700;
+}
+a:hover
+{
+    color: #FFBD40;
+}
+
+a img {
+    border: 0px;
+}
+a.subtiel {
+    text-decoration:none;
+    font-weight: bold;
+}
+div
+{
+    border:0px solid black;
+}
+ul{
+    border: 0 solid black;
+    margin:0 0 0 10px;
+    padding:0;
+}
+
+li{
+    list-style-image:url(../images/bullet11.gif);
+    border: 0 solid black;
+    margin:0 0 0 20px;
+    padding:0;
+
+}
+
+li ul li{
+    list-style-image:url(../images/bullet22.gif);
+    border: 0 solid black;
+    margin:0 0 0 20px;
+    padding:0;
+}
+
+fieldset
+{
+
+    width:530px;
+    font-weight:normal;
+    float:none;
+    clear: both;
+    border: 1px solid black;
+    background-color:#FDE79D;
+    margin-top:5px;
+    overflow:none;
+    padding:10px;
+}
+
+fieldset.normal {
+    width: 500px;
+    float: none;
+    clear: both;
+}
+th, td
+{
+    font-size:12px;
+    text-align:left;
+}
+td input[type=text] {
+    margin: 1px 0px 1px 5px;
+    width: 200px;
+}
+#IIPostCodes {height:100px;}
+#IIWoonsituatie {height:100px;}
+#IIMantelzorg {height:100px;}
+#IIAlarmsysteem {height:80px;}
+.hidden
+{
+    height:180px;
+    display:none
+}
+.pagina
+{
+    width:95%;
+    /* background-color: #f4a932;  #BEBCAF;  */
+
+    /*   overflow:auto;  */
+
+}
+
+.header
+{
+    width:800px;
+    height:138px;
+    background-image:url(../images/header_bg.png);
+    background-position: 0px 0px;
+    text-align:left;
+    z-index: 2;
+}
+
+.contents
+{
+    position: relative;
+    top: -2px;
+    width:95%;
+    min-width: 800px;
+    border: solid 2px rgb(221,137,61);
+    border-bottom: 0;
+    background: rgb(249,237,223);
+    font-size:10px;
+    text-align:left;
+    z-index: 1;
+}
+.navigation{
+    background: rgb(236,197,140);
+    border-bottom: 1px solid rgb(221,137,61);
+}
+#menu{
+    text-align: center;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 32px;
+}
+#menu ul, #menu li{
+    display:inline-block;
+    margin: -1px 10px 10px 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    font-weight: bold;
+}#menu li{
+    background: -moz-linear-gradient(left, #784f1b 0%, #784f1b 17px, #aa692d 20px, #ecc58c 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#784f1b), color-stop(17px,#784f1b), color-stop(20px,#aa692d), color-stop(100%,#ecc58c)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, #784f1b 0%,#784f1b 17px,#aa692d 20px,#ecc58c 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, #784f1b 0%,#784f1b 17px,#aa692d 20px,#ecc58c 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, #784f1b 0%,#784f1b 17px,#aa692d 20px,#ecc58c 100%); /* IE10+ */
+    background: linear-gradient(to right, #784f1b 0%,#784f1b 17px,#aa692d 20px,#ecc58c 100%); /* W3C */
+    border-radius: 16px 0  0 16px; 
+}#menu li:hover{
+    background: rgb(221,137,61);
+    color: rgb(236,197,140);
+    cursor: pointer;
+}#menu li:active{
+    text-decoration: underline;
+}#menu li.spacer{
+    background: none;
+    cursor: default;
+}
+.footer
+{
+    position:relative;
+    top: -2px;
+    width:95%;
+    min-width: 800px;
+    height:20px;
+    font-size:10px;
+    padding-top:3px;
+    background: rgb(249,237,223);
+    border: 2px solid rgb(221, 137, 61);
+    border-top: 0;
+    clear: both;
+    z-index: 0;
+}
+.verplicht
+{
+    background-color:#CC6600;
+    height:20px;
+}
+
+
+.legende
+{
+    margin-left:10px;
+    font-size:14px;
+    font-weight:bold;
+    color: #6A4300;
+}
+
+.reqfield
+{
+    color:#990000;
+    elevation:higher;
+    display:inline;
+}
+
+#tabcontainer {
+
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+#status {
+
+    border: 1px solid rgb(70%, 70%, 70%);
+    background-color: rgb(90%, 90%, 90%);
+    font-size: 10px;
+    font-family: Arial, sans-serif;
+    height: 40px;
+    width: 540px;
+    padding: 0px 1px;
+    margin: 2px;
+}
+.checkedThing {
+    display: none;
+}
+.aankeiler {
+    display: none;
+    width: 400px;
+    height: 65px;
+    background: rgb(95%,95%,70%);
+    position: absolute;
+    z-index: 1;
+    font-size: 10px;
+    padding: 3px;
+}
+
+
+
+.aankeiler div {
+    text-align: left;
+}
+
+#bericht_bestemmingen, #bericht_onderwerp, #bericht_inhoud, #bericht_bijlagen {
+    background-color: #f8f8f8;
+    border:solid 1px #eee;
+    position: absolute;
+}
+
+
+#bericht_bestemmingen {
+    left: 10px;
+    top: 380px;
+    min-height:240px;
+    width:360px;
+}
+
+#bericht_bijlagen {
+    left: 380px;
+    top: 380px;
+    min-height:240px;
+    width:200px;
+}
+
+#bericht_bestemmingen td {
+    font-size:9px;
+}
+
+#bericht_onderwerp {
+    left: 10px;
+    top: 70px;
+    height:40px;
+    width:570px;
+}
+
+#bericht_onderwerp *, #bericht_bijlagen p, #bericht_inhoud * {
+    margin: 7px;
+}
+#bericht_inhoud {
+    left: 10px;
+    top: 120px;
+    height:250px;
+    width:570px;
+}
+#bericht_inhoud textarea {
+    width: 550px;
+    height: 200px;
+    font-family: Verdana;
+    font-size: 11px;
+}

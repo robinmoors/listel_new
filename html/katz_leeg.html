@@ -1,0 +1,445 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<title>LISTEL vzw - KATZ-score</title>
+
+<link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../css/print.css" media="print" />
+
+
+</head><body onload="parent.print();">
+<div align="center"><div class="pagina">
+<div class="header"><a href="welkom.php"><img src="../images/blanco.gif" width="170" height="129" border="0"></a>
+
+</div><!--
+
+   <div class="scheider"></div>
+
+   <div class="kruimelpad">
+
+      <div class="kruimelpadblock">
+
+         Kruimelpad
+
+      </div>
+
+   </div>
+
+-->
+
+   <div class="scheider"></div>
+
+<div class="contents"><div class="navigation">
+
+    <div class="navigationblock">
+
+    <div class="bulletmenu">
+<!--
+        <ul>
+                <li><a target="_blank "href="../evaluatieInstrumentHandleiding.pdf">Handleiding bij <br />
+                het evaluatieinstrument</a></li>
+        </ul>
+        <hr />
+-->
+        Blanco documenten:
+
+        <ul>
+
+
+
+                <li><a target="_blank" href="/html/evaluatie_instrument_leeg.html">Evaluatie-instrument</a></li>
+
+                <li><a target="_blank" href="/html/katz_leeg.html">KATZ formulier</a></li>
+
+                <li><a target="_blank" href="/html/verklaring_huisarts.html">Verklaring Huisarts</a></li>
+
+
+
+        </ul>
+
+    </div>
+
+    </div>
+
+</div>
+
+<div class="main"><div class="mainblock"><!-- formulier -->
+
+<form action="katz_invullen.php" onsubmit="return checkRadios()" name="katz" method="post">
+
+<input type="hidden" name="katz_totaal" value="0" id="totaal"/>
+
+<input type="hidden" name="a_katz_id" value="" />
+
+
+                <table width="100%">
+
+                    <tr>
+
+                        <td><img src="../images/logo_top_pagina_klein.gif" height="100" /></td>
+                        <td>
+
+                            <div style="text-align:center">
+                                 <h2>Score zorgbehoevendheid</h2>
+                                 <br />
+                                 <h2>Patient <input type="text" name="patient" size="40" /></h2>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+
+
+
+
+
+<div class="inputItem" id="IINaam">
+
+
+
+        Ingevuld door &nbsp;:
+
+        <input type="text" size="35" />
+
+
+
+         op
+
+        <span class="iinputItem" id="IIStartdatum">
+
+         <span class="waarde2">
+
+            <input type="text" size="2" value="" name="katz_dd"                  onKeyup="checkForNumbersOnly(this,2,0,31,'katz','katz_mm')"
+
+                onblur="checkForNumbersLength(this,2)" />&nbsp;/&nbsp;
+
+            <input type="text" size="2" value="" name="katz_mm"                  onKeyup="checkForNumbersOnly(this,2,0,12,'katz','katz_jj')"
+
+                onblur="checkForNumbersLength(this,2)" />&nbsp;/&nbsp;
+
+            <input type="text" size="2" value="" name="katz_jj"                 onKeydown="checkForNumbersOnly(this,2,0,25,'katz','katz_jj')"
+
+                onblur="checkForNumbersLength(this,2)" />
+
+         </span>
+
+      </span><!--overleg_dd,overleg_mm,overleg_jj-->
+
+
+
+
+
+</div><!--Naam interviewer-->
+
+<p>
+
+<table width="100%" style="clear: both;">
+
+<tr>
+
+<th colspan="6" align="left">A. Fysische afhankelijkheid</th>
+
+</tr>
+
+<tr>
+
+<td colspan="2"></td>
+
+<td width="15%" align="center">volledig<br />onafhankelijk</td>
+
+<td width="15%" align="center">gedeeltelijk<br />met moeite</td>
+
+<td width="15%" align="center">hulp<br />derden</td>
+
+<td width="15%" align="center">volledig<br />afhankelijk</td>
+
+</tr>
+
+<tr>
+
+<td width="10%">&nbsp;</td>
+
+<td width="30%">Wassen</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_wassen" onClick="calculateKatz('katz_wassen',0)" value="1a"  > 1</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_wassen" onClick="calculateKatz('katz_wassen',1)" value="2b"  > 2</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_wassen" onClick="calculateKatz('katz_wassen',2)" value="2c"  > 2</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_wassen" onClick="calculateKatz('katz_wassen',3)" value="2d"  > 2</td>
+
+</tr>
+
+<tr>
+
+<td width="10%">&nbsp;</td>
+
+<td width="30%">Kleden</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_kleden" onClick="calculateKatz('katz_kleden',0)" value="1a"  > 1</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_kleden" onClick="calculateKatz('katz_kleden',1)" value="2b"  > 2</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_kleden" onClick="calculateKatz('katz_kleden',2)" value="3c"  > 3</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_kleden" onClick="calculateKatz('katz_kleden',3)" value="3d"  > 3</td>
+
+</tr>
+
+<tr>
+
+<td width="10%">&nbsp;</td>
+
+<td width="30%">Verplaatsen</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_verpla" onClick="calculateKatz('katz_verpla',0)" value="1a"  > 1</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_verpla" onClick="calculateKatz('katz_verpla',1)" value="2b"  > 2</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_verpla" onClick="calculateKatz('katz_verpla',2)" value="4c"  > 4</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_verpla" onClick="calculateKatz('katz_verpla',3)" value="4d"  > 4</td>
+
+</tr>
+
+<tr>
+
+<td width="10%">&nbsp;</td>
+
+<td width="30%">Toiletbezoek</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_toilet" onClick="calculateKatz('katz_toilet',0)" value="1a"  > 1</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_toilet" onClick="calculateKatz('katz_toilet',1)" value="2b"  > 2</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_toilet" onClick="calculateKatz('katz_toilet',2)" value="5c"  > 5</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_toilet" onClick="calculateKatz('katz_toilet',3)" value="5d"  > 5</td>
+
+</tr>
+
+<tr>
+
+<td width="10%">&nbsp;</td>
+
+<td width="30%">Continentie</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_continent" onClick="calculateKatz('katz_continent',0)" value="1a"  > 1</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_continent" onClick="calculateKatz('katz_continent',1)" value="2b"  > 2</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_continent" onClick="calculateKatz('katz_continent',2)" value="6c"  > 6</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_continent" onClick="calculateKatz('katz_continent',3)" value="6d"  > 6</td>
+
+</tr>
+
+<tr>
+
+<td width="10%">&nbsp;</td>
+
+<td width="30%">Eten</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_eten" onClick="calculateKatz('katz_eten',0)" value="1a"  > 1</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_eten" onClick="calculateKatz('katz_eten',1)" value="2b"  > 2</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_eten" onClick="calculateKatz('katz_eten',2)" value="7c"  > 7</td>
+
+<td class="print"  width="15%" align="center"><input type="radio" name="katz_eten" onClick="calculateKatz('katz_eten',3)" value="7d"  > 7</td>
+
+</tr>
+
+</table></p>
+
+<p>
+
+<table width="100%">
+
+<tr>
+
+<th colspan="6" align="left">B. Psychische afhankelijkheid</th>
+
+</tr>
+
+<tr>
+
+<td colspan="2"></td>
+
+<td width="20%" align="center">geen<br />probleem</td>
+
+<td width="20%" align="center">occasioneel</td>
+
+<td width="20%" align="center">voortdurend</td>
+
+</tr>
+
+<tr>
+
+<td width="10%">&nbsp;</td>
+
+<td width="30%">Ori&euml;ntatie tijd en ruimte</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_orient" onClick="calculateKatz('katz_orient',0)" value="0a"  > 0</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_orient" onClick="calculateKatz('katz_orient',1)" value="1b"  > 1</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_orient" onClick="calculateKatz('katz_orient',2)" value="2c"  > 2</td>
+
+</tr>
+
+<tr>
+
+<td width="10%">&nbsp;</td>
+
+<td width="30%">Rusteloosheid</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_rust" onClick="calculateKatz('katz_rust',0)" value="0a"  > 0</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_rust" onClick="calculateKatz('katz_rust',1)" value="1b"  > 1</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_rust" onClick="calculateKatz('katz_rust',2)" value="2c"  > 2</td>
+
+</tr>
+
+</table></p>
+
+<p>
+
+<table width="100%">
+
+<tr>
+
+<th colspan="6" align="left">C. Sociale context</th>
+
+</tr>
+
+<tr>
+
+<td colspan="2"></td>
+
+<td width="20%" align="center">met beschikb.<br />valide persoon</td>
+
+<td width="20%" align="center">met niet-valide<br />of niet-beschikb.<br />persoon</td>
+
+<td width="20%" align="center">alleen</td>
+
+</tr>
+
+<tr>
+
+<td width="10%">&nbsp;</td>
+
+<td width="30%">Woonsituatie<br />(onder hetzelfde dak)</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_woon" onClick="calculateKatz('katz_woon',0)" value="0a"  > 0</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_woon" onClick="calculateKatz('katz_woon',1)" value="1b"  > 1</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_woon" onClick="calculateKatz('katz_woon',2)" value="2c"  > 2</td>
+
+</tr>
+
+<tr>
+
+<td colspan="2"></td>
+
+<td width="20%" align="center">intensief<br />frequent<br />maximum</td>
+
+<td width="20%" align="center">partieel<br />regelmatig<br />soms</td>
+
+<td width="20%" align="center">alleen<br />minimum<br />sporadisch</td>
+
+</tr>
+
+<tr>
+
+<td width="10%">&nbsp;</td>
+
+<td width="30%">Mantelzorg<br />(niet onder hetzelfde dak)</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_mantel" onClick="calculateKatz('katz_mantel',0)" value="0a"  > 0</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_mantel" onClick="calculateKatz('katz_mantel',1)" value="1b"  > 1</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_mantel" onClick="calculateKatz('katz_mantel',2)" value="2c"  > 2</td>
+
+</tr>
+
+</table></p>
+
+<p>
+
+<table width="100%">
+
+<tr>
+
+<th colspan="6" align="left">D. Comfort</th>
+
+</tr>
+
+<tr>
+
+<td colspan="2"></td>
+
+<td width="20%" align="center">ingerichte<br />badkamer</td>
+
+<td width="20%" align="center">stromend warm<br />water (keuken)</td>
+
+<td width="20%" align="center">geen stromend<br />water</td>
+
+</tr>
+
+<tr>
+
+<td width="10%">&nbsp;</td>
+
+<td width="30%">Woonsituatie<br />(onder hetzelfde dak)</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_sanitair" onClick="calculateKatz('katz_sanitair',0)" value="0a"  > 0</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_sanitair" onClick="calculateKatz('katz_sanitair',1)" value="1b"  > 1</td>
+
+<td class="print"  width="20%" align="center"><input type="radio" name="katz_sanitair" onClick="calculateKatz('katz_sanitair',2)" value="2c"  > 2</td>
+
+</tr>
+
+</table></p>
+
+<div class="inputItem" id="IIButton" style="height: 52px;">
+
+    <div class="label280" style="height:52px;width: auto"><h1>Globale KATZ score: </h1>
+
+    </div>
+
+    <div class="waarde" style="position: relative; top: 8px; ">
+
+<input type="hidden" name="evalID" value="57" /> 
+
+<input type="hidden" name="tabel" value="overleg" />
+
+
+
+    </div>
+
+</div>
+
+<!-- eindeformulier -->
+
+</div></div></div>
+
+
+<div class="footer">LISTEL vzw A. Rodenbachstraat 29 bus 1, 3500 Hasselt</div>
+<!--
+  <div class="hidden"><img src="../images/logo_top_pagina.gif" width="600"/></div>
+-->
+
+</div></div>
+
+</body></html>

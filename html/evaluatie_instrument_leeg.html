@@ -1,0 +1,1993 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>LISTEL vzw - Evaluatieinstrument</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../css/print.css" media="print" />
+<style type="text/css">
+.verplicht td {font-weight: bold;}
+.verplicht {background-color: #DDD;}
+</style>
+
+<script type="text/javascript" src="../javascript/combo.js"></script>
+
+
+<script type="text/javascript">
+
+function createREQ() {
+    try {
+      req = new XMLHttpRequest(); // new XMLHttpRequest();  // firefox e.d.
+    }
+    catch (err1) { try {
+      req = new ActiveXObject("Msxml2.XMLHTTP"); // sommige IE
+    }
+    catch (err2) { try {
+      req = new ActiveXObject("Microsoft.XMLHTTP"); // meeste IE
+    }
+    catch (err3) {
+      req = false;
+    }}}
+  return req;
+}
+</script>
+
+
+</head><body onload="parent.print();">                <div style="text-align:center">
+                <table width="100%">
+                    <tr>
+                        <td valign="top"><img src="../images/logo_top_pagina_klein.gif" width="100"></td>
+                        <td valign="top">
+                            <div style="text-align:center">
+                                   <h1>Blanco evaluatieinstrument</h1>
+                                   <h2>Patient <input type="text" name="patient" size="40" /></h2>
+<h3>Ingevuld op         <span class="waarde2">
+            <input style="width: 35px;" size="2" value="  " name="katz_dd" onclick="blur();" onkeyup="checkForNumbersOnly(this,2,0,31,'katz','katz_mm')" onblur="checkForNumbersLength(this,2)" type="text">&nbsp;/&nbsp;
+            <input style="width: 35px;" size="2" value="  " name="katz_mm" onclick="blur();" onkeyup="checkForNumbersOnly(this,2,0,12,'katz','katz_jj')" onblur="checkForNumbersLength(this,2)" type="text">&nbsp;/&nbsp;
+            <input style="width: 35px;" size="2" value="  " name="katz_jj" onclick="blur();" onkeyup="checkForNumbersOnly(this,2,0,25,'katz','katz_jj')" onblur="checkForNumbersLength(this,2)" type="text">
+         </span>                             </h3>
+                     </div>
+                        </td>
+                    </tr>
+                </table>
+                </div>   <fieldset style="height: 183px;">
+      <div class="legende">1. Communicatie</div>
+      <div>&nbsp;</div>
+      <div class="waarde">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th align="center">&nbsp;-&nbsp;</th>
+                    <th align="center">&nbsp;&plusmn;&nbsp;</th>
+                    <th align="center">&nbsp;+&nbsp;</th>
+                    <th align="center">&nbsp;NVT&nbsp;</th>
+                    <th>Item</th>
+                    <th>Bijkomende opmerkingen</th>
+                </tr>
+                <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_01_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_01_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_01_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_01_s"
+    value="4"  /></td>
+                    <td valign="top">Anderstalig</td>
+                    <td valign="top" align="center">
+                    </td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_02_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_02_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_02_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_02_s"
+    value="4"  /></td>
+                    <td valign="top">Dialect</td>
+                    <td valign="top" align="center">
+                    </td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_03_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_03_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_03_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_03_s"
+    value="4"  /></td>
+                    <td valign="top">Afasie</td>
+                    <td valign="top" align="center">
+                    </td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_04_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_04_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_04_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_04_s"
+    value="4"  /></td>
+                    <td valign="top">Hoorproblemen</td>
+                    <td valign="top" align="center">
+                    </td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_05_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_05_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_05_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_05_s"
+    value="4"  /></td>
+                    <td valign="top">Spraakproblemen</td>
+                    <td valign="top" align="center">
+                    </td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_06_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_06_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_06_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_06_s"
+    value="4"  /></td>
+                    <td valign="top">Gebruik telecommunicatie</td>
+                    <td valign="top" align="center">
+                    </td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_07_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_07_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_07_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_01_07_s"
+    value="4"  /></td>
+                    <td valign="top">Individuele aandachtspunten</td>
+                    <td valign="top" align="center">
+                    </td>
+                </tr>
+            </table>
+      </div>
+   </fieldset>
+   <fieldset style="height: 223px;">
+      <div class="legende">2. Woon-en leefomstandigheden</div>
+      <div>&nbsp;</div>
+      <div class="waarde">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th align="center">&nbsp;-&nbsp;</th>
+                    <th align="center">&nbsp;&plusmn;&nbsp;</th>
+                    <th align="center">&nbsp;+&nbsp;</th>
+                    <th align="center">&nbsp;NVT&nbsp;</th>
+                    <th>Item</th>
+                    <th>Bijkomende opmerkingen</th>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_01_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_01_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_01_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_01_s"
+    value="4"  /></td>
+                    <td valign="top">Hygi&euml;nische toestand pati&euml;nt</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_02_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_02_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_02_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_02_s"
+    value="4"  /></td>
+                    <td valign="top">Hygi&euml;nische toestand woning</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_03_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_03_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_03_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_03_s"
+    value="4"  /></td>
+                    <td valign="top">Comfort woning</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_04_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_04_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_04_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_04_s"
+    value="4"  /></td>
+                    <td valign="top">Veiligheid woning</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_05_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_05_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_05_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_05_s"
+    value="4"  /></td>
+                    <td valign="top">Toegankelijkheid woning</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_06_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_06_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_06_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_06_s"
+    value="4"  /></td>
+                    <td valign="top">Doorgankelijkheid woning</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_07_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_07_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_07_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_07_s"
+    value="4"  /></td>
+                    <td valign="top">Bruikbaarheid woning</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_08_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_08_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_08_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_08_s"
+    value="4"  /></td>
+                    <td valign="top">Huisdieren</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_09_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_09_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_09_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_02_09_s"
+    value="4"  /></td>
+                    <td valign="top">Individuele aandachtspunten</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            </table>
+      </div>
+   </fieldset>
+    <fieldset style="height: 225px;">
+      <div class="legende">3.1. Medische verzorging</div>
+      <div>&nbsp;</div>
+      <div class="waarde">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th align="center">&nbsp;-&nbsp;</th>
+                    <th align="center">&nbsp;&plusmn;&nbsp;</th>
+                    <th align="center">&nbsp;+&nbsp;</th>
+                    <th align="center">&nbsp;NVT&nbsp;</th>
+                    <th>Item</th>
+                    <th>Bijkomende opmerkingen</th>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_01_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_01_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_01_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_01_s"
+    value="4"  /></td>
+                    <td valign="top">Controle parameters</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_02_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_02_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_02_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_02_s"
+    value="4"  /></td>
+                    <td valign="top">Observatie</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" colspan="6" class="titel"><b>Medicatie verzorgingsmateriaal :&nbsp;</b></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_03_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_03_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_03_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_03_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Aanschaf</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_04_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_04_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_04_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_04_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Klaarzetten/Pillendoos?</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_05_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_05_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_05_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_05_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Innemen/Gebruiken</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_06_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_06_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_06_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_06_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Overige...</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_07_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_07_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_07_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_07_s"
+    value="4"  /></td>
+                    <td valign="top">Allergische reacties</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_08_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_08_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_08_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_031_08_s"
+    value="4"  /></td>
+                    <td valign="top">Individuele aandachtspunten</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            </table>
+      </div>
+   </fieldset>
+   <fieldset style="height: 415px;">
+      <div class="legende">3.2. Hygi&euml;nische verzorging</div>
+      <div>&nbsp;</div>
+      <div class="waarde">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th align="center">&nbsp;-&nbsp;</th>
+                    <th align="center">&nbsp;&plusmn;&nbsp;</th>
+                    <th align="center">&nbsp;+&nbsp;</th>
+                    <th align="center">&nbsp;NVT&nbsp;</th>
+                    <th>Item</th>
+                    <th>Bijkomende opmerkingen</th>
+                </tr>
+            <tr>
+                    <td valign="top" colspan="6" class="titel">Wassen :</td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_01_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_01_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_01_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_01_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Locatie</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_02_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_02_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_02_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_02_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Tijdstip</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_03_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_03_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_03_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_03_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Frequentie</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+                    <td valign="top" colspan="6">&nbsp;</td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_04_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_04_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_04_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_04_s"
+    value="4"  /></td>
+                    <td valign="top">Haar- en baardverzorging</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_05_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_05_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_05_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_05_s"
+    value="4"  /></td>
+                    <td valign="top">Hand- en voetverzorging</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_06_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_06_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_06_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_06_s"
+    value="4"  /></td>
+                    <td valign="top">Tand- en mondverzorging</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_07_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_07_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_07_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_07_s"
+    value="4"  /></td>
+                    <td valign="top">Prothesen</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" colspan="6" class="titel">Kleding :</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_08_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_08_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_08_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_08_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Aantrekken</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_09_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_09_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_09_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_09_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Uittrekken</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" colspan="6" class="titel">Voetbekleding :</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_10_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_10_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_10_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_10_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Aantrekken</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_11_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_11_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_11_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_11_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Uittrekken</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+                    <td valign="top" colspan="6">&nbsp;</td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_12_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_12_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_12_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_12_s"
+    value="4"  /></td>
+                    <td valign="top">Incontinentie</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_13_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_13_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_13_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_13_s"
+    value="4"  /></td>
+                    <td valign="top">Zorg dragen voor menstruatie</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_14_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_14_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_14_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_032_14_s"
+    value="4"  /></td>
+                    <td valign="top">Individuele aandachtspunten</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            </table>
+      </div>
+   </fieldset>
+   <fieldset style="height: 270px;">
+      <div class="legende">3.3. Mobiliteit</div>
+      <div>&nbsp;</div>
+      <div class="waarde">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th align="center">&nbsp;-&nbsp;</th>
+                    <th align="center">&nbsp;&plusmn;&nbsp;</th>
+                    <th align="center">&nbsp;+&nbsp;</th>
+                    <th align="center">&nbsp;NVT&nbsp;</th>
+                    <th>Item</th>
+                    <th>Bijkomende opmerkingen</th>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" colspan="6" class="titel">Transfer :</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_01_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_01_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_01_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_01_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;In zit</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_02_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_02_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_02_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_02_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;In lig</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" colspan="6" class="titel">Verplaatsen :</td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_03_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_03_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_03_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_03_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Binnen</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" class="begincel" colspan="4"></td>
+                    <td valign="top" colspan="2">&nbsp;&nbsp;&bull;&nbsp;Buiten</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_04_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_04_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_04_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_04_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&loz;&nbsp;Met vervoermiddel</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_05_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_05_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_05_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_05_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&loz;&nbsp;Zonder vervoermiddel</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_06_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_06_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_06_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_06_s"
+    value="4"  /></td>
+                    <td valign="top">Valpreventie</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_07_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_07_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_07_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_07_s"
+    value="4"  /></td>
+                    <td valign="top">Tilprotocol</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_08_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_08_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_08_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_033_08_s"
+    value="4"  /></td>
+                    <td valign="top">Individuele aandachtspunten</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            </table>
+      </div>
+   </fieldset>
+   <fieldset style="height: 370px;">
+      <div class="legende">4. Huishoudelijke ondersteuning</div>
+      <div>&nbsp;</div>
+      <div class="waarde">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th align="center">&nbsp;-&nbsp;</th>
+                    <th align="center">&nbsp;&plusmn;&nbsp;</th>
+                    <th align="center">&nbsp;+&nbsp;</th>
+                    <th align="center">&nbsp;NVT&nbsp;</th>
+                    <th>Item</th>
+                    <th>Bijkomende opmerkingen</th>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" colspan="6" class="titel">Bereiding :</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_01_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_01_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_01_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_01_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Ontbijt</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_02_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_02_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_02_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_02_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Warme maaltijd</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_03_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_03_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_03_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_03_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Avondmaal</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+                    <td valign="top" colspan="6">&nbsp;</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_04_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_04_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_04_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_04_s"
+    value="4"  /></td>
+                    <td valign="top">Vaat doen</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_05_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_05_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_05_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_05_s"
+    value="4"  /></td>
+                    <td valign="top">Bediening huishoudapp.</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_06_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_06_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_06_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_06_s"
+    value="4"  /></td>
+                    <td valign="top">Onderhoud woning / keuken</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_07_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_07_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_07_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_07_s"
+    value="4"  /></td>
+                    <td valign="top">Onderhoud tuin</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_08_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_08_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_08_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_08_s"
+    value="4"  /></td>
+                    <td valign="top">Verwijderen afval</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_09_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_09_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_09_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_09_s"
+    value="4"  /></td>
+                    <td valign="top">Wassen / drogen kleding</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_10_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_10_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_10_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_10_s"
+    value="4"  /></td>
+                    <td valign="top">Strijken</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_11_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_11_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_11_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_11_s"
+    value="4"  /></td>
+                    <td valign="top">Boodschappen doen</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_12_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_12_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_12_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_12_s"
+    value="4"  /></td>
+                    <td valign="top">Administratieve verrichtingen</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_13_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_13_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_13_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_13_s"
+    value="4"  /></td>
+                    <td valign="top">Financi&euml;le verrichtingen</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_14_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_14_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_14_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_04_14_s"
+    value="4"  /></td>
+                    <td valign="top">Individuele aandachtspunten</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            </table>
+      </div>
+   </fieldset>
+   <fieldset style="height: 400px;">
+      <div class="legende">5. Psychologische ondersteuning</div>
+      <div>&nbsp;</div>
+      <div class="waarde">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th align="center">&nbsp;-&nbsp;</th>
+                    <th align="center">&nbsp;&plusmn;&nbsp;</th>
+                    <th align="center">&nbsp;+&nbsp;</th>
+                    <th align="center">&nbsp;NVT&nbsp;</th>
+                    <th>Item</th>
+                    <th>Bijkomende opmerkingen</th>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_01_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_01_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_01_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_01_s"
+    value="4"  /></td>
+                    <td valign="top">Begripsvermogen / com&shy;mu&shy;ni&shy;ca&shy;tie&shy;mogelijk&shy;heden</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_02_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_02_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_02_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_02_s"
+    value="4"  /></td>
+                    <td valign="top">Bewustzijn</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_03_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_03_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_03_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_03_s"
+    value="4"  /></td>
+                    <td valign="top">Geheugen</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_04_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_04_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_04_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_04_s"
+    value="4"  /></td>
+                    <td valign="top">Ori&euml;ntatie in tijd</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_05_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_05_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_05_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_05_s"
+    value="4"  /></td>
+                    <td valign="top">Ori&euml;ntatie in ruimte</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_06_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_06_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_06_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_06_s"
+    value="4"  /></td>
+                    <td valign="top">Handelingen / gedragingen</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_07_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_07_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_07_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_07_s"
+    value="4"  /></td>
+                    <td valign="top">Stemming</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_08_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_08_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_08_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_08_s"
+    value="4"  /></td>
+                    <td valign="top">Inzicht in ziekte / problematiek</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_09_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_09_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_09_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_09_s"
+    value="4"  /></td>
+                    <td valign="top">Nood aan extra professionele begeleiding</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_10_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_10_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_10_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_10_s"
+    value="4"  /></td>
+                    <td valign="top">Indiv. aandachtspunten</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" colspan="6" class="titel">Decorum :</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_11_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_11_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_11_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_11_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Sociale regels toepassen</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" colspan="4" class="begincel"></td>
+                    <td valign="top" colspan="2">&nbsp;&nbsp;&bull;&nbsp;Aangaan / onderhouden</td>
+                </tr> 
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_12_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_12_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_12_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_12_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&loz;&nbsp;Sociale relaties</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_13_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_13_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_13_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_13_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&loz;&nbsp;Familiale relaties</td>
+                    <td valign="top" align="center"> </td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_14_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_14_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_14_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_05_14_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&loz;&nbsp;Relaties medebewoners</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            </table>
+      </div>
+   </fieldset>
+   <fieldset style="height: 360px;">
+      <div class="legende">6. (Ped)agogische ondersteuning</div>
+      <div>&nbsp;</div>
+      <div class="waarde">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th align="center">&nbsp;-&nbsp;</th>
+                    <th align="center">&nbsp;&plusmn;&nbsp;</th>
+                    <th align="center">&nbsp;+&nbsp;</th>
+                    <th align="center">&nbsp;NVT&nbsp;</th>
+                    <th>Item</th>
+                    <th>Bijkomende opmerkingen</th>
+                </tr>
+            <tr>
+                    <td valign="top" colspan="6" class="titel">School :</td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_01_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_01_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_01_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_01_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Aanwezigheid</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_02_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_02_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_02_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_02_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Huiswerk</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_03_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_03_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_03_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_03_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Leerproblemen</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+                    <td valign="top" colspan="6">&nbsp;</td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_04_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_04_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_04_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_04_s"
+    value="4"  /></td>
+                    <td valign="top">Werk</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" colspan="6" class="titel">Recreatie: deelname aan activiteiten :</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_05_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_05_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_05_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_05_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Binnenhuis</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_06_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_06_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_06_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_06_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Buitenhuis</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+                    <td valign="top" colspan="6">&nbsp;</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_07_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_07_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_07_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_07_s"
+    value="4"  /></td>
+                    <td valign="top">Eventuele bezoekregeling(en)</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_08_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_08_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_08_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_08_s"
+    value="4"  /></td>
+                    <td valign="top">Problematische handelingen of gedragingen</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_09_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_09_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_09_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_09_s"
+    value="4"  /></td>
+                    <td valign="top">Verslavingsproblematiek</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_10_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_10_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_10_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_10_s"
+    value="4"  /></td>
+                    <td valign="top">Nood aan extra professionele begeleiding</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_11_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_11_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_11_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_06_11_s"
+    value="4"  /></td>
+                    <td valign="top">Individule aandachtspunten</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            </table>
+      </div>
+   </fieldset>
+   <fieldset style="height: 280px;">
+      <div class="legende">7. Sociale ondersteuning</div>
+      <div>&nbsp;</div>
+      <div class="waarde">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th align="center">&nbsp;-&nbsp;</th>
+                    <th align="center">&nbsp;&plusmn;&nbsp;</th>
+                    <th align="center">&nbsp;+&nbsp;</th>
+                    <th align="center">&nbsp;NVT&nbsp;</th>
+                    <th>Item</th>
+                    <th>Bijkomende opmerkingen</th>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_01_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_01_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_01_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_01_s"
+    value="4"  /></td>
+                    <td valign="top">Naaste familie</td>
+                    <td valign="top" align="center"> </td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_02_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_02_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_02_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_02_s"
+    value="4"  /></td>
+                    <td valign="top">Verre familie</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_03_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_03_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_03_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_03_s"
+    value="4"  /></td>
+                    <td valign="top">Vrienden</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" colspan="6" class="titel">Persoonlijke verzorgers en assistenten (incl. vrijwilligers)</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_04_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_04_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_04_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_04_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Aan huis</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_05_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_05_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_05_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_05_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Buitenhuis</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" colspan="6" class="titel">Hulpverleners in de gezondheidszorg</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_06_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_06_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_06_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_06_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Aan huis</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_07_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_07_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_07_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_07_s"
+    value="4"  /></td>
+                    <td valign="top">&nbsp;&nbsp;&bull;&nbsp;Buitenhuis</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+                    <td valign="top" colspan="6">&nbsp;</td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_08_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_08_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_08_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_07_08_s"
+    value="4"  /></td>
+                    <td valign="top">Individuele aandachtspunten</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            </table>
+      </div>
+   </fieldset>
+   <fieldset style="height: 470px;">
+      <div class="legende">8.1. Financi&euml;le ondersteuning</div>
+      <div>&nbsp;</div>
+      <div class="waarde">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th align="center">&nbsp;-&nbsp;</th>
+                    <th align="center">&nbsp;&plusmn;&nbsp;</th>
+                    <th align="center">&nbsp;+&nbsp;</th>
+                    <th align="center">&nbsp;NVT&nbsp;</th>
+                    <th>Item</th>
+                    <th>Bijkomende opmerkingen</th>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_01_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_01_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_01_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_01_s"
+    value="4"  /></td>
+                    <td valign="top">Vergoedingen / tussenkomsten<br />nationaal, provinciaal, gemeentelijk</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_02_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_02_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_02_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_02_s"
+    value="4"  /></td>
+                    <td valign="top">Hulp aan bejaarden</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_03_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_03_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_03_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_03_s"
+    value="4"  /></td>
+                    <td valign="top">Kankerfonds</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_04_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_04_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_04_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_04_s"
+    value="4"  /></td>
+                    <td valign="top">Kine: tussenkomst voor zware pathologie&euml;n</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_05_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_05_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_05_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_05_s"
+    value="4"  /></td>
+                    <td valign="top">Mantelzorgtoelage</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_06_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_06_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_06_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_06_s"
+    value="4"  /></td>
+                    <td valign="top">Parkeerkaart</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_07_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_07_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_07_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_07_s"
+    value="4"  /></td>
+                    <td valign="top">Sociaal telefoontarief</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_08_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_08_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_08_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_08_s"
+    value="4"  /></td>
+                    <td valign="top">Vermindering Kabel TV</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_09_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_09_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_09_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_09_s"
+    value="4"  /></td>
+                    <td valign="top">Vlaams Fonds</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_10_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_10_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_10_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_10_s"
+    value="4"  /></td>
+                    <td valign="top">WIGW-Statuut</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_11_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_11_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_11_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_11_s"
+    value="4"  /></td>
+                    <td valign="top">Zorgverzekering</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_12_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_12_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_12_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_12_s"
+    value="4"  /></td>
+                    <td valign="top">Tussenkomst voor incontinentiemateriaal</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_13_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_13_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_13_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_13_s"
+    value="4"  /></td>
+                    <td valign="top">Tussenkomst voor palliatieve zorg</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_14_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_14_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_14_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_14_s"
+    value="4"  /></td>
+                    <td valign="top">Tussenkomst voor rolstoel</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_15_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_15_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_15_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_15_s"
+    value="4"  /></td>
+                    <td valign="top">Tussenkomst voor prothesen</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_16_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_16_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_16_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_16_s"
+    value="4"  /></td>
+                    <td valign="top">Tussenkomst voor medische kosten, medicatie</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_17_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_17_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_17_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_17_s"
+    value="4"  /></td>
+                    <td valign="top">Tussenkomst voor water / elektriciteit</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_18_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_18_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_18_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_18_s"
+    value="4"  /></td>
+                    <td valign="top">Tussenkomst voor vuilniszakken</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_19_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_19_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_19_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_081_19_s"
+    value="4"  /></td>
+                    <td valign="top">Tussenkomst voor ............</td>
+                    <td valign="top" align="center"></td>
+                </tr>
+            </table>
+      </div>
+   </fieldset>
+   <fieldset style="height: 710px;">
+      <div class="legende">8.2. Hulpmiddelen: producten en technologie <br/>voor persoonlijk gebruik dagelijks leven</div>
+      <div>&nbsp;</div>
+      <div class="waarde">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th valign="top" align="center">&nbsp;-&nbsp;</th>
+                    <th valign="top" align="center">&nbsp;&plusmn;&nbsp;</th>
+                    <th valign="top" align="center">&nbsp;+&nbsp;</th>
+                    <th valign="top" align="center">&nbsp;NVT&nbsp;</th>
+                    <th valign="top">Item</th>
+                    <th valign="top">Bijkomende opmerkingen</th>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" valign="top" colspan="6" class="titel">Slapen / Rusten</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_01_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_01_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_01_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_01_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Speciale matras (gel, vezel)</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_02_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_02_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_02_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_02_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Decubitusmateriaal</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_03_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_03_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_03_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_03_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Bed / zijsponden</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_04_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_04_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_04_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_04_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Bedtafel</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_05_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_05_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_05_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_05_s"
+    value="4"  /></td>
+                <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Bedverhoger</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_06_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_06_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_06_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_06_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Oprichter</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_07_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_07_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_07_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_07_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Rugsteun</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_08_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_08_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_08_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_08_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Fixatiegordel</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_09_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_09_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_09_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_09_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Overige ...</td>
+                    <td valign="top" valign="top" align="center"> </td>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" colspan="6" class="titel">Verplaatsen</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_10_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_10_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_10_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_10_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Tillift</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_11_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_11_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_11_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_11_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Rolstoel</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_12_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_12_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_12_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_12_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Gaankader</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_13_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_13_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_13_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_13_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Vierpikkel / kruk</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_14_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_14_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_14_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_14_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Wandelstok</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_15_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_15_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_15_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_15_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Overige ...</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" colspan="6" class="titel">Toiletbezoek / incontinentie :</td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_16_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_16_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_16_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_16_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Sonde / stoma</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_17_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_17_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_17_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_17_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Urinaal / bedpan</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_18_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_18_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_18_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_18_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;WC-stoel</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_19_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_19_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_19_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_19_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;WC-verhoger</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_20_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_20_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_20_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_20_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Grijpstaven</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_21_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_21_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_21_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_21_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top" rowspan="2">&nbsp;&nbsp;&bull;&nbsp;Incontinentiemateriaal<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;(onderleggers, luiers,<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;conveen, broekjes)</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr class="verplicht">
+                    <td valign="top" valign="top" class="begincel" colspan="4"></td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_22_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_22_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_22_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_22_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Overige ...</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr>
+                    <td valign="top" colspan="6" class="titel">Specifieke hulpmiddelen :</td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_23_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_23_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_23_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_23_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Eten</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_24_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_24_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_24_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_24_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Kleden</td>
+                    <td valign="top" valign="top" align="center"></td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_25_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_25_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_25_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_25_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Vrijetijdsbesteding</td>
+                    <td valign="top" valign="top" align="center"> </td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_26_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_26_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_26_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_26_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Overige ...</td>
+                    <td valign="top" valign="top" align="center"> </td>
+                </tr>
+            <tr>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_27_s"
+    value="1"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_27_s"
+    value="2"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_27_s"
+    value="3"  /></td>
+<td valign="top" align="center"><input onclick="return false;" type="radio" name="ei_082_27_s"
+    value="4"  /></td>
+                    <td valign="top" valign="top">&nbsp;&nbsp;&bull;&nbsp;Specifieke hulpmiddelen<br />
+                     &nbsp;&nbsp;&nbsp;&nbsp;voor ziekte of aandoening</td>
+                    <td valign="top" valign="top" align="center"> </td>
+                </tr>
+            </table>
+      </div>
+   </fieldset>
+   <fieldset style="height: 170px;">
+      <div class="legende">9. Bijkomende aandachtspunten</div>
+      <div>&nbsp;</div>
+      <div class="waarde">
+            <p>      </div>
+      <div>&nbsp;</div>
+   </fieldset>
+<!-- Einde Formulier -->
+</div></body></html>

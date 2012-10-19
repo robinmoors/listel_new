@@ -1,0 +1,75 @@
+		*{
+			margin:0;
+			padding:0;
+			list-style:none;
+			border:none;
+		}
+	
+		
+		div.domtab{
+			width:530px;
+		}
+		ul.domtabs{
+			float:left;
+			width:100%;
+			margin:0 0 0 0;				
+		}
+		ul.domtabs li{
+			float:left;
+			padding:0 .2em 0 0;
+			margin:0;
+		}
+		ul.domtabs a:link,
+		ul.domtabs a:visited,
+		ul.domtabs a:active,
+		ul.domtabs a:hover{
+			font-size: 10px;
+			width:8em;
+			padding:.2em .3em;
+			display:block;
+			background:white;
+			color: #D58700;
+			height:2em;
+			font-weight:bold;
+			text-decoration:none;
+			line-height: 2em;
+			text-align:center;
+		}
+		html>body ul.domtabs a:link,
+		html>body ul.domtabs a:visited,
+		html>body ul.domtabs a:active,
+		html>body ul.domtabs a:hover{
+			height:auto;
+			min-height:2em;
+		}
+		ul.domtabs a:hover{
+			background: #FFCC66;
+		}
+		div.domtab div{
+			clear:both;
+			width:auto;
+			background:#FDE79D;
+			padding:1em 3em;
+			border: 1px solid black;
+		}
+		ul.domtabs li.active a:link,
+		ul.domtabs li.active a:visited,
+		ul.domtabs li.active a:active,
+		ul.domtabs li.active a:hover{
+			background:#FDE79D;
+			color:#000;
+		}
+.domtab h2{
+	margin-bottom: 5px;
+}
+.domtab h3 {
+	margin: 10px 0px;
+	color:#D58700;
+}
+.domtab h4 {
+	font-size: 11px;
+	margin: 5px 0;
+	color: #D58700;
+}
+.domtab label { cursor: hand;}
+		

@@ -1,0 +1,895 @@
+table.form td.label {
+
+    width: 200px;
+
+    text-align: right;
+
+}
+
+table.form td.input {
+
+    width: 400px;
+
+}
+
+
+
+table.form tr.onderlijn td {
+
+      border-bottom: #ddd solid 1px;
+
+}
+
+table.form li {
+
+    list-style-image : none;
+
+}
+
+
+
+table.form td.input textarea {
+
+  font-family: Arial;
+
+  font-size: 11px;
+
+  width: 300px;
+
+  height: 80px;
+
+}
+
+
+
+table.form td.input input.lang {
+
+  font-family: Arial;
+
+  font-size: 11px;
+
+  width: 300px;
+
+}
+
+
+
+body
+
+   {
+
+   margin: 0px;
+
+   padding: 0px;
+
+   background-color: #BEBCAF;
+
+   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+
+   font-size: 10px;
+
+    }
+
+form
+
+    {
+
+    border:solid 0px black;
+
+    margin:0px;
+
+    }
+
+a
+
+   {
+
+   color: #D58700;
+
+   }
+
+a:hover
+
+   {
+
+   color: #FFBD40;
+
+   }
+
+
+
+a img {
+
+  border: 0px;
+
+}
+
+
+
+div
+
+   {
+
+   border:0px solid black;
+
+   }
+
+.hidden
+
+    {height:180px;
+
+    display:none}
+
+.pagina
+
+   {
+
+   width:800px;
+
+/*   overflow:auto;  */
+
+   }
+
+.header
+
+   {
+
+   width:800px;
+
+   height:130px;
+
+   background-image:url(../images/header_bg.gif);
+
+    text-align:left;
+
+   }
+
+.inloggen
+
+   {
+
+   margin:50px 10px 0px 25px;
+
+   font-size:10px;
+
+   text-align:right;
+
+   width:300px;   /* of width: 120px; ??? */
+
+   }
+
+.scheider
+
+   {
+
+   font-size:0px;
+
+   width:800px;
+
+   height:2px;
+
+   background-image:url(../images/scheiding_bg.gif);
+
+   }
+
+.kruimelpad
+
+   {
+
+   width:800px;
+
+   background-image:url(../images/kruimelpad_bg.gif);
+
+   overflow:auto;
+
+   margin:0px;
+
+   }
+
+.kruimelpadblock
+
+   {
+
+   font-size:12px;
+
+   text-align:left;
+
+   margin:4px 5px 4px 25px;
+
+   }
+
+.contents
+
+   {
+
+   width:800px;
+
+   background-image:url(../images/main_bg.gif);
+
+   font-size:10px;
+
+   text-align:left;
+
+   }
+
+.navigation
+
+   {
+
+   position: absolute;
+
+   width: 198px;
+
+   margin: 12px 0px 0px 0px;
+
+   padding: 0px 0px 0px 0px;
+
+   background-image:url(../images/navigation_bg.gif);
+
+   background-repeat:no-repeat;
+
+   }
+
+.navigationblock
+
+   {
+
+   margin:0px 9px 0px 20px;
+
+   padding: 0px 0px 0px 0px;
+
+   }
+
+.navigationblock a:hover
+
+    {
+
+   text-decoration: underline;
+
+   color: #FFBD40;
+
+    }
+
+.navigationlist
+
+    {
+
+   margin: 5px 0px 5px 0px;
+
+   padding: 0px 0px 0px 0px;
+
+   list-style-image: none;
+
+   list-style-position: outside;
+
+   list-style-type: none;
+
+   color: #6A4300;
+
+    }
+
+.navigationlistitem, .navigationlistitem a
+
+    {
+
+   font-size: 12px;
+
+   font-weight: bold;
+
+   text-decoration: none;
+
+   color: #6A4300;
+
+    border:0px solid black;
+
+   margin: 0px 0px 0px 10px;
+
+   padding: 0px 0px 0px 0px;
+
+    }
+
+.main
+
+   {
+
+   position: relative;
+
+   left: 198px;
+
+   margin: 0;
+
+   padding: 0px 4px;
+
+   width: 578px;
+
+   font-size:11px;
+
+   }
+
+h1{font-size:16px;font-weight:bold;}
+
+h2{font-size:14px;font-weight:bold;}
+
+h3{font-size:12px;font-weight:bold;}
+
+h4{font-size:12px;font-style: italic;}
+
+h5{font-size: 12px;}
+
+
+
+.mainblock
+
+   {
+
+   /* position:relative; */
+
+   text-align:justify;
+
+   padding: 8px 0px 0px 8px;
+
+   min-height: 744px;
+   _height: 744px;
+   }
+
+.footer
+
+   {
+
+   width:800px;
+
+   height:20px;
+
+   font-size:10px;
+
+   padding-top:3px;
+
+   background-image:url(../images/footer_bg.gif);
+
+   clear: both;
+
+   }
+
+
+
+.bulletmenu ul{
+
+    border: 0px solid black;
+
+   margin:0px 0px 0px 5px;
+
+   padding:0px 0px 0px 0px;
+
+   }
+
+.bulletmenu ul li{
+
+   list-style-image:url(../images/bullet3.gif);
+
+    border: 0px solid black;
+
+   margin:0px 0px 0px 10px;
+
+   padding:0px 0px 0px 0px;
+
+   }
+
+ul{
+
+    border: 0px solid black;
+
+   margin:0px 0px 0px 10px;
+
+   padding:0px 0px 0px 0px;
+
+   }
+
+li{
+
+   list-style-image:url(../images/bullet1.gif);
+
+    border: 0px solid black;
+
+   margin:0px 0px 0px 20px;
+
+   padding:0px 0px 0px 0px;
+
+   }
+
+li ul li{
+
+   list-style-image:url(../images/bullet2.gif);
+
+    border: 0px solid black;
+
+   margin:0px 0px 0px 20px;
+
+   padding:0px 0px 0px 0px;
+
+   }
+
+.kader
+
+    {
+
+    border:1px solid #6A4300;
+
+    padding:1px;
+
+    width:542px;
+
+    font-size:11px;
+
+    }
+
+.even
+
+    {
+
+    margin-left:1px;
+
+    padding-left:3px;
+
+    background-color:#ffffff;
+
+    font-size:11px;
+
+    text-align:justify;
+
+    }
+
+.oneven
+
+    {
+
+    margin-left:1px;
+
+    padding-left:3px;
+
+    background-color:#FFFBCE;
+
+    font-size:11px;
+
+    text-align:justify;
+
+    }
+
+.tabeltitel
+
+    {
+
+    background-color:#FFBD40;
+
+    font-weight:bold;
+
+    font-size:larger;
+
+    padding:3px;
+
+    }
+
+
+
+fieldset
+
+    {
+
+    width:530px;
+
+    font-weight:normal;
+
+
+
+    float:none;
+
+    clear: both;
+
+    
+
+    border: 1px solid black;
+
+    background-color:#FDE79D;
+
+    margin-top:5px;
+
+    overflow:none;
+
+    padding:10px;
+
+  }
+
+
+
+fieldset.normal {
+
+  width: 500px;
+
+  float: none;
+
+  clear: both;
+
+  
+
+}
+
+
+
+.label160
+
+    {
+
+    font-size:12px;
+
+    font-weight:normal;
+
+    width:160px;
+
+    text-align:right;
+
+    float:left;
+
+    clear: left;
+
+    height:30px;
+
+    border: 0px solid black;
+
+    }
+
+.label220
+
+   {
+
+   font-size:12px;
+
+   font-weight:normal;
+
+   width:220px;
+
+   text-align:right;
+
+   float:left;
+
+   clear: left;
+
+   height:30px;
+
+   border: 0px solid black;
+
+   }
+
+.label280
+
+   {
+
+   font-size:12px;
+
+   font-weight:normal;
+
+   width:280px;
+
+   text-align:right;
+
+   float:left;
+
+   clear: left;
+
+   height:30px;
+
+   border: 0px solid black;
+
+   }
+
+.waarde
+
+   {
+
+   padding-left:10px;
+
+   /* height:30px; */
+
+   border: 0px solid black;
+
+   float: left;
+
+ }
+
+
+
+
+
+.waarde50
+
+   {
+
+   padding-left:10px;
+
+   height: 50px;
+
+   border: 0px solid black;
+
+   }
+
+.invoer
+
+    {
+
+    width:290px;
+
+    }
+
+.waardex
+
+   {
+
+   padding-left:10px;
+
+   border: 0px solid black;
+
+   float: left;
+
+   }
+
+#IIPostCodes {height:100px;}
+
+#IIWoonsituatie {height:100px;}
+
+#IIMantelzorg {height:100px;}
+
+#IIAlarmsysteem {height:80px;}
+
+.inputItem
+
+   {
+
+   clear:both;
+
+   /*height:30px; */
+
+   border: 0px solid black;
+
+    /*overflow:auto;*/
+
+   }
+
+.EvaluatieInstrumentItem
+
+   {
+
+   clear:both;
+
+   height:30px;
+
+   border: 0px solid black;
+
+   }
+
+.verplicht
+
+    {
+
+    background-color:#CC6600;
+
+    height:20px;
+
+  }
+
+.verplicht .titel
+
+    {
+
+/* background-image:url(../images/boogje_bg.gif); */
+
+/*    background-repeat:no-repeat; */
+
+    }
+
+.titel
+
+    {
+
+    padding-top:0px;
+
+    padding-right:0px;
+
+    padding-bottom:0px;
+
+    padding-left:100px;
+
+    font-weight:bold;
+
+    height:20px;
+
+    }
+
+.begincel
+
+    {
+
+    padding-top:0px;
+
+    padding-right:0px;
+
+    padding-bottom:0px;
+
+    padding-left:0px;
+
+    font-weight:100;
+
+/* background-image:url(../images/boogje_bg.gif); */
+
+/*    background-repeat:no-repeat; */
+
+    }
+
+.legende
+
+    {
+
+    margin-left:10px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+   color: #6A4300;
+
+    }
+
+.reqfield
+
+    {
+
+    color:#990000;
+
+    elevation:higher;
+
+    display:inline;
+
+    }
+
+.puntlijn
+
+    {
+
+    border-bottom:dotted 1px black;
+
+    height: 30px;
+
+    width: 100px;
+
+    }
+
+.accentcel
+
+    {
+
+    background-color:#FF9900;
+
+    }
+
+th, td
+
+    {
+
+    font-size:12px;
+
+    text-align:left;
+
+    }
+
+
+
+.tip {
+
+    font-size:9px;
+
+    font-style:italic;
+
+}
+
+
+
+.tabcontent {
+
+	position: absolute;
+
+	top: 25px;
+
+	left: 0px;
+
+}
+
+
+
+#tabcontainer {
+
+	position: relative;
+
+  top: 0px;
+
+}
+
+
+
+#status {
+
+  border: 1px solid rgb(70%, 70%, 70%);
+
+  background-color: rgb(90%, 90%, 90%);
+
+  font-size: 10px;
+
+  font-family: Arial, sans-serif;
+
+  height: 40px;
+
+  width: 540px;
+
+  padding: 0px 1px;
+
+  margin: 2px;
+
+}
+
+
+
+.taakfiche td, .taakfiche .th {
+
+   font-size: 10px;
+
+}
+
+
+
+.select_vl .inputItem {
+
+  float: left;
+
+}
+
+.select_vl .label160 {
+
+  float: left;
+
+  clear: both;
+
+}
+
+
+
+td input[type=text] {
+
+  margin: 1px 0px 1px 5px;
+
+  width: 200px;
+
+}
+
+
+
+
+
+.checkedThing {
+
+  display: none;
+
+}
+
+.aankeiler {
+   display: none;
+   width: 400px;
+   height: 65px;
+   background: rgb(95%,95%,70%);
+   position: absolute;
+   z-index: 1;
+   font-size: 10px;
+   padding: 3px;
+}
+
+
+
+.aankeiler div {
+  text-align: left;
+}
+
