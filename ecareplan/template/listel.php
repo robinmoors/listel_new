@@ -15,7 +15,7 @@ class ECP_Template_Listel extends ECP_Template{
     <div align=\"center\">
         <div class=\"pagina\">
             <div class='userbar'>
-                <div class='menuicon'><img src='{[baseurl]}/images/24/user.png' alt='U' title='Gebruikersmenu openen'/></div>
+                <div class='menuicon'><img src='{[baseurl]}/lib/images/24/user.png' alt='U' title='Gebruikersmenu openen'/></div>
                 <div class='menutitle'>{[username]}User</div>
                 <div class='menusuboption'>{[loginbutton]}</div>
             </div>
@@ -26,22 +26,19 @@ class ECP_Template_Listel extends ECP_Template{
                 <div class=\"navigation\">
                     <div id=\"menu\">
                     <ul>
-                       <li><img src='{[baseurl]}/images/home.png' alt='H' title='Homepagina'/> <span class='content'>Home</span></li>
+                       <li><img src='{[baseurl]}/lib/images/home.png' alt='H' title='Homepagina'/> <span class='content'>Home</span></li>
                        <li>
-                            <img src='{[baseurl]}/images/balloons.png' alt='O' title='Overleg...'/> <span class='content'>Overleg</span>
+                            <img src='{[baseurl]}/lib/images/balloons.png' alt='O' title='Overleg...'/> <span class='content'>Overleg</span>
                        </li>
                        <li>
-                            <img src='{[baseurl]}/images/marker.png' alt='E' title='Evaluaties...'/> <span class='content'>Evaluaties</span>
+                            <img src='{[baseurl]}/lib/images/marker.png' alt='E' title='Evaluaties...'/> <span class='content'>Evaluaties</span>
                        </li>
                        <li>
-                            <img src='{[baseurl]}/images/drawer.png' alt='Z' title='Zorgplannen...'/> <span class='content'>Zorgplannen</span>
+                            <img src='{[baseurl]}/lib/images/drawer.png' alt='Z' title='Zorgplannen...'/> <span class='content'>Zorgplannen</span>
                        </li>
-                       <li><img src='{[baseurl]}/images/chair.png' alt='OZ' title='Ouderenzorg...'/> <span class='content'>Ouderenbehandeling</span></li>
+                       <li><img src='{[baseurl]}/lib/images/chair.png' alt='OZ' title='Ouderenzorg...'/> <span class='content'>Ouderenbehandeling</span></li>
                        <li class='spacer'>&nbsp;</li>
-                       <li><img src='{[baseurl]}/images/briefcase.png' alt='F' title='Formulieren...'/> <span class='fastcontent'>Formulieren</span></li>
-                       <li class='spacer'>&nbsp;</li>
-                       <li><img src='{[baseurl]}/images/mails.png' alt='B' title='Berichten'/></li>
-                       <li><img src='{[baseurl]}/images/user.png' alt='G' title='{[username]}'/> <span class='fastcontent'>{[username]}</span></li>
+                       <li><img src='{[baseurl]}/lib/images/briefcase.png' alt='F' title='Formulieren...'/> <span class='fastcontent'>Formulieren</span></li>
                     </ul>
                 </div>
                 {[errors]}

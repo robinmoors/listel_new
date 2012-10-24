@@ -217,7 +217,6 @@ td input[type=text] {
     background: -o-linear-gradient(left, #784f1b 0%,#784f1b 17px,#aa692d 20px,#ecc58c 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(left, #784f1b 0%,#784f1b 17px,#aa692d 20px,#ecc58c 100%); /* IE10+ */
     background: linear-gradient(to right, #784f1b 0%,#784f1b 17px,#aa692d 20px,#ecc58c 100%); /* W3C */
-    border-radius: 16px 0  0 16px; 
 }#menu li:hover{
     background: rgb(221,137,61);
     color: rgb(236,197,140);
