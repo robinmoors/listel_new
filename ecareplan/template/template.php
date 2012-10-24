@@ -135,7 +135,7 @@ class ECP_Template extends ECP_Object {
      */
     protected function finish(){
         //replace all templateTextArea's with ""
-        $tags = array("baseurl","headscript","title","bodyscript","content","mapper","adv","sitemenu","sitename","footer","versionname","errors","username");
+        $tags = array("baseurl","headscript","title","bodyscript","content","mapper","adv","sitemenu","sitename","footer","versionname","errors","username","loginbutton");
         foreach($tags as $tag){
             if(array_key_exists($tag, $this->data)) self::replace($tag,$this->data[$tag]);
             else self::replace($tag,"");

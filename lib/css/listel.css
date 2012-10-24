@@ -148,19 +148,31 @@ td input[type=text] {
 .pagina
 {
     width:95%;
-    /* background-color: #f4a932;  #BEBCAF;  */
-
-    /*   overflow:auto;  */
-
+    box-shadow: 0 0 5px black;
+    background: rgb(249,237, 223);
 }
-
+.userbar{
+    position: absolute;
+    width: 120px;
+    z-index: 5;
+    right: 5%;
+    padding: 2px;
+}.userbar:hover{
+    background: rgb(221,137,61);
+}.userbar .menutitle{
+    font-weight: bold;
+}.userbar .menuicon{
+    float: left;
+}.userbar .menusuboption{
+    text-transform: uppercase;
+}
 .header
 {
-    width:800px;
+    /* width:800px;
     height:138px;
     background-image:url(../images/header_bg.png);
     background-position: 0px 0px;
-    text-align:left;
+    text-align:left;*/
     z-index: 2;
 }
 
@@ -170,8 +182,7 @@ td input[type=text] {
     top: -2px;
     width:95%;
     min-width: 800px;
-    border: solid 2px rgb(221,137,61);
-    border-bottom: 0;
+    border: none;
     background: rgb(249,237,223);
     font-size:10px;
     text-align:left;
@@ -179,9 +190,10 @@ td input[type=text] {
 }
 .navigation{
     background: rgb(236,197,140);
-    border-bottom: 1px solid rgb(221,137,61);
+    border-bottom: none;
 }
 #menu{
+    float: left;    
     text-align: center;
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -191,13 +203,14 @@ td input[type=text] {
     height: 32px;
 }
 #menu ul, #menu li{
-    display:inline-block;
     margin: -1px 10px 10px 0;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-left: 2px;
     font-weight: bold;
 }#menu li{
+    text-align: left;
+    list-style: none;
     background: -moz-linear-gradient(left, #784f1b 0%, #784f1b 17px, #aa692d 20px, #ecc58c 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, right top, color-stop(0%,#784f1b), color-stop(17px,#784f1b), color-stop(20px,#aa692d), color-stop(100%,#ecc58c)); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(left, #784f1b 0%,#784f1b 17px,#aa692d 20px,#ecc58c 100%); /* Chrome10+,Safari5.1+ */
@@ -214,6 +227,8 @@ td input[type=text] {
 }#menu li.spacer{
     background: none;
     cursor: default;
+}.main{
+    float: left;
 }
 .footer
 {
@@ -225,8 +240,7 @@ td input[type=text] {
     font-size:10px;
     padding-top:3px;
     background: rgb(249,237,223);
-    border: 2px solid rgb(221, 137, 61);
-    border-top: 0;
+    border: none;
     clear: both;
     z-index: 0;
 }

@@ -14,10 +14,13 @@ class ECP_Template_Listel extends ECP_Template{
         $body="
     <div align=\"center\">
         <div class=\"pagina\">
+            <div class='userbar'>
+                <div class='menuicon'><img src='{[baseurl]}/images/24/user.png' alt='U' title='Gebruikersmenu openen'/></div>
+                <div class='menutitle'>{[username]}User</div>
+                <div class='menusuboption'>{[loginbutton]}</div>
+            </div>
             <div class=\"header\">
-                <a href=\"welkom.php\">
-                    <img src=\"{[baseurl]}/images/blanco.gif\" width=\"170\" height=\"129\" border=\"0\">
-                </a>
+                <h1>Listel VZW</h1>
             </div>
             <div class=\"contents\">
                 <div class=\"navigation\">

@@ -111,6 +111,7 @@ class ECP_Site extends ECP_App {
         $tdata = array();
         $tdata['baseurl'] = $this->conf->base_url;
         $tdata['username'] = $this->router->getParameter();
+        $tdata['loginbutton'] = "afmelden";
         //$tdata['content'] = "De website wordt nu door equinsi samengesteld. Normaal duurt dit slechts enkele seconden.<br/>Duurt het toch lang? Vernieuw dan eventjes deze pagina. Dan probeert Equinsi opnieuw..";
         //$tdata['title'] = $siteconfig["siteName"];
         //$tdata['sitename'] = $siteconfig["siteName"];
