@@ -1,4 +1,0 @@
-<?php
-print("
-</body></html>");
-?>
