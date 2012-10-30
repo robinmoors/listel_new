@@ -6,10 +6,12 @@
  */
 
 /**
- * Description of site_app
- *
- * @author robindell
+ * Site_App class of EcarePlan System
+ * @version 1.0
+ * @package application
+ * @author Robin Moors, Joris Jacobs
  */
+defined("ECP_AC") or die("Stop! Wat we onder de motorkap hebben zitten houden we liever verborgen.");
 class ECP_Site extends ECP_App {
     private $site = null;
     private $page = null;
@@ -93,8 +95,12 @@ class ECP_Site extends ECP_App {
             $templ->viewErrors(); 
             $this->output = $templ->get();
         } */
-        $templ = ECPFactory::getTemplate("Listel");
-        $templ->give(self::createTemplateData());
+        $templname = $this->conf->offline ? "offline" : "listel" ;
+        
+        $templ = ECPFactory::getTemplate($templname);
+        $tdata = self::createTemplateData();
+        $tdata['content'] = $site_conf["message"];
+        $templ->give($tdata);
         $templ->input($message);
         if($templ->succes()) $this->output = $templ->get();
         else{
@@ -112,10 +118,9 @@ class ECP_Site extends ECP_App {
         $tdata['baseurl'] = $this->conf->base_url;
         $tdata['username'] = $this->router->getParameter();
         $tdata['loginbutton'] = "afmelden";
-        //$tdata['content'] = "De website wordt nu door equinsi samengesteld. Normaal duurt dit slechts enkele seconden.<br/>Duurt het toch lang? Vernieuw dan eventjes deze pagina. Dan probeert Equinsi opnieuw..";
         //$tdata['title'] = $siteconfig["siteName"];
         //$tdata['sitename'] = $siteconfig["siteName"];
-        //$tdata['versionname'] = $this->conf->cur_version;
+        $tdata['versionname'] = $this->conf->cur_version;
         //$tdata['username'] = $this->user->getName();
         //$tdata["headscript"] = " ";
         return $tdata;

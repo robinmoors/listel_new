@@ -1,4 +1,4 @@
-html, body, div, ,form, h1, h2, h3, h4, h5, h6, li, ul, ol, p {
+html, body, div, form, h1, h2, h3, h4, h5, h6, li, ul, ol, p {
     margin: 0;
     padding: 0;
 }
@@ -147,6 +147,8 @@ td input[type=text] {
 }
 .pagina
 {
+    position: relative;
+    top: 1em;
     width:95%;
     box-shadow: 0 0 5px black;
     background: rgb(249,237, 223);
@@ -189,11 +191,13 @@ td input[type=text] {
     z-index: 1;
 }
 .navigation{
+    position: relative;
     background: rgb(236,197,140);
     border-bottom: none;
 }
 #menu{
     float: left;    
+    position: relative;
     text-align: center;
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -228,6 +232,9 @@ td input[type=text] {
     cursor: default;
 }.main{
     float: left;
+    position: relative;
+}.mainblock{
+    position: relative;
 }
 .footer
 {
@@ -242,6 +249,17 @@ td input[type=text] {
     border: none;
     clear: both;
     z-index: 0;
+}
+.selfclear{
+    display:inline-block;
+    
+}.selfclear:after{
+    display: block;
+    content: " ";
+    visibility: hidden;
+    font-size: 0;
+    height: 0;
+    clear: both;
 }
 .verplicht
 {
