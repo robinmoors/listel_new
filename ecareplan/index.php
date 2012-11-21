@@ -16,6 +16,13 @@ require_once DS.'includes'.DS.'framework.php';
 
 // Instantiate
 $app = ECPFactory::getApp('Site');
+
+$app->initialise();
+
+$app->route();
+//$app->dispatch();
+//$app->render();
+$app->build(); //moet gaan verdwijnen
 echo $app;
 ob_end_flush();
 ?>

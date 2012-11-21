@@ -34,11 +34,12 @@ class ECPConfig {
 	public $secret = 'AjaEhk97edabslLeP45z6ej';
 	public $error_reporting = '-1';
 
-        //NOTE - volgende items zijn momenteel nog niet in gebruik (en mogelijk mss helemaal niet nodig)
         
-	/* Session settings */
-	public $lifetime = '30';
-	public $session_handler = 'database';
+	/* Session settings */ 
+	public $lifetime = '10'; //tijd in minuten voordat de user inactief word
+	public $session_handler = 'database'; //NOT USED YET
+        
+        //NOTE - volgende items zijn momenteel nog niet in gebruik (en mogelijk mss helemaal niet nodig)
 
 
 	/* Cache Settings */
@@ -58,5 +59,9 @@ class ECPConfig {
         
         public function __toString() {
             return "Hey, ja deze site heeft een configuratieklasse. Maar we vertellen je niet wat er in zit!";
+        }
+        
+        public function get($name){
+            return $this->$name;
         }
 }

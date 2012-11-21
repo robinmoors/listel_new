@@ -12,9 +12,12 @@
  * @author Robin Moors, Joris Jacobs
  */
 defined("ECP_AC") or die("Stop! Wat we onder de motorkap hebben zitten houden we liever verborgen.");
-class ECP_Site extends ECP_App {
+class ECP_SiteApp extends ECP_App {
     private $site = null;
     private $page = null;
+    
+    private $session = null;
+    private $user = null;
 
     /**
      * Class constructor.
@@ -24,8 +27,8 @@ class ECP_Site extends ECP_App {
      */
     public function __construct($id) {
        parent::__construct($id);
-       self::initialise();
-       self::build();
+       //$this->initialise();
+       //$this->build();
     }
 
     /**
@@ -35,12 +38,22 @@ class ECP_Site extends ECP_App {
      * @since	1.0
      */
     public function initialise() {
-        //custom configuratie inladen
-        //sessie inladen en eventueel aanmaken
-        //adhv sessie ook user/admin klassen laden
-        //configuratie wijzigen advh sessie
-        //taalpakket inladen,...        
+        $this->session = ECPFactory::getSession();
+        $this->user = ECPFactory::getUser();
+        
+    }
+    
+    public function route(){
+        //router laden
         parent::route();
+    }
+    
+    public function dispatch(){
+        //alle opties zijn verzameld en nu die in de juiste componenten steken
+    }
+    
+    public function render(){
+        //alles in template steken
     }
 
     /**
@@ -48,7 +61,7 @@ class ECP_Site extends ECP_App {
      *
      * @since	1.0
      */
-    protected function build() {
+    public function build() {
         //inlezen welke site, pagina, optie geladen is of welke opdracht uitgevoerd moet worden
         //benodigde files inladen en openen
         

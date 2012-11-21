@@ -37,7 +37,7 @@ class ECP_User extends ECP_Object {
 
     public function __construct($identifier = 0) {
         // Create the user parameters object
-        $this->_params = new JRegistry;
+        //$this->_params = new JRegistry;
 
         // Load the user if it exists
         if (!empty($identifier)) {

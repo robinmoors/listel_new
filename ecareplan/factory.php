@@ -99,6 +99,7 @@ abstract class ECPFactory {
      * @return  ECP_User object
      */
     public static function getUser($id = null) {
+        ecpimport('user.user');
         $instance = self::getSession()->get('user');
 
         if (is_null($id)) {
@@ -171,9 +172,8 @@ abstract class ECPFactory {
         // Get the editor configuration setting
         $conf = self::getConfig();
 
-        // Config time is in minutes
-        $options['expire'] = ($conf->get('lifetime')) ? $conf->get('lifetime') * 60 : 900;
-
+        $options['expire'] = ($conf->get('lifetime')) ? $conf->get('lifetime') : 15;
+        ecpimport('session.session');
         $session = ECP_Session::getInstance($options);
         if ($session->getState() == 'expired') {
             $session->restart();
