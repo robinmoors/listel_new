@@ -82,7 +82,7 @@ class ECP_URI extends ECP_Object{
      * @param   string  $uri  The URI string to parse.
      * @return  boolean  True on success.
      */
-    public function parse($uri) {
+    public function parse($uri=null) {
         //TODO alle speciale html-entities in de url moeten omgezet worden (vooral bij parameters noodzakelijk)
         
         return true;

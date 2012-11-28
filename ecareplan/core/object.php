@@ -15,11 +15,11 @@ defined("ECP_AC") or die("Stop! Wat we onder de motorkap hebben zitten houden we
 
 class ECP_Object {
 
-    protected $errors = array();
+    protected static $errors = array();
     private $properties;
 
-    protected function addError($error) {
-        $this->errors[count($this->errors)] = $error;
+    protected static function addError($error) {
+        self::$errors[count(self::$errors)] = $error;
     }
 
     /**

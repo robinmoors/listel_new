@@ -82,9 +82,9 @@ abstract class ECPFactory {
         return ECP_Mail::getInstance($mailtype);
     }
     
-    public static function getRouter($client=null){
+    public static function getRouter($client="default"){
         if(!self::$router_set){
-            ecpimport("router.router");
+            ecpimport("application.router");
             self::$router_set = true;
         }
         return ECP_Router::getInstance($client);
