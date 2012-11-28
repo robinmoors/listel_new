@@ -23,6 +23,9 @@ class ECP_App extends ECP_Object {
     protected $templatedata = array();
     protected $router;
 
+    
+    protected $session = null;
+    protected $user = null;
     /**
      * Class constructor.
      *
@@ -122,12 +125,7 @@ class ECP_App extends ECP_Object {
 
 
     public function route() {
-        if (ecpimport('application.router')) {
-            $this->router = new ECP_Router();
-        } else {
-            parent::addError("ECPApp::getRouter");
-            $this->router = new stdClass();
-        }
+
     }
 
     /**

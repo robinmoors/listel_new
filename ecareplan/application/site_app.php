@@ -15,9 +15,6 @@ defined("ECP_AC") or die("Stop! Wat we onder de motorkap hebben zitten houden we
 class ECP_SiteApp extends ECP_App {
     private $site = null;
     private $page = null;
-    
-    private $session = null;
-    private $user = null;
 
     /**
      * Class constructor.
@@ -45,11 +42,13 @@ class ECP_SiteApp extends ECP_App {
     
     public function route(){
         //router laden
-        parent::route();
+        //parent::route();
+        $this->router = ECPFactory::getRouter();
+        $this->router->parse();
     }
     
     public function dispatch(){
-        //alle opties zijn verzameld en nu die in de juiste componenten steken
+        //alle opties zijn verzameld, nu gaan we de componenten laden en de juiste informatie meegeven
     }
     
     public function render(){
@@ -129,7 +128,7 @@ class ECP_SiteApp extends ECP_App {
     protected function createTemplateData($siteconfig=null){
         $tdata = array();
         $tdata['baseurl'] = $this->conf->base_url;
-        $tdata['username'] = $this->router->getParameter();
+        $tdata['username'] = "niks"; //$this->router->getParameter();
         $tdata['loginbutton'] = "afmelden";
         //$tdata['title'] = $siteconfig["siteName"];
         //$tdata['sitename'] = $siteconfig["siteName"];

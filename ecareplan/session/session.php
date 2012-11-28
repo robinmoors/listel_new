@@ -28,8 +28,6 @@ class ECP_Session extends ECP_Object {
      * @see getExpire()
      */
     protected $_expire = 15;
-    
-    
 
     private $options;
 

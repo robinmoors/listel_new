@@ -19,9 +19,11 @@ abstract class ECPFactory {
     public static $conf = null;
     public static $db = null;
     public static $template = null;
-    public static $email = null;
     public static $session = null;
-    public static $user = null;
+    
+    private static $email_set = false;
+    private static $router_set = false;
+    private static $uri_set = false;
 
     /**
      * Geef het EQApp object door, als het nog niet bestaat: maak het object
@@ -73,11 +75,19 @@ abstract class ECPFactory {
      * @return object EQMail
      */
     public static function getMailer($mailtype) {
-        if (!self::$email) {
+        if (!self::$email_set) {
             ecpimport("mail.mail");
-            self::$email = ECP_Mail::getInstance($mailtype);
+            self::$email_set = true;
         }
-        return self::$email;
+        return ECP_Mail::getInstance($mailtype);
+    }
+    
+    public static function getRouter($client=null){
+        if(!self::$router_set){
+            ecpimport("router.router");
+            self::$router_set = true;
+        }
+        return ECP_Router::getInstance($client);
     }
 
     /**
@@ -91,6 +101,14 @@ abstract class ECPFactory {
         }
 
         return self::$session;
+    }
+    
+    public static function getURI($uri='SERVER'){
+        if(!self::$uri_set){
+            ecpimport('uri.uri');
+            self::$uri_set = true;
+        }
+        return ECP_URI::getInstance($uri);
     }
 
     /**
