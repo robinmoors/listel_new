@@ -15,6 +15,8 @@ defined("ECP_AC") or die("Stop! Wat we onder de motorkap hebben zitten houden we
 class ECP_SiteApp extends ECP_App {
     private $site = null;
     private $page = null;
+    private $template = null;
+    private $data = null;
 
     /**
      * Class constructor.
@@ -49,10 +51,25 @@ class ECP_SiteApp extends ECP_App {
     
     public function dispatch(){
         //alle opties zijn verzameld, nu gaan we de componenten laden en de juiste informatie meegeven
+        $this->router->dispatch();
     }
     
     public function render(){
         //alles in template steken
+        $templ = ECPFactory::getTemplate($this->template);
+        $tdata = self::createTemplateData();
+        $templ->give($tdata);
+        $message = "";
+        $errors = parent::getErrors();
+        for($i=0; $i<count($errors);$i++){
+            $message.=" $i - {$errors[$i]}";
+        }
+        $templ->input($message);
+        if($templ->succes()) $this->output = $templ->get();
+        else{
+            $templ->viewErrors();
+            $this->output = $templ->get();
+        }
     }
 
     /**
@@ -68,6 +85,7 @@ class ECP_SiteApp extends ECP_App {
         if($this->conf->offline == "1"){
             $site_conf['state'] = "offline"; //forceer offline status want server staat op offline..
             $site_conf['message'] = $this->conf->offline_message;
+            
         }
         /*
         //site status controleren en template instellen
@@ -107,11 +125,10 @@ class ECP_SiteApp extends ECP_App {
             $templ->viewErrors(); 
             $this->output = $templ->get();
         } */
-        $templname = $this->conf->offline ? "offline" : "listel" ;
+        $this->template = $this->conf->offline ? "offline" : "listel" ;
         
-        $templ = ECPFactory::getTemplate($templname);
+        $templ = ECPFactory::getTemplate($this->template);
         $tdata = self::createTemplateData();
-        $tdata['content'] = $site_conf["message"];
         $templ->give($tdata);
         $templ->input($message);
         if($templ->succes()) $this->output = $templ->get();
@@ -121,6 +138,13 @@ class ECP_SiteApp extends ECP_App {
         }
     }
     
+    public function setTemplate($template){
+        $this->template = $template;
+    }
+    
+    public function setTemplateData($tdata){
+        $this->data = $tdata;
+    }
     /**
      * Create the templatedata wich a template reads to add content.
      * @param array $data site_conf from (query_result as array) 
@@ -135,6 +159,7 @@ class ECP_SiteApp extends ECP_App {
         $tdata['versionname'] = $this->conf->cur_version;
         //$tdata['username'] = $this->user->getName();
         //$tdata["headscript"] = " ";
+        $tdata['content'] = $this->data['content'];
         return $tdata;
     } 
     

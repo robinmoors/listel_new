@@ -21,6 +21,9 @@ class ECP_Object {
     protected static function addError($error) {
         self::$errors[count(self::$errors)] = $error;
     }
+    protected static function getErrors(){
+        return self::$errors;
+    }
 
     /**
      * Class constructor, overridden in descendant classes.

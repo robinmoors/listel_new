@@ -17,6 +17,7 @@ class ECP_Router extends ECP_Object{
     
     protected $uri;
     
+    protected $component;
     /***
      * The state of the router
      * @see getState()
@@ -66,7 +67,24 @@ class ECP_Router extends ECP_Object{
      */
     public function dispatch(){
         //do dispatching
-        if($this->state==="parsed"){
+        if($this->state==="parsed"){ 
+            $component = $this->uri->getComponent();
+            $command = $this->uri->getCommand();
+            if(!ecplocate("components.".$component.".".$component)){
+                $component = "error"; $command = "unknown_component";
+            }
+            ecpimport("components.componentcontroller");//load the component interface!
+            ecpimport("components.".$component.".".$component);
+            $componentname = "ECP_Comp_".ucwords($component)."_Controller";
+            if(class_exists($componentname)){
+                $this->controller = new $componentname();
+                $this->controller->command($command);
+                $this->controller->params($this->uri->getVars());
+                $this->controller->execute();
+            }else{
+                parent::addError("ECP_ROUTER::dispatch() - Couldn't open component because classname didn't exist. Component classnames wrong?");
+                return false;
+            }
             return true;
         }else{
             parent::addError("ECP_ROUTER::dispatch() - Can't dispatch because uri isn't parsed yet!");

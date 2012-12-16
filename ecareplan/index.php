@@ -20,9 +20,8 @@ $app = ECPFactory::getApp('Site');
 $app->initialise();
 
 $app->route();
-//$app->dispatch();
-//$app->render();
-$app->build(); //moet gaan verdwijnen
+$app->dispatch();
+$app->render();
 echo $app;
 ob_end_flush();
 ?>

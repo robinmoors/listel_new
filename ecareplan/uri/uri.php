@@ -35,9 +35,9 @@ class ECP_URI extends ECP_Object{
         $commandaras = array_diff_assoc($requestURI, $scriptname); //haalt gelijke indexen eruit en voegt samen tot 1.
         $commandar = array_values($commandaras); //index met 0 laten beginnen
         
-        $this->component = $commandar[0];
-        $this->command = $commandar[1];
-        $this->vars = array_slice($commandar, 2);
+        $this->component = ($commandar[0]) ? $commandar[0] : null; //eerste stuk gaat het component zijn
+        $this->command = ($commandar[1]) ? $commandar[1] : null; //2de stuk gaat de functie/actie zijn voor de controller
+        $this->vars = array_slice($commandar, 2); //3de stuk (of meerdere) bestaat uit parameters
     }
 
     /**
@@ -54,6 +54,10 @@ class ECP_URI extends ECP_Object{
      */
     public function getComponent(){
         return $this->component;
+    }
+    
+    public function getVars(){
+        return $this->vars;
     }
     
     /**
@@ -84,12 +88,56 @@ class ECP_URI extends ECP_Object{
      */
     public function parse($uri=null) {
         //TODO alle speciale html-entities in de url moeten omgezet worden (vooral bij parameters noodzakelijk)
-        
+        if($this->component === null) $this->component = "home";
+        if($this->command === null) $this->command = "std_command";
+        $this->parseComponent();
+        $this->parseCommand();
+        $this->parseVars();
         return true;
     }
     
     public function setURI($uri){
         $this->uri = $uri;
+    }
+    
+    private function parseComponent(){
+        //Component-naam mag enkel bestaan uit kleine letters, 
+        //eventueel een koppelteken of liggend streepje
+        //alle andere tekens zijn ongeldig!
+        if($this->command !== "error"){ //error component kan ook extern worden opgeroepen!
+            $strval = preg_match('/^[A-Za-z_-]*/', $this->component, $matches, PREG_OFFSET_CAPTURE);
+            //Strval zal exact 1 zijn wanneer er een match is, 0 of FALSE indien niet.
+            //Maar bij een match kan het zijn dat niet de hele string gematched is, dus even controleren...
+            //in $matches staat een array met matches, elke match is een array met 0 de match en 1 de offset
+            //Deze moet dus al 0 zijn en de eerste match moet ook de hele string zijn!
+            if($strval !== 1 || $matches[0][1]!=0 || $matches[0][0]!==$this->component){
+                $this->component = "error";
+                $this->command = "unsafe_url";
+            }
+        }else{
+            $this->command = "error_example";
+        }
+    }
+    
+    private function parseCommand(){
+        if($this->command !== "error"){
+            $strval = preg_match('/^[A-Za-z_-]*/', $this->command, $match, PREG_OFFSET_CAPTURE);
+            if($strval !== 1 || $match[0][1]!=0 || $match[0][0]!==$this->command){
+                $this->component = "error";
+                $this->command = "unsafe_command_url";
+            }
+        }else{
+            $this->command = "std_command";
+        }
+    }
+    
+    private function parseVars(){
+        if($this->command !== "error"){
+            $this->vars = filter_var($this->vars,FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
+            //indien door de filtering de parameters wegvallen, dan zal er in de controller intern een errorhandling gebeuren
+        }else{
+            $this->vars = null; //bij error component geen parameters nodig
+        }
     }
 }
 

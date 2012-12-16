@@ -33,6 +33,23 @@ abstract class ECPLoader
             return false;
          }
      }
+     
+     /**
+      * Checks if a file exists and returns the answer
+      * (Offers a safe check before trying to import)
+      * @param string $path
+      * @return boolean true if exist
+      */
+     public static function locate($path){
+         $paths = explode(DIRECTORY_SEPARATOR,__FILE__);
+         array_pop($paths);
+         $path = implode("/",$paths);
+         $docpath=explode('.',$doc);
+         $path = $path.DS.implode("/",$docpath);
+         if(file_exists($path.PHP)){
+             return true;
+         }else return false;
+     }
 }
 
 /**
@@ -55,4 +72,8 @@ function ecpexit($message = NULL)
 function ecpimport($path)
 {
 	return ECPLoader::import($path);
+}
+
+function ecplocate($path){
+    return ECPLoader::locate($path);
 }
