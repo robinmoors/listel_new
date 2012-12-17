@@ -142,8 +142,14 @@ class ECP_SiteApp extends ECP_App {
         $this->template = $template;
     }
     
-    public function setTemplateData($tdata){
-        $this->data = $tdata;
+    /**
+     * Set templatedata, only setting wat was givven!
+     * @param array $tdata
+     */
+    public function setTemplateData($tdata=array()){
+        foreach($tdata as $datakey => $td){
+            $this->data[$datakey] = $td;
+        }
     }
     /**
      * Create the templatedata wich a template reads to add content.

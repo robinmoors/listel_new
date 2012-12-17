@@ -40,7 +40,7 @@ abstract class ECPLoader
       * @param string $path
       * @return boolean true if exist
       */
-     public static function locate($path){
+     public static function locate($doc){
          $paths = explode(DIRECTORY_SEPARATOR,__FILE__);
          array_pop($paths);
          $path = implode("/",$paths);
