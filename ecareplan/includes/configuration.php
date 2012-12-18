@@ -14,7 +14,7 @@ defined("ECP_AC") or die("Stop! Wat we onder de motorkap hebben zitten houden we
 class ECPConfig {
 	/* MainSite Settings */
         public $cur_version = "1alpha0"; //NOTE versiebeheer!
-	public $offline = '0'; //zet het hele systeem uit door hier 1 te zetten (voor alle websites die runnen vanaf deze server!)
+	public $offline = '1'; //zet het hele systeem uit door hier 1 te zetten (voor alle websites die runnen vanaf deze server!)
 	public $offline_message = 'Hey! We zijn bezig het opknappen en schoonmaken van de website...<br/>Kom zeker nog eens terug...<br/>Hey! We\'re cleaning and fixing things at the moment...<br /> Please check back again soon.';
 	public $sitename = 'Ecareplan - De online Zorgplannenbeheerder!';
 	public $list_limit = '30';

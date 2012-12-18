@@ -17,6 +17,7 @@ class ECP_SiteApp extends ECP_App {
     private $page = null;
     private $template = null;
     private $data = null;
+    private $state = "inactive"; //inactive, initialized, routed, dispatched, rendered, offline
 
     /**
      * Class constructor.
@@ -26,8 +27,8 @@ class ECP_SiteApp extends ECP_App {
      */
     public function __construct($id) {
        parent::__construct($id);
-       //$this->initialise();
-       //$this->build();
+       $this->state = $this->conf->offline ? "offline" : "inactive";
+       
     }
 
     /**
@@ -39,19 +40,28 @@ class ECP_SiteApp extends ECP_App {
     public function initialise() {
         $this->session = ECPFactory::getSession();
         $this->user = ECPFactory::getUser();
-        
+        if($this->state !== "offline") $this->state = "initialized";
     }
     
     public function route(){
         //router laden
         //parent::route();
-        $this->router = ECPFactory::getRouter();
-        $this->router->parse();
+        if($this->state !== "offline") {
+            $this->router = ECPFactory::getRouter();
+            $this->router->parse();
+            $this->state = "routed";
+        }
     }
     
     public function dispatch(){
         //alle opties zijn verzameld, nu gaan we de componenten laden en de juiste informatie meegeven
-        $this->router->dispatch();
+        if($this->state !== "offline"){
+            $this->router->dispatch();
+            $this->state = "dispatched";
+        }else{
+            $this->setTemplate("offline");
+            $this->setTemplateData(array('content' => $this->conf->offline_message, 'content-title'=>'Ecareplan Offline'));
+        }        
     }
     
     public function render(){
@@ -70,6 +80,7 @@ class ECP_SiteApp extends ECP_App {
             $templ->viewErrors();
             $this->output = $templ->get();
         }
+        $this->state = "rendered";
     }
 
     /**
@@ -138,6 +149,18 @@ class ECP_SiteApp extends ECP_App {
         }
     }
     
+    /**
+     * Retuns the state of the Site_app
+     * @return string state 
+     */
+    public function getState(){
+        return $this->state;
+    }
+    
+    /**
+     * Sets the templatename to load when rendering
+     * @param string $template the templatename
+     */
     public function setTemplate($template){
         $this->template = $template;
     }
@@ -157,15 +180,15 @@ class ECP_SiteApp extends ECP_App {
      */
     protected function createTemplateData($siteconfig=null){
         $tdata = array();
+        foreach($this->data as $datakey => $td){
+            $tdata[$datakey] = $td;
+        }
         $tdata['baseurl'] = $this->conf->base_url;
-        $tdata['username'] = "niks"; //$this->router->getParameter();
-        $tdata['loginbutton'] = "afmelden";
+        $tdata['user-name'] = "Gebruiker"; //Username
+        $tdata['login-button'] = "afmelden";
         //$tdata['title'] = $siteconfig["siteName"];
-        //$tdata['sitename'] = $siteconfig["siteName"];
         $tdata['versionname'] = $this->conf->cur_version;
-        //$tdata['username'] = $this->user->getName();
         //$tdata["headscript"] = " ";
-        $tdata['content'] = $this->data['content'];
         return $tdata;
     } 
     
