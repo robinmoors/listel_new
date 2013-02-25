@@ -38,7 +38,10 @@ class ECP_DatabaseQuery extends ECP_Object {
     public function __CONSTRUCT($action, $options) {
         $this->_conf = $options;
         self::$debug = array_key_exists("debug", $options) ? $options["debug"] : false;
+        //self::$debug = true;
         self::$permlvl = array_key_exists("permissionlevel", $options) ? $options["permissionlevel"] : 1;
+        //security disabled!
+        self::$permlvl = 6;
         if (self::$debug)
             echo "Debugging Query<br/><hr/>\n";
         self::action(strtolower($action));
@@ -56,6 +59,8 @@ class ECP_DatabaseQuery extends ECP_Object {
         if (self::$debug)
             echo "* action given: $action<br/>";
         $this->action = array_key_exists($action, $this->_conf) ? $action : false;
+        //security disabled!
+        $this->action = $action;
         if ($this->action) {
             if (self::$debug)
                 echo "action accepted<br/>";
@@ -275,6 +280,15 @@ class ECP_DatabaseQuery extends ECP_Object {
      */
     public function getError() {
         return mysql_error($this->con);
+    }
+    
+    /**
+     * 
+     * @see singleResult, get
+     */
+    public function getSingleResult(){
+        $this->singleResult();
+        return $this->get();
     }
     /**
      *  Sla het resultaat als array op en return het object voor kettingmakerij

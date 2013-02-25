@@ -16,12 +16,14 @@ defined("ECP_AC") or die("Stop! Wat we onder de motorkap hebben zitten houden we
 class ECP_User extends ECP_Object {
 
     //put your code here
-    public $id = null;
+    private $id = null;
     private $type = null;
-    public $name = null;
-    public $username = null;
-    public $password = null;
-    public $guest = 1;
+    private $name = null;
+    private $username = null;
+    private $password = null;
+    private $guest;
+    private $user = 0;
+    private $locked = true;
 
     /**
      * User parameters
@@ -38,17 +40,12 @@ class ECP_User extends ECP_Object {
     public function __construct($identifier = 0) {
         // Create the user parameters object
         //$this->_params = new JRegistry;
-
-        // Load the user if it exists
-        if (!empty($identifier)) {
-            $this->load($identifier);
-        } else {
             // Initialise
             $this->id = 0;
             $this->sendEmail = 0;
             $this->aid = 0;
             $this->guest = 1;
-        }
+            $this->locked = true;
     }
 
     /**
@@ -62,13 +59,11 @@ class ECP_User extends ECP_Object {
      * @since   11.1
      */
     public static function getInstance($identifier = 0) {
-        // Find the user id
+        // Find the user id 
         if (!is_numeric($identifier)) {
             //TODO helper maken of functie die via de username de user gaat ophalen
-            if (!$id = JUserHelper::getUserId($identifier)) {
                 parent::addError("ECP_User getInstance::User doesn't exist.");
                 return false;
-            }
         } else {
             $id = $identifier;
         }
@@ -89,58 +84,65 @@ class ECP_User extends ECP_Object {
     }
 
     /**
-     * Method to load a ECP_User object by user id number
-     *
-     * @param   mixed  $id  The user id of the user to load
-     *
-     * @return  boolean  True on success
-     *
+     * Return ID of user
+     * @return $UID integer
      */
-    public function load($id) {
-        // Create the user table object
-        ////////TODO hier database klaarmaken om user op te halen... $table = $this->getTable();
-
-//        // Load the ECP_UserModel object based on the user id or throw a warning.
-//        if (!$table->load($id)) {
-//            // Reset to guest user
-//            $this->guest = 1;
-//            parent::addError('ECP_User load::Not able to load user');
-//            return false;
-//        }
-
-        /*
-         * Set the user parameters using the default XML file.  We might want to
-         * extend this in the future to allow for the ability to have custom
-         * user parameters, but for right now we'll leave it how it is.
-         */
-
-        //loadstring komt van een registry die hebben we niet nodig eh!!! $this->_params->loadString($table->params);
-
-        // Assuming all is well at this point let's bind the data
-        $this->setProperties($table->getProperties());
-
-        // The user is no longer a guest
-        if ($this->id != 0) {
-            $this->guest = 0;
-        } else {
-            $this->guest = 1;
-        }
-
-        return true;
+    public function getId(){
+        return $this->id;
     }
     
-    public function getType(){
-        switch($this->type){
-            case 1: "OC"; break;
-            case 2: "Listel"; break;
-            case 3: "Hoofdproject"; break;
-            case 4: "Bijkomend Project"; break;
-            case 5: "CAW"; break;
-            case 6: "RDC"; break;
-            case 7: "Menos"; break;
-            case 8: "Ziekenhuis"; break;
-            case 9: "Psy"; break;
-            default: "Gast"; break;
+    /**
+     * Tell if session is guest!
+     * @return boolean true if guest
+     */
+    public function isGuest(){
+        if($this->guest) return true;
+        else return false;
+    }
+    
+    /**
+     * Return the name of the user
+     * @return username !guest if guestsession!
+     */
+    public function getName(){
+        if($this->isGuest()) return "guest";
+        return $this->name;
+    }
+    
+    public function setUser($id){
+        $db = ECPFactory::getDbo();
+        $user = $db->newQuery("select","user")->table("users")->where("UID",$id,"=")->execute();
+        if($user->getRows()){
+            $u = $user->getSingleResult();
+            $this->guest = false;
+            $this->id = $id;
+            $this->user = $u;
+            $this->locked = 1;
+        }else{
+            $this->guest = 1;
+            $this->locked = 1;
+        }
+    }
+    /**
+     * Return Userdata from database
+     * Can only be done by sessionclass (when starting)
+     * @return Array with userdata or null when negative
+     */
+    public function getUser(){
+        $session= ECPFactory::getSession();
+        if($session->getState()==="starting")
+            return $this->user;
+        else return null;
+    }
+    /**
+     * Set user to guest -> can only be done from session class! (when validating)
+     */
+    public function setGuest(){
+        $session= ECPFactory::getSession();
+        if($session->getState()==="unvalidated"){
+            $this->guest = 1;
+            $this->locked = 1;
+            $this->user = null;
         }
     }
 

@@ -80,6 +80,26 @@ class ECP_URI extends ECP_Object{
         }
         return self::$instances[$uri];
     }
+    
+    /**
+     * Returns the userid if given in url!
+     * If not, returns null
+     * 
+     */
+    public function getUserId(){
+        if($this->vars){
+                $id = 0;
+            if(is_array($this->vars)){
+                $id = $this->vars[count($this->vars)-1];
+            }else{
+                $id = $this->vars;
+            }
+            if(intval($id)) return intval($id);
+            else return 0;
+        }else{
+            return 0;
+        }
+    }
 
     /**
      * Parse a given URI and populate the class fields.
@@ -133,7 +153,10 @@ class ECP_URI extends ECP_Object{
     
     private function parseVars(){
         if($this->command !== "error"){
-            $this->vars = filter_var($this->vars,FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
+            if(is_array($this->vars)){
+                $this->vars = filter_var_array($this->vars,FILTER_SANITIZE_STRING);
+            }else
+                @$this->vars = filter_var($this->vars,FILTER_SANITIZE_STRING); 
             //indien door de filtering de parameters wegvallen, dan zal er in de controller intern een errorhandling gebeuren
         }else{
             $this->vars = null; //bij error component geen parameters nodig

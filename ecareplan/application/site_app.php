@@ -31,7 +31,7 @@ class ECP_SiteApp extends ECP_App {
        
     }
 
-    /**
+   /**
      * Initialise the application.
      *
      * @param	array An optional associative array of configuration settings.
@@ -39,7 +39,6 @@ class ECP_SiteApp extends ECP_App {
      */
     public function initialise() {
         $this->session = ECPFactory::getSession();
-        $this->user = ECPFactory::getUser();
         if($this->state !== "offline") $this->state = "initialized";
     }
     
@@ -57,6 +56,9 @@ class ECP_SiteApp extends ECP_App {
         //alle opties zijn verzameld, nu gaan we de componenten laden en de juiste informatie meegeven
         if($this->state !== "offline"){
             $this->router->dispatch();
+            $this->user = ECPFactory::getUser($this->router->getUserId());
+            $this->user->setUser($this->router->getUserId());
+            $this->session->start();
             $this->state = "dispatched";
         }else{
             $this->setTemplate("offline");

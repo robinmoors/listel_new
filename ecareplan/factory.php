@@ -118,15 +118,9 @@ abstract class ECPFactory {
      */
     public static function getUser($id = null) {
         ecpimport('user.user');
-        $instance = self::getSession()->get('user');
 
-        if (is_null($id)) {
-            if (!($instance instanceof ECP_User)) {
-                $instance = ECP_User::getInstance();
-            }
-        } elseif ($instance->id != $id) {
             $instance = ECP_User::getInstance($id);
-        }
+
 
         return $instance;
     }

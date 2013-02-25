@@ -101,6 +101,15 @@ class ECP_Router extends ECP_Object{
             parent::addError("ECP_Router::setURI() - Can't set a new uri because the old one isn't parsed yet!");
         }
     }
+    
+    public function getUserId(){
+        if($this->state === "parsed"){
+            return $this->uri->getUserId();
+        }else{
+            parent::addError("ECP_ROUTER::getUser() - couldn't return UserId because URI isn't parsed yet!");
+            return 0;
+        }
+    }
 
 }
 
