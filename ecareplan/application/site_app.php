@@ -55,10 +55,10 @@ class ECP_SiteApp extends ECP_App {
     public function dispatch(){
         //alle opties zijn verzameld, nu gaan we de componenten laden en de juiste informatie meegeven
         if($this->state !== "offline"){
-            $this->router->dispatch();
             $this->user = ECPFactory::getUser($this->router->getUserId());
             $this->user->setUser($this->router->getUserId());
             $this->session->start();
+            $this->router->dispatch();
             $this->state = "dispatched";
         }else{
             $this->setTemplate("offline");
@@ -176,6 +176,10 @@ class ECP_SiteApp extends ECP_App {
             $this->data[$datakey] = $td;
         }
     }
+    
+    public function getUser(){
+        return $this->user;
+    }
     /**
      * Create the templatedata wich a template reads to add content.
      * @param array $data site_conf from (query_result as array) 
@@ -186,7 +190,7 @@ class ECP_SiteApp extends ECP_App {
             $tdata[$datakey] = $td;
         }
         $tdata['baseurl'] = $this->conf->base_url;
-        $tdata['user-name'] = "Gebruiker"; //Username
+        $tdata['user-name'] = $this->user->naam; //Username
         $tdata['login-button'] = "afmelden";
         //$tdata['title'] = $siteconfig["siteName"];
         $tdata['versionname'] = $this->conf->cur_version;

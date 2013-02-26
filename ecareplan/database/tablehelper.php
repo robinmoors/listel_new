@@ -27,39 +27,9 @@ class ECP_DatabaseTableHelper{
      */
     public static function getTablePermissionLevel($tablename){
         switch(strtolower($tablename)){
-            case "stream_45saw33bmg9a": case "stream_truc8as7ec3u":
-            case "advertisements":  case "com_contact": case "stream":  case "advertisement":
-                return 1;
-                break;
-            case "equinsi": case "equinsi_ins": case "equinsi_lists": case "orders":
-                return 2;
-                break;
-            case "files":
-                return 3;
-                break;
-            case "finance": 
-                return 2;
-                break; 
-            case "horses":
-                return 2;
-                break;
-            case "reservations": case "reservations_types":
-                return 2;
-                break;
-            case "page": case "sites": case "devices":
-                return 1;
-                break;
-            case "users":
-                return 2;
-                break;
-            case "sessions":
-                return 4;
-                break;
-            case "votes":
-                return 3;
-                break;
+            
             default:
-                return 0;
+                return 6;
                 break;
         }
     }
@@ -70,24 +40,9 @@ class ECP_DatabaseTableHelper{
      */
     public static function getTableDeletePermissionLevel($tablename){
         switch(strtolower($tablename)){
-            case "stream_45saw33bmg9a": case "stream_truc8as7ec3u":
-            case "advertisements":  case "com_contact": case "stream":  case "equinsi": case "equinsi_ins": case "equinsi_lists": case "files": case "finance": case "page":
-                return 3;
-                break; 
-            case "horses":
-                return 2;
-                break;
-            case "reservations": case "reservations_types":
-                return 2;
-                break;
-            case "sessions":
-                return 4;
-                break;
-            case "votes":
-                return 3;
-                break;
+            
             default:
-                return 0;
+                return 6;
                 break;
         }
     }

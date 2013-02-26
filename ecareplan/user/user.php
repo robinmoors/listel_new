@@ -17,10 +17,6 @@ class ECP_User extends ECP_Object {
 
     //put your code here
     private $id = null;
-    private $type = null;
-    private $name = null;
-    private $username = null;
-    private $password = null;
     private $guest;
     private $user = 0;
     private $locked = true;
@@ -92,6 +88,13 @@ class ECP_User extends ECP_Object {
     }
     
     /**
+     * 
+     * @see getId()
+     */
+    public function getUserId(){
+        return $this->getId();
+    }
+    /**
      * Tell if session is guest!
      * @return boolean true if guest
      */
@@ -104,14 +107,24 @@ class ECP_User extends ECP_Object {
      * Return the name of the user
      * @return username !guest if guestsession!
      */
-    public function getName(){
-        if($this->isGuest()) return "guest";
-        return $this->name;
+    public function __get($name) {
+        if(!is_array($this->user))
+            return null;
+        if(array_key_exists($name, $this->user)){
+            return $this->user[$name];
+        }else{
+            $name = ucwords(strtolower($name));
+            if(array_key_exists($name, $this->user)){
+                return $this->user[$name];
+            }else{
+                return null;
+            }
+        }
     }
     
     public function setUser($id){
         $db = ECPFactory::getDbo();
-        $user = $db->newQuery("select","user")->table("users")->where("UID",$id,"=")->execute();
+        $user = $db->newQuery("select","user")->table("logins")->where("id",$id,"=")->execute();
         if($user->getRows()){
             $u = $user->getSingleResult();
             $this->guest = false;
@@ -121,6 +134,7 @@ class ECP_User extends ECP_Object {
         }else{
             $this->guest = 1;
             $this->locked = 1;
+            $this->user = array("naam"=>"Gast","type"=>"Guest");
         }
     }
     /**
@@ -142,7 +156,7 @@ class ECP_User extends ECP_Object {
         if($session->getState()==="unvalidated"){
             $this->guest = 1;
             $this->locked = 1;
-            $this->user = null;
+            $this->user = array("naam"=>"Gast","type"=>"Guest");
         }
     }
 

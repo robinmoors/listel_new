@@ -23,7 +23,7 @@ class ECP_Comp_Error_Controller implements ECP_ComponentController{
     }
     
     public function command($command){
-        if(!is_callable(array(&$this,$command))){
+        if($command !="command" || !is_callable(array(&$this,$command))){
             $command = "command_error";
         }
         $this->action = $command;

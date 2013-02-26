@@ -24,10 +24,10 @@ class ECPConfig {
 
 	/* Database Settings */
 	public $host = 'localhost';				
-	public $user = 'ecareplan'; //NOTE user met host: localhost, verder heeft hij alle previleges voor de database "ecareplan"!!
-        public $password = 'database';
-	public $db = 'ecareplan'; //NOTE er is dus een nieuwe database gemaakt met de naam "ecareplan" prefixen zijn "ecp_" dit moet dan de geoptimaliseerde database worden.
-	public $dbprefix = 'ecp_';
+	public $user = 'media02'; //NOTE user met host: localhost, verder heeft hij alle previleges voor de database "ecareplan"!!
+        public $password = 'listel02';
+	public $db = 'listel2'; //NOTE er is dus een nieuwe database gemaakt met de naam "ecareplan" prefixen zijn "ecp_" dit moet dan de geoptimaliseerde database worden.
+	public $dbprefix = '';
         public $debug = false; //NOTE dit is de database debugger, false = uit!!
 
 	/* System Settings */

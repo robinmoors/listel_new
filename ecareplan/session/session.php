@@ -153,7 +153,7 @@ class ECP_Session extends ECP_Object {
     public function validate(){
         if($this->_state === "unvalidated"){
             $ip = $_SERVER['REMOTE_ADDR'];
-            if($ip!=$this->session['Ip']){
+            if($ip!=$this->session['ip']){
                 $this->user->setGuest();
                 $this->_state = "error";
             }else{
