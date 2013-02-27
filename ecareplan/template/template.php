@@ -54,22 +54,11 @@ class ECP_Template extends ECP_Object {
 
         $this->head.="
         <script type=\"text/javascript\">
-            function createREQ() {
-                try {
-                    req = new XMLHttpRequest(); // new XMLHttpRequest();  // firefox e.d.
-                }catch(err1){ 
-                    try {
-                        req = new ActiveXObject(\"Msxml2.XMLHTTP\"); // sommige IE
-                    }catch(err2){ 
-                        try {
-                            req = new ActiveXObject(\"Microsoft.XMLHTTP\"); // meeste IE
-                        }catch(err3){
-                            req = false;
-                }}}
-                return req;
-            }
+            $(document).ready(function(){
+                EQ.CPU = EQ.ajaxProcessor;
+                {[headscript]}
+            });
         </script>
-        {[headscript]}
         <title>{[title]}</title>
         <!--[if lt IE 9]>
             <script src=\"http://html5shiv.googlecode.com/svn/trunk/html5.js\"></script>
