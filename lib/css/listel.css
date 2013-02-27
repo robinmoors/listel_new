@@ -206,3 +206,176 @@ nav ul{
     height: 0px;
     clear: both;
 }
+
+
+/*overflow & tooltip divs*/
+#tooltip{
+    background-color: #282828;
+    color: white;
+    font-size: 11px;
+    line-height: 14px;
+    padding: 4px 8px;
+    text-align: left;
+    white-space: nowrap;
+    position:absolute;
+    z-index: 100;
+    opacity: 0.9;
+}
+#overflowbox{
+    position:absolute;
+    top:0px;
+    left:0px;
+    width: 10000px;
+    height: 10000px;
+    z-index: 3000;
+}#overflow{
+    width: 10000px;
+    height: 10000px;
+    background: black;
+    opacity:0.7;
+}
+#overflowloader,#overflowcontent{
+    color: white;
+    position: absolute;
+    margin:auto;
+    z-index: 4000;
+    box-shadow: 0 0 1em black;
+}#overflowloader{
+    background: rgb(90,90,90);
+    background: -moz-linear-gradient(top,rgb(100,100,100),rgb(80,80,80));
+    background: -webkit-gradient(linear,left top,left bottom,from(rgb(100,100,100)),to(rgb(80,80,80)));
+    border-radius: 2px;
+    font:9pt Tahoma;
+    z-index: 4000;
+    height: 40px;
+    width: 220px;
+    padding: 2px;
+}#overflowcontent{
+    color: white;
+    z-index: 3500;
+    border: 6px solid #222;
+    background: black;
+    border-radius: 2px;
+}/*reset header/footer styles*/
+#overflowcontent h5{
+    text-shadow: 1px 1px 1px rgb(0,150,150);
+}
+#overflowcontent header{
+    background: rgb(30,30,30);
+    /* reset header styles */
+    border-radius: none; 
+    box-shadow:none;
+    height: auto;
+    width: auto;
+    padding: 0;
+}#overflowcontent #vrflcontent{
+    overflow: auto;
+    padding: 0.5em 1em 0.5em 2em;
+}
+#vrflcontent ul{
+    margin: 1em;
+}
+#overflowcontent footer{
+    background:none;
+    box-shadow:none;
+    height: auto;
+    width: auto;
+    min-width: 150px;
+    min-height: 12px;
+    position: relative;
+    padding-left: 10px;
+    padding-top: 15px;
+}#overflowcontent header:after{
+    content:none;
+}
+#overflowcontent .tabinterface{
+    border-top: 1px solid black;
+    color: white;
+    height: 40px;
+}
+
+/*System or module styles*/
+input{
+    width: 250px;
+    border: 1px solid rgb(225,225,225);
+    background: white;
+    color: rgb(11,11,11);
+    padding: 5px;
+    margin: 0 0 10px;
+    font-size: 20px;
+}
+input[type="email"].login{
+    padding: 0 0 0 53px;
+    height: 48px;
+    background: url("../images/Login%20User.png") no-repeat, white;
+}
+input[type="password"].login{
+    padding: 0 0 0 53px;
+    height: 48px;
+    background: url("../images/Login1.png") no-repeat, white;
+}
+input[type="button"].login{
+    padding: 0 0 0 53px;
+    height: 48px;
+    background: url("../images/Login%20door.png") no-repeat, white;
+}input[type="text"].login{
+    padding: 0 0 0 53px;
+    height: 48px;
+    background: white;
+}
+input.login.firstname{
+    background: url("../images/first-name.png") no-repeat, white;
+}input.login.lastname{
+    background: url("../images/last-name.png") no-repeat, white;
+}
+@-webkit-keyframes pend{
+    0% { background-color: rgba(0,0,0,0);}
+    50% { background-color: rgba(255,215,0,0.4);}
+    100% { background-color: rgba(0,0,0,0);}
+}@-moz-keyframes pend{
+    0% { background-color: rgba(0,0,0,0);}
+    50% { background-color: rgba(255,215,0,0.4);}
+   100% { background-color: rgba(0,0,0,0);}
+}.pending{
+    cursor: default;
+    border: 1px dashed rgb(160,160,160);
+   background-color: rgba(255,215,0,0.4);
+     -webkit-animation: pend 2s infinite; 
+     -moz-animation: pend 2s infinite; 
+}.smallerfont{
+    font-size: 75%;
+}@-webkit-keyframes greenblink{
+    0% { background-color: rgba(0,0,0,0);}
+    50% { background-color: rgba(203,209,188,1);}
+    100% { background-color: rgba(0,0,0,0);}
+}@-moz-keyframes greenblink{
+    0% { background-color: rgba(0,0,0,0);}
+    50% { background-color: rgba(203,209,188,1);}
+   100% { background-color: rgba(0,0,0,0);}
+   }.succes{
+       cursor: default;
+       border: 1px dashed rgb(203,209,188);
+       font-style: italic;
+       -webkit-animation: greenblink 0.5s 0s 5;
+       -moz-animation: greenblink 0.5s 0s 5;
+   }@-webkit-keyframes redblink{
+    0% { background-color: rgba(0,0,0,0);}
+    50% { background-color: rgba(125,65,55,1);}
+    100% { background-color: rgba(0,0,0,0);}
+}@-moz-keyframes redblink{
+    0% { background-color: rgba(0,0,0,0);}
+    50% { background-color: rgba(125,65,55,1);}
+   100% { background-color: rgba(0,0,0,0);}
+   }.occupied{
+       cursor: default;
+       border: 1px dashed rgb(125,65,55);
+       font-style: italic;
+       -webkit-animation: redblink 0.5s 0s 5;
+       -moz-animation: redblink 0.5s 0s 5;
+   }.wrong{
+    cursor: text;
+    border: 1px dotted rgb(160,160,160);
+   background-color: rgba(125,65,55,0);
+     -webkit-animation: redblink 2s infinite; 
+     -moz-animation: redblink 2s infinite; 
+}

@@ -24,6 +24,7 @@ abstract class ECPFactory {
     private static $email_set = false;
     private static $router_set = false;
     private static $uri_set = false;
+    private static $form_set = false;
 
     /**
      * Geef het EQApp object door, als het nog niet bestaat: maak het object
@@ -54,6 +55,13 @@ abstract class ECPFactory {
             self::$db = self::_createDbo($conf);
         }
         return self::$db;
+    }
+    
+    public static function getForm($formname=false){
+        if(!self::$form_set){
+            ecpimport("form.form");
+        }
+        return ECP_Form::getInstance($formname);
     }
 
     /**

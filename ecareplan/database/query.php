@@ -38,7 +38,7 @@ class ECP_DatabaseQuery extends ECP_Object {
     public function __CONSTRUCT($action, $options) {
         $this->_conf = $options;
         self::$debug = array_key_exists("debug", $options) ? $options["debug"] : false;
-        //self::$debug = true;
+        self::$debug = true;
         self::$permlvl = array_key_exists("permissionlevel", $options) ? $options["permissionlevel"] : 1;
         //security disabled!
         self::$permlvl = 6;

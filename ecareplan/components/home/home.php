@@ -40,5 +40,9 @@ class ECP_Comp_Home_Controller implements ECP_ComponentController{
     public function std_command() {
         $this->model->showWelcome();
     }
+    
+    public function welkom(){
+        $this->model->showWelcome();
+    }
 }
 ?>
