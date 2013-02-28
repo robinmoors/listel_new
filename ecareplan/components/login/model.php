@@ -47,10 +47,10 @@ class ECP_Comp_Login_Model {
     }
 
     public function loginpage() {
-        $script = $this->loginform->getScript("http://localhost/listel_new/ecareplan/login/login/",
+        $script = $this->loginform->getScript("/listel_new/ecareplan/login/login/",
                 array("title"=>"Aanmelden",
                     "action"=>"Bezig met aanmelden...",
-                    "succes"=>"U bent aangemeld <br/><img src=\'http://localhost/listel_new/lib/images/flat-loader.gif\' />",
+                    "succes"=>"U bent aangemeld <br/><img src=\'/listel_new/lib/images/flat-loader.gif\' />",
                     "fail"=>"Er is iets misgegaan. Probeer opnieuw!"),
                 "EQ.reRoute('home');","",
                 "else if(json.reason && json.reason=='no-access'){

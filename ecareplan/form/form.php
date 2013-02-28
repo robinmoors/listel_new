@@ -101,7 +101,7 @@ class ECP_Form extends ECP_Object {
                 EQ.OVR = new EQ.overflow({
                     title:'{$txt["title"]}'
                 });
-                EQ.OVR.content = '{$txt["action"]}<br/><img src=\'http://localhost/listel_new/lib/images/flat-loader.gif\' />';
+                EQ.OVR.content = '{$txt["action"]}<br/><img src=\'/listel_new/lib/images/flat-loader.gif\' />';
                 EQ.OVR.refresh('c').open();
                 var pname = '{$this->name}completion';";
         for ($i = 0; $i < count($this->names); $i++) {

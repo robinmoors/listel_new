@@ -19,7 +19,7 @@ class ECP_Comp_OverlegModel {
     public function get($limit = 30, $from = 0, $to = 30){
         $user = ECPFactory::getUser($this->uid);
         $patients = $this->db->newQuery("select","patients")->table("patient")->where("gem_id",$user->gem_id,"=")->execute();
-        echo $user->naam;
+        echo $patients->getRows();
     }
 
 }

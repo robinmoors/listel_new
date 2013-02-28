@@ -9,7 +9,7 @@ define('PHP','.php');
 $paths = explode(DIRECTORY_SEPARATOR,__FILE__);
 array_pop($paths);
 define("ECPPATH_SITE",implode(DS,$paths));
-
+header('Access-Control-Allow-Origin: *'); //moorskeshoeve
 //load system application
 require_once DS.'includes'.DS.'framework.php';
 

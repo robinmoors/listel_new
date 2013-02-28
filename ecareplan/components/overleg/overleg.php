@@ -25,7 +25,7 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     }
 
     public function command($command) {
-        if($command !="command" || !is_callable(array(&$this,$command))){
+        if($command =="command" || !is_callable(array(&$this,$command))){
             $command = "command_error";
         }
         $this->action = $command;

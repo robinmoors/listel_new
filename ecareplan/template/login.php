@@ -27,22 +27,22 @@ class ECP_Template_Login extends ECP_Template {
         <nav class='selfclear'>
             <ul>
                 <li>
-                    <img src='{[baseurl]}/lib/images/home.png' alt='H' title='Homepagina'/> <span class='content'>Home</span>
+                    <img src='/listel_new/lib/images/home.png' alt='H' title='Homepagina'/> <span class='content'>Home</span>
                 </li>
                 <li>
-                    <img src='{[baseurl]}/lib/images/balloons.png' alt='O' title='Overleg...'/> <span class='content'>Overleg</span>
+                    <img src='/listel_new/lib/images/balloons.png' alt='O' title='Overleg...'/> <span class='content'>Overleg</span>
                 </li>
                 <li>
-                    <img src='{[baseurl]}/lib/images/marker.png' alt='E' title='Evaluaties...'/> <span class='content'>Evaluaties</span>
+                    <img src='/listel_new/lib/images/marker.png' alt='E' title='Evaluaties...'/> <span class='content'>Evaluaties</span>
                 </li>
                 <li>
-                    <img src='{[baseurl]}/lib/images/drawer.png' alt='Z' title='Zorgplannen...'/> <span class='content'>Zorgplannen</span>
+                    <img src='/listel_new/lib/images/drawer.png' alt='Z' title='Zorgplannen...'/> <span class='content'>Zorgplannen</span>
                 </li>
                 <li>
-                    <img src='{[baseurl]}/lib/images/chair.png' alt='OZ' title='Ouderenzorg...'/> <span class='content'>Ouderenbehandeling</span>
+                    <img src='/listel_new/lib/images/chair.png' alt='OZ' title='Ouderenzorg...'/> <span class='content'>Ouderenbehandeling</span>
                 </li>
                 <li>
-                    <img src='{[baseurl]}/lib/images/briefcase.png' alt='F' title='Formulieren...'/> <span class='fastcontent'>Formulieren</span>
+                    <img src='/listel_new/lib/images/briefcase.png' alt='F' title='Formulieren...'/> <span class='fastcontent'>Formulieren</span>
                 </li>
             </ul>
         </nav>

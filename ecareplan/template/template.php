@@ -37,18 +37,18 @@ class ECP_Template extends ECP_Object {
 <html lang=\"en\">
     <head>
         <meta charset=\"utf-8\" />
-        <link rel=\"shortcut icon\" href=\"{[baseurl]}/favicon.ico.png.ico\" />";
+        <link rel=\"shortcut icon\" href=\"/listel_new/favicon.ico.png.ico\" />";
         if ($styles[0] != "none") {
             foreach ($styles as $style) {
-                $this->head.="<link rel=\"stylesheet\" href=\"{[baseurl]}/lib/css/{$style}.css\" media=\"screen\" />";
+                $this->head.="<link rel=\"stylesheet\" href=\"/listel_new/lib/css/{$style}.css\" media=\"screen\" />";
             }
         }
         $this->head.=" 
-        <script src=\"{[baseurl]}/lib/js/jquery.js\" type=\"text/javascript\"></script>
+        <script src=\"/listel_new/lib/js/jquery.js\" type=\"text/javascript\"></script>
         ";
         if ($scripts[0] != "none") {
             foreach ($scripts as $script) {
-                $this->head.="<script src=\"{[baseurl]}/lib/js/{$script}.js\"></script>";
+                $this->head.="<script src=\"/listel_new/lib/js/{$script}.js\"></script>";
             }
         }
 
