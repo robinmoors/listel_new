@@ -15,13 +15,18 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     protected $action = null;
     protected $vars = null;
     protected $model = null;
+    protected $view = null;
     protected $app = null;
     protected $user = null;
 
     public function __CONSTRUCT() {
         ecpimport("components.overleg.overlegmodel");
-        $this->model = null;
+        ecpimport("components.overleg.overlegview");
         $this->action = "std_command";
+        $this->app = ECPFactory::getApp(); //haal de app op om template te gaan veranderen
+        $this->user = $this->app->getUser(); //via de app de user ophalen zodat we zeker de huidige user hebben :)
+        $this->model = new ECP_Comp_OverlegModel($this->user->getUserId());
+        $this->view = new ECP_Comp_OverlegView($this->app);
     }
 
     public function command($command) {
@@ -48,11 +53,19 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     }
 
     public function std_command() {
-        $this->app = ECPFactory::getApp(); //haal de app op om template te gaan veranderen
-        $this->user = $this->app->getUser();
-        $this->model = new ECP_Comp_OverlegModel($this->user->getUserId());
-        $data = $this->model->get();
-        
+        $patienten = $this->model->getPatients();
+        $this->view->viewList($patienten);
+    }
+    
+    public function bewerk(){
+        if(!is_null($this->vars[1])){
+            $patient = $this->model->getOverleg($this->vars[1]);
+            ecpimport("components.overleg.base.overlegform");
+            $formmodel = new ECP_Comp_OverlegForm();
+            $this->view->editOverleg($patient,$formmodel->getForm());
+        }else{
+            $this->std_command();
+        }
     }
 
 }

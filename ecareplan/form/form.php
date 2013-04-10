@@ -223,6 +223,55 @@ class ECP_FormObj {
     }
 
 }
+class ECP_FormObj_Select extends ECP_FormObj{
+    protected $select = false;
+    protected $options = false;
+    
+    public function __CONSTRUCT($fieldname, $options=array(), $select=false){
+        $this->name = $fieldname;
+        $this->select = $select;
+        $this->options = $options;
+        if($this->select){
+            $this->script = "1,999,false";
+        }else{
+            $this->script = "0,999,false";
+        }
+    }
+    
+    public function validate(){
+        if($this->is_option($this->validate) && $this->select){ 
+            return true;
+        }elseif (!$this->select) { 
+            return true; //selectie moest niet gemaakt worden
+        }else{
+            return false;
+        }
+    }
+    
+    private function is_option($value){
+        return array_key_exists($value, $this->options);
+    }
+    
+    public function getHtml($formname, $class){
+        $html = "<select name='{$this->name} class='{$class}'>";
+        foreach($this->options as $key => $value){
+            $html.="<option value='$key'>$value</option>";
+        }
+        $html.="</select><span id='{$formname}{$this->name}'></span></br>";
+        return $html;
+    }
+}
+class ECP_FormObj_Radio extends ECP_FormObj_Select{
+
+    public function getHtml($formname, $class){
+        $html="";
+        foreach($this->options as $key => $value){
+            $html.="<input type='radio' name='{$this->name}' value='$key' class='{$class}'>$value<br/>";
+        }
+        $html.="<span id='{$formname}{$this->name}'></span></br>";
+        return $html;
+    }
+}
 
 class ECP_FormObj_Input extends ECP_FormObj {
 

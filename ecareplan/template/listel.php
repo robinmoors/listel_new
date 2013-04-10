@@ -10,7 +10,7 @@ defined("ECP_AC") or die("Stop! Wat we onder de motorkap hebben zitten houden we
 class ECP_Template_Listel extends ECP_Template {
 
     public function __CONSTRUCT() {
-        parent::createHead("listel");
+        parent::createHead("listel","equinsi");
         $body = "
  <header>
     <div class='wrapper nopadding'>
@@ -30,7 +30,7 @@ class ECP_Template_Listel extends ECP_Template {
                     <img src='/listel_new/lib/images/home.png' alt='H' title='Homepagina'/> <span class='content'>Home</span>
                 </li>
                 <li>
-                    <img src='/listel_new/lib/images/balloons.png' alt='O' title='Overleg...'/> <span class='content'>Overleg</span>
+                    <a href='javascript:void()' onclick='EQ.reRoute(\"overleg\",true);'><img src='/listel_new/lib/images/balloons.png' alt='O' title='Overleg...'/> <span class='content'>Overleg</span></a>
                 </li>
                 <li>
                     <img src='/listel_new/lib/images/marker.png' alt='E' title='Evaluaties...'/> <span class='content'>Evaluaties</span>

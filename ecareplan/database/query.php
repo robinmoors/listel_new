@@ -29,6 +29,7 @@ class ECP_DatabaseQuery extends ECP_Object {
     private $sql_error = null;
     private $sql_error_number = null;
     private $_conf = array();
+    private $limit = "";
 
     /**
      * Contstructor for class reader
@@ -181,6 +182,11 @@ class ECP_DatabaseQuery extends ECP_Object {
         $this->order = "ORDER BY {$row} {$up}";
         return $this;
     }
+    
+    public function limit($to,$from=0){
+        $this->limit = "LIMIT $from,$to";
+        return $this;
+    }
     /**
      * UPDATE table SET row1=value1,row2=value2
      * @param type $rows Array met rijen of enkele rij
@@ -223,7 +229,7 @@ class ECP_DatabaseQuery extends ECP_Object {
             $where = is_null($this->where) ? "" : "WHERE ".$this->where;
             $order = is_null($this->order) ? "" : "ORDER BY {$this->order[0]} {$this->order[1]}";
             //actions
-            $select = $this->action == "select" ? (is_null($this->rows) ? "SELECT * FROM ".$this->_conf['prefix']."{$this->table} {$where} {$this->order}" : "SELECT {$this->rows} FROM ".$this->_conf['prefix']."{$this->table} {$where} {$this->order}") : '';
+            $select = $this->action == "select" ? (is_null($this->rows) ? "SELECT * FROM ".$this->_conf['prefix']."{$this->table} {$where} {$this->order} {$this->limit}" : "SELECT {$this->rows} FROM ".$this->_conf['prefix']."{$this->table} {$where} {$this->order} {$this->limit}") : '';
             $update = $this->action == "update" ? (is_null($this->updateset)) ? '' : "UPDATE ".$this->_conf['prefix']."{$this->table} SET {$this->updateset}  {$where}" : ''; 
             $insert = $this->action == "insert" ? is_null($this->rows) ? is_null($this->values) ? '' : "INSERT INTO ".$this->_conf['prefix']."{$this->table} VALUES({$this->values})" : is_null($this->values) ? '' : "INSERT INTO ".$this->_conf['prefix']."{$this->table} ({$this->rows}) VALUES ({$this->values})" : '';
             //deleting requires special permissions!

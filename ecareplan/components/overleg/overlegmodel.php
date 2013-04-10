@@ -16,11 +16,32 @@ class ECP_Comp_OverlegModel {
         $this->db = ECPFactory::getDbo();
     }
 
-    public function get($limit = 30, $from = 0, $to = 30){
+    public function getPatients($limit = 30, $from = 0, $to = 30){
         $user = ECPFactory::getUser($this->uid);
-        $patients = $this->db->newQuery("select","patients")->table("patient")->where("gem_id",$user->gem_id,"=")->execute();
-        echo $patients->getRows();
+        $patients = $this->db->newQuery("select","patients")->table("patient INNER JOIN overleg ON patient.code = overleg.patient_code")->where("gem_id",$user->gem_id,"=")->limit($to,$from)->execute();
+        return self::queryToArray($patients);
     }
+    
+    public function getOverleg($patientid=null){
+        if($patientid==null){
+            return null; //geen patient opgegeven
+        }else{
+            $patient = $this->db->newQuery("select","patient")->table("patient INNER JOIN overleg ON patient.code = overleg.patient_code")->where("patient.id",$patientid,"=")->execute();
+            if($patient->getRows()!=1){
+                return null; //geen patient gevonden met deze id of meerdere :s
+            }else{
+                return self::queryToArray($patient);
+            }
+        }
+    }
+    
+    private static function queryToArray($mysqlresult){
+         for($i=0; $i<$mysqlresult->getRows(); $i++){
+            $data[$i] = $mysqlresult->nextResult()->get();
+        }
+        return $data;
+    }
+    
 
 }
 

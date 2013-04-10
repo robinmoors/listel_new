@@ -379,3 +379,45 @@ input.login.firstname{
      -webkit-animation: redblink 2s infinite; 
      -moz-animation: redblink 2s infinite; 
 }
+
+
+
+#ShowTable{
+    margin-top:5px;
+    border: none;
+    width: 80%;
+    border-collapse: collapse;
+}#ShowTable.wider{
+    width: 98%;
+}#ShowTable.smallwider{
+    width: 30%;
+}#ShowTable #TableHead{
+    background: rgb(245,245,245);
+    background: -moz-linear-gradient(top,rgb(250,250,250),rgb(240,240,240));
+    background: -webkit-gradient(linear,left top,left bottom,from(rgb(250,250,250)),to(rgb(240,240,240)));
+    background: -ms-linear-gradient(top,rgb(250,250,250),rgb(240,240,240));
+    background: -o-linear-gradient(top,rgb(250,250,250),rgb(240,240,240));
+    border-bottom: 1px solid rgb(230,230,230);
+    text-transform: uppercase;
+    font-weight: bold;
+    color:#111;
+    cursor: default;
+    user-select:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+}#ShowTable #TableRow{
+    background: none;
+    border-bottom: 1px solid rgb(230,230,230);
+    padding: 0 0 0 0.5em;
+}#ShowTable  td{
+    padding: 0.5em 0 0 0.5em;
+}#ShowTable #TableRow:hover{
+    background: rgba(68,88,125,0.1);
+}#ShowTable #TableRow.noborder{
+    border:none;
+}.nohover:hover{
+    background: none !important;
+}#TableHead td{
+    color: black;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
