@@ -53,7 +53,7 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     }
 
     public function std_command() {
-        $patienten = $this->model->getPatients();
+        $patienten = $this->model->getPatients("overleg");
         $this->view->viewList($patienten);
     }
     
@@ -62,9 +62,27 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
             $patient = $this->model->getOverleg($this->vars[1]);
             ecpimport("components.overleg.base.overlegform");
             $formmodel = new ECP_Comp_OverlegForm();
-            $this->view->editOverleg($patient,$formmodel->getForm());
+            $this->view->editOverleg($patient,$formmodel->getForm("edit"));
         }else{
             $this->std_command();
+        }
+    }
+    
+    public function nieuw(){
+        ecpimport("components.overleg.base.overlegform");
+        $formmodel = new ECP_Comp_OverlegForm();
+        if(!is_null($this->vars[1]) && !is_null($this->vars[2])){ //patientnummer opgeven en daarna de stap van het formulier...
+            $pat_id = $this->vars[1]; $step = $this->vars[2];
+            $patient = $this->model->getOverlegByPatientId($pat_id); //patient met overleggen ophalen
+            if($patient == null){
+                //patient had geen overleggen... Dan maar alleen patient opgeven
+                $patient = $this->model->getPatientById($pat_id);
+            }
+            $this->view->newOverleg($step,$patient,$formmodel->getForm("new"));
+        }else{
+            $patienten = $this->model->getAllPatients();
+            $formmodel->updatePatientList($patienten);
+            $this->view->selectPatient($patienten,$formmodel->getForm("select"));
         }
     }
 

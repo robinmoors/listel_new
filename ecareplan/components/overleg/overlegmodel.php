@@ -22,6 +22,22 @@ class ECP_Comp_OverlegModel {
         return self::queryToArray($patients);
     }
     
+    public function getAllPatients($limit = 30, $from=0, $to=30){
+        $user = ECPFactory::getUser($this->uid);
+        $patients = $this->db->newQuery("select","patients")->table("patient")->where("gem_id",$user->gem_id,"=")->limit($to,$from)->execute();
+        return self::queryToArray($patients);
+    }
+    
+    public function getOverlegByPatientId($pat_id){
+        $pat = $this->db->newQuery("select","patient")->table("patient INNER JOIN overleg ON patient.code = overleg.patient_code")->where("patient.id",$pat_id,"=")->execute();
+        return self::queryToArray($pat);
+    }
+    
+    public function getPatientById($pat_id){
+        $pat = $this->db->newQuery("select","patient")->table("patient")->where("id",$pat_id,"=")->execute();
+        return self::queryToArray($pat);
+    }
+    
     public function getOverleg($patientid=null){
         if($patientid==null){
             return null; //geen patient opgegeven

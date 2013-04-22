@@ -20,6 +20,8 @@ class ECP_Form extends ECP_Object {
             $this->name = "form";
         else
             $this->name = $formname;
+        
+        return $this;
     }
 
     public static function getInstance($formname = false) {
@@ -31,14 +33,18 @@ class ECP_Form extends ECP_Object {
     }
 
     public function __GET($fieldname){
-        if(in_array($fieldname,$this->names)) return $this->obj[$fieldname]->value;
-        else return "0";
+        if(in_array($fieldname,$this->names)) return $this->obj[$fieldname];
+        else return null;
+    }
+    
+    public function __toString() {
+        return "".print_r($this->names);
     }
     
     public function addField(ECP_FormObj $field) {
         array_push($this->names, $field->name);
         $this->obj[$field->name] = $field;
-        return true;
+        return $this;
     }
 
     public function validate() {
@@ -74,10 +80,10 @@ class ECP_Form extends ECP_Object {
                 $this->obj[$field]->insert($value);
             }
         }
-        return true;
+        return $this;
     }
     
-    public function getHtml($class, $placeholders = array()){
+    public function getHtml($class="default", $placeholders = array()){
         if(!empty($placeholders)){
             foreach($this->obj as $key => $value){
                 $this->obj[$key]->setPlaceholder($placeholders[$key]);
@@ -238,6 +244,11 @@ class ECP_FormObj_Select extends ECP_FormObj{
         }
     }
     
+    public function insertOptions($options = array()){
+        $this->options = $options;
+        return $this;
+    }
+    
     public function validate(){
         if($this->is_option($this->validate) && $this->select){ 
             return true;
@@ -253,9 +264,14 @@ class ECP_FormObj_Select extends ECP_FormObj{
     }
     
     public function getHtml($formname, $class){
-        $html = "<select name='{$this->name} class='{$class}'>";
+        $html = "<span class='description {$class}'>{$this->placeholder}</span><select name='{$this->name}' class='{$class}'>";
+        $first = true;
         foreach($this->options as $key => $value){
-            $html.="<option value='$key'>$value</option>";
+            if($first){
+                $html.="<option value='$key' selected='selected'>$value</option>";
+                $first = false;
+            }
+            else $html.="<option value='$key'>$value</option>";
         }
         $html.="</select><span id='{$formname}{$this->name}'></span></br>";
         return $html;
@@ -264,9 +280,14 @@ class ECP_FormObj_Select extends ECP_FormObj{
 class ECP_FormObj_Radio extends ECP_FormObj_Select{
 
     public function getHtml($formname, $class){
-        $html="";
+        $html="<span class='description {$class}'>{$this->placeholder}</span>";
+        $first = true;
         foreach($this->options as $key => $value){
-            $html.="<input type='radio' name='{$this->name}' value='$key' class='{$class}'>$value<br/>";
+            if($first){
+                $first = false;
+                $html.="<input type='radio' name='{$this->name}' value='$key' class='{$class}' checked='checked'>$value<br/>";
+            }
+            else $html.="<input type='radio' name='{$this->name}' value='$key' class='{$class}'>$value<br/>";
         }
         $html.="<span id='{$formname}{$this->name}'></span></br>";
         return $html;

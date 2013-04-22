@@ -180,7 +180,15 @@ nav ul{
     text-align:left;*/
     z-index: 2;
 }
-
+.box{
+    margin-left: 5em;
+    border: solid 2px #FFBD40;
+    background: #BEBCAF;
+    padding: 1em;
+}
+.box + .box{
+    margin-top: 2em;
+}
 .contents
 {
     position: relative;
