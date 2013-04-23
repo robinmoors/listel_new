@@ -6,18 +6,32 @@
  */
 defined("ECP_AC") or die("Stop! Wat we onder de motorkap hebben zitten houden we liever verborgen.");
 
-class ECP_Comp_OverlegView {
+class ECP_Comp_OverlegView implements ECP_OverlegObservable{
 
     private $app;
     private $content;
     private $title;
     private $script;
+    private $observer = array();
 
     public function __CONSTRUCT($app) {
         $this->app = $app;
         $this->app->setTemplate("listel");
     }
-
+    //begin Observer pattern (Subject)
+    public function attach(ECP_OverlegObserver $obs){
+        $this->observer["$obs"] = $obs;
+    }
+    public function detach(ECP_OverlegObserver $obs){
+        delete($this->observers["$obs"]);
+    }
+    public function notify($message){
+        foreach($this->observers as $obs){
+            $obs->update($this,$message);
+        }
+    }
+    //end Observer pattern (Subject)
+    
     public function viewList($data) {
         $keys = array('id', 'code', 'naam', 'voornaam', 'gebdatum', 'geboordeplaats', 'adres');
         $keysnamed = array('#', 'Code', 'Naam', 'Voornaam', 'Geboortedatum', 'Geboorteplaats', 'Adres');
@@ -85,7 +99,6 @@ class ECP_Comp_OverlegView {
                             ";
             $content.=$form[0]->getHtml("normal", array("organisator" => "Kies een organisator voor het overleg:<br/>"));
             $content .="</div>";
-
 
             $this->title = "Overleg toevoegen";
             $this->content = $content;

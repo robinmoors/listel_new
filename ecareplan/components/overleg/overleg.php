@@ -20,8 +20,10 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     protected $user = null;
 
     public function __CONSTRUCT() {
-        ecpimport("components.overleg.overlegmodel");
-        ecpimport("components.overleg.overlegview");
+        ecpimport("components.overleg.overlegobserver");//observer interface
+        ecpimport("components.overleg.overlegobservable"); //observable (subject) interface
+        ecpimport("components.overleg.overlegmodel"); //std model
+        ecpimport("components.overleg.overlegview"); //std view
         $this->action = "std_command";
         $this->app = ECPFactory::getApp(); //haal de app op om template te gaan veranderen
         $this->user = $this->app->getUser(); //via de app de user ophalen zodat we zeker de huidige user hebben :)

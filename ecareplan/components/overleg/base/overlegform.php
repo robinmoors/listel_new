@@ -6,7 +6,7 @@
  */
 defined("ECP_AC") or die("Stop! Wat we onder de motorkap hebben zitten houden we liever verborgen.");
 
-class ECP_Comp_OverlegForm {
+class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
 
     private $appobj = null;
     private $selectform = array("patient");
@@ -21,7 +21,19 @@ class ECP_Comp_OverlegForm {
         $this->orgform = ECPFactory::getForm("organisator_select");
         $this->orgform->addField(new ECP_FormObj_Radio("organisator",array("0"=>"Het plaatselijk OCMW,","1"=>"Het regionaal dientstencentrum","2"=>"Zorgverlener"),true));
     }
-    
+    //Begin Observer pattern (Subject)
+    public function attach(ECP_OverlegObserver $obs){
+        $this->observer["$obs"] = $obs;
+    }
+    public function detach(ECP_OverlegObserver $obs){
+        delete($this->observers["$obs"]);
+    }
+    public function notify($message){
+        foreach($this->observers as $obs){
+            $obs->update($this,$message);
+        }
+    }
+    //End Observer pattern (Subject
     public function getForm($type){
         switch($type){
             case "edit": return $this->basisform;
@@ -41,4 +53,5 @@ class ECP_Comp_OverlegForm {
         }
         $this->selectform->patientlist->insertOptions($patientsnames);
     }
+
 }
