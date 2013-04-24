@@ -20,7 +20,7 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     protected $user = null;
 
     public function __CONSTRUCT() {
-        ecpimport("components.overleg.overlegobserver");//observer interface
+        ecpimport("components.overleg.overlegobserver"); //observer interface
         ecpimport("components.overleg.overlegobservable"); //observable (subject) interface
         ecpimport("components.overleg.overlegmodel"); //std model
         ecpimport("components.overleg.overlegview"); //std view
@@ -32,7 +32,7 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     }
 
     public function command($command) {
-        if($command =="command" || !is_callable(array(&$this,$command))){
+        if ($command == "command" || !is_callable(array(&$this, $command))) {
             $command = "command_error";
         }
         $this->action = $command;
@@ -43,14 +43,14 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     }
 
     public function execute() {
-        call_user_func(array(&$this,$this->action));
+        call_user_func(array(&$this, $this->action));
     }
 
     public function params($vars) {
         $this->vars = $vars;
     }
-    
-    public function lijst(){
+
+    public function lijst() {
         $this->std_command();
     }
 
@@ -58,26 +58,37 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
         $patienten = $this->model->getPatients("overleg");
         $this->view->viewList($patienten);
     }
-    
-    public function bewerk(){
-        if(!is_null($this->vars[1])){
-            $patient = $this->model->getOverleg($this->vars[1]);
+
+    public function bewerk() {
+        if (!is_null($this->vars[1])) {
             ecpimport("components.overleg.base.overlegform");
             $formmodel = new ECP_Comp_OverlegForm();
-            $this->view->editOverleg($patient,$formmodel->getForm("edit"));
-        }else{
+            if (!is_null($this->vars[2])) {
+                //er is ook een overlegid opgegeven...
+                $overleg = $this->model->getOverlegById($this->vars[2]);
+                $this->view->editOverleg($overleg, $formmodel->getForm("edit"));
+            } else {
+                $patient = $this->model->getOverleg($this->vars[1]);
+                if (count($patient) > 1) { //meer dan 1 overleg gevonden dus daar uit kiezen...
+                    $this->view->viewOverlegList($patient);
+                }
+                else
+                    $this->view->editOverleg($patient, $formmodel->getForm("edit")); //maar 1 overleg dus dat ook bewerken...
+            }
+        }else {
             $this->std_command();
         }
     }
-    
-    public function nieuw(){
+
+    public function nieuw() {
         ecpimport("components.overleg.base.overlegform");
         $formmodel = new ECP_Comp_OverlegForm();
-        if(!is_null($this->vars[1]) && !is_null($this->vars[2])){ //patientnummer opgeven en daarna de stap van het formulier...
-            $pat_id = $this->vars[1]; $step = $this->vars[2];
+        if (!is_null($this->vars[1]) && !is_null($this->vars[2])) { //patientnummer opgeven en daarna de stap van het formulier...
+            $pat_id = $this->vars[1];
+            $step = $this->vars[2];
             //patient met overleggen ophalen
             $patient = $this->model->getOverlegByPatientId($pat_id);
-            if($patient == null){
+            if ($patient == null) {
                 //patient had geen overleggen... Dan maar alleen patient opgeven
                 $patient = $this->model->getPatientById($pat_id);
             }
@@ -87,11 +98,11 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
             $formmodel->updateZAList($this->model->getZA());
             //zorgaanbieders profiel PSY ophalen
             $formmodel->updatePSYList($this->model->getPSY());
-            $this->view->newOverleg($step,$patient,$formmodel->getForm("new"));
-        }else{
+            $this->view->newOverleg($step, $patient, $formmodel->getForm("new"));
+        } else {
             $patienten = $this->model->getAllPatients();
             $formmodel->updatePatientList($patienten);
-            $this->view->selectPatient($patienten,$formmodel->getForm("select"));
+            $this->view->selectPatient($patienten, $formmodel->getForm("select"));
         }
     }
 

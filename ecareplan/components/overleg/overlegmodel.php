@@ -57,11 +57,24 @@ class ECP_Comp_OverlegModel {
         if($patientid==null){
             return null; //geen patient opgegeven
         }else{
-            $patient = $this->db->newQuery("select","patient")->table("patient INNER JOIN overleg ON patient.code = overleg.patient_code")->where("patient.id",$patientid,"=")->execute();
-            if($patient->getRows()!=1){
-                return null; //geen patient gevonden met deze id of meerdere :s
+            $patient = $this->db->newQuery("select","patient")->table("patient INNER JOIN overleg ON patient.code = overleg.patient_code INNER JOIN aanvraag_overleg ON overleg.id = aanvraag_overleg.overleg_id")->where("patient.id",$patientid,"=")->execute();
+            if($patient->getRows()<1){
+                return false; //geen patient gevonden met deze id :s
             }else{
                 return self::queryToArray($patient);
+            }
+        }
+    }
+    
+    public function getOverlegById($overlegid=null){
+        if($overlegid==null){
+            return null; //geen patient opgegeven
+        }else{
+            $overleg = $this->db->newQuery("select","overleg")->table("patient p INNER JOIN overleg o ON p.code = o.patient_code INNER JOIN aanvraag_overleg a ON a.overleg_id = o.id")->where("o.id",$overlegid,"=")->execute();
+            if($overleg->getRows()<1){
+                return false; //geen patient gevonden met deze id :s
+            }else{
+                return self::queryToArray($overleg);
             }
         }
     }

@@ -8,42 +8,47 @@ defined("ECP_AC") or die("Stop! Wat we onder de motorkap hebben zitten houden we
 
 class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
 
-    private $appobj = null;
-    private $selectform = null;
-    private $orgform = null;
+    private $selectform = null; //patient selecteren
+    //nieuw overleg
+    private $orgform = null; //selectie organisator stap 1
     private $rdcform = null; //selectie RDC stap 2
     private $rdcwhyform = null; //selectie reden RDC stap 2
     private $zaform = null; //selectie zorgaanbieder stap 2
     private $zawhyform = null; //selectie reden ZA stap 2
     private $psyform = null; //selectie PSY stap 2
     private $psywhyform = null; //selectie reden PSY stap 2
-    
-    
     private $purposeform = null; //stap 3 = het doel kiezen
-    
     private $requestorform =  null; //stap 4 = info aanvrager
     
+    //overleg bewerken
+    private $basisgegevens = null;
+    //formulier error
     private $formerror = 0;
     
     private $observers = array();
     private $state = "unset";
 
     public function __CONSTRUCT() {
-        $this->selectform = ECPFactory::getForm("patient_select")->addField(new ECP_FormObj_Select("patientlist"),array(),true)->addField(new ECP_FormObj_Button("Verder"));
+        $this->selectform = ECPFactory::getForm("patient_select")->addField(new ECP_FormObj_Select("patientlist"))->addField(new ECP_FormObj_Button("Verder"));
+        $this->setState("constructed");
+    }
+    
+    private function createNewOverleg(){
+        $this->setState("newoverleg.start");
         $this->orgform = ECPFactory::getForm("organisator_select");
         $this->orgform->addField(new ECP_FormObj_Radio("organisator",array("0"=>"Het plaatselijk OCMW,","1"=>"Het regionaal dientstencentrum","2"=>"Zorgverlener"),true));
-        $this->rdcform = ECPFactory::getForm("rdc_select")->addField(new ECP_FormObj_Select("rdclist",array(),true));
+        $this->rdcform = ECPFactory::getForm("rdc_select")->addField(new ECP_FormObj_Select("rdclist"));
         $this->rdcwhyform = ECPFactory::getForm("rdc_why")->addField(new ECP_FormObj_Radio("rdcwhy",array(
             "0"=>"De pati&euml;nt heeft het expliciet gevraagd.",
             "1"=>"Het OCMW kan dit overleg niet binnen 30 dagen organiseren.",
             "2"=>"Er zijn andere redenen (vul vak reden in).")
                 ,true));
-        $this->zaform = ECPFactory::getForm("za_select")->addField(new ECP_FormObj_Select("zalist",array(),true));
+        $this->zaform = ECPFactory::getForm("za_select")->addField(new ECP_FormObj_Select("zalist"));
         $this->zawhyform = ECPFactory::getForm("za_why")->addField(new ECP_FormObj_Radio("zawhy",array(
             "0"=>"zij al betrokken is in de zorg.",
             "2"=>"Er zijn andere redenen (vul vak reden in).")
                 ,true));
-        $this->psyform = ECPFactory::getForm("psy_select")->addField(new ECP_FormObj_Select("psylist",array(),true));
+        $this->psyform = ECPFactory::getForm("psy_select")->addField(new ECP_FormObj_Select("psylist"));
         $this->psywhyform = ECPFactory::getForm("psy_why")->addField(new ECP_FormObj_Radio("psywhy",array(
             "0"=>"zij al betrokken is in de zorg.",
             "2"=>"Er zijn andere redenen (vul vak reden in).")
@@ -51,8 +56,17 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
         //stap 3
         $this->purposeform = ECPFactory::getForm("purpose");
         //stap 4
-        $this->requestorform = ECPFactory::getForm("requestor")->addField(new ECP_FormObj_Input("naam", 3, 100))->addField(new ECP_FormObj_Select("relatie", array(), true));
+        $this->requestorform = ECPFactory::getForm("requestor")->addField(new ECP_FormObj_Input("naam", 3, 100))->addField(new ECP_FormObj_Select("relatie"));
         $this->requestorform->addField(new ECP_FormObj_Input("telefoon",9,12))->addField(new ECP_FormObj_Email("email"))->addField(new ECP_FormObj_Input("organisatie", 3, 100));
+        $this->setState("newoverleg.end");
+    }
+    
+    private function createEditOverleg(){
+        $this->setState("editoverleg.start");
+        $this->basisgegevens = ECPFactory::getForm("basisgegevens")->addField(new ECP_FormObj_Radio("locatie_overleg",array("0"=>"Bij de pati&euml;nt huis","1"=>"Elders")));
+        $this->basisgegevens->addField(new ECP_FormObj_Radio("aanwezig",array("0"=>"De pati&euml;nt","1"=>"Vertegenwoordigster (kies onderaan)","2"=>"Niemand")));
+        $this->basisgegevens->addField(new ECP_FormObj_Radio("instemming", array("0"=>"Stemt in.","1"=>"Stemmen niet in.")));
+        $this->setState("editoverleg.end");
     }
     //Begin Observer pattern (Subject)
     public function attach(ECP_OverlegObserver $obs){
@@ -87,16 +101,18 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
 
     public function setState($state) {
         $old = $this->state;
-        $this->state = $state;
+        $this->state = "form.".$state;
         if($old !== $this->state) $this->notify(); //autonotify on statechange...
         return $this;
     }
     //End Observer pattern (Subject
     public function getForm($type){
         switch($type){
-            case "edit": return $this->basisform;
+            case "edit": $this->createEditOverleg();
+                return $this->basisgegevens;
                 break;
-            case "new": return array($this->orgform,$this->rdcform,$this->rdcwhyform,
+            case "new": $this->createNewOverleg(); 
+                return array($this->orgform,$this->rdcform,$this->rdcwhyform,
                 $this->zaform,$this->zawhyform,$this->psyform,$this->psywhyform,
                 $this->purposeform,$this->requestorform);
                 break;

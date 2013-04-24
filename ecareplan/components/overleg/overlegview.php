@@ -78,21 +78,51 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
         $this->title = "Patientenlijst";
         $this->export();
     }
+    
+    public function viewOverlegList($data) {
+        $keys = array('id', 'startdatum', 'afronddatum', 'afgerond', 'subsidiestatus');
+        $keysnamed = array('#', 'Start', 'Afgerond op', 'Afgerond', 'Status subsidie');
+        $content = "<div class='box'>
+                            <h5>Pati&euml;ntinfo</h5>
+                            Rijksregisternummer: {$data[0]['rijksregister']} <br/>
+                            Volgnummer: SO98 - {$data[0]['code']} <br/>
+                            Pati&euml;ntnaam: {$data[0]['naam']} <br/>
+                    </div><div class='box'>Klik op een overleg om te bewerken.<br/><table id='ShowTable' class='wider'><tr id='TableHead'>";
+        for ($i = 0; $i < count($keys); $i++) {
+            $content.="<td>{$keysnamed[$i]}</td>";
+        }
+        $content.="</tr>";
+        foreach ($data as $overleg) {
+            $content.="<tr id='TableRow' onclick='EQ.reRoute(\"overlegbewerk\",true,\"{$overleg[0]}/{$overleg['id']}/\");'>";
+            for ($i = 0; $i < count($keys); $i++) {
+                $content.="<td>{$overleg[$keys[$i]]}</td>";
+            }
+        }
+        $content.="</table></div>";
+        $this->content = $content;
+        $this->title = "Overleg bewerken";
+        $this->export();
+    }
 
     public function editOverleg($data, $form) {
-        if ($data == null) {
-            $this->content = "Oeps geen of te veel overleggen gevonden voor deze patient. <a onclick='EQ.reRoute(\"overleg\",true)'>Keer terug naar patientenlijst.</a>";
+        if ($data === null || $data === false) {
+            $this->content = "Deze pati&euml;nt blijkt geen overleggen te hebben! <a onclick='EQ.reRoute(\"overleg\",true)'>Keer terug naar patientenlijst. (Ook om er een aan te maken)</a>";
             $this->export();
         } else {
-            $script = $form->getScript("/listel_new/ecareplan/login/login/", array("title" => "Aanmelden",
-                "action" => "Bezig met aanmelden...",
-                "succes" => "U bent aangemeld <br/><img src=\'/listel_new/lib/images/flat-loader.gif\' />",
-                "fail" => "Er is iets misgegaan. Probeer opnieuw!"), "EQ.reRoute('home');", "", "else if(json.reason && json.reason=='no-access'){
-                                EQ.OVR.content='Emailadres of wachtwoord fout!';
-                                EQ.OVR.refresh('c');
-                            }");
-            $content = "";
-            $content.=$form->getHtml("normal", array("overleg_locatie_id" => "Plaats van het overleg:", "aanwezig_patient" => "Wie is er aanwezig op het overleg?", "overleg_instemming" => "Instemming met de deelnemers van het overleg. De pati&euml;nt of vertegenwoordiger?"));
+            print_r($data);
+            $content = "<div class='box'>
+                            <h5>Pati&euml;ntinfo</h5>
+                            <p>
+                            Rijksregisternummer: {$data[0]['rijksregister']} <br/>
+                            Volgnummer: SO98 - {$data[0]['code']} <br/>
+                            Pati&euml;ntnaam: {$data[0]['naam']} <br/>
+                            </p><h5>Gegevens overleg</h5>
+                            <p>
+                            Start van het overleg: {$data[0]['startdatum']}<br/>
+                            Aanvrager: mr x
+                            Doel: het doel
+                    </div><div class='box'>";
+            $content.=$form->getHtml("normal", array("locatie" => "Plaats van het overleg:<br/>", "aanwezig" => "Wie is er aanwezig op het overleg?<br/>", "instemming" => "Instemming met de deelnemers van het overleg. De pati&euml;nt of vertegenwoordiger?<br/>"));
 
 
             $this->title = "Overleg bewerken";

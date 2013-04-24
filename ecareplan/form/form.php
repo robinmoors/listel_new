@@ -233,7 +233,7 @@ class ECP_FormObj_Select extends ECP_FormObj{
     protected $select = false;
     protected $options = false;
     
-    public function __CONSTRUCT($fieldname, $options=array(), $select=false){
+    public function __CONSTRUCT($fieldname, $options=array(), $select=true){
         $this->name = $fieldname;
         $this->select = $select;
         $this->options = $options;
