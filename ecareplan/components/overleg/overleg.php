@@ -75,11 +75,18 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
         $formmodel = new ECP_Comp_OverlegForm();
         if(!is_null($this->vars[1]) && !is_null($this->vars[2])){ //patientnummer opgeven en daarna de stap van het formulier...
             $pat_id = $this->vars[1]; $step = $this->vars[2];
-            $patient = $this->model->getOverlegByPatientId($pat_id); //patient met overleggen ophalen
+            //patient met overleggen ophalen
+            $patient = $this->model->getOverlegByPatientId($pat_id);
             if($patient == null){
                 //patient had geen overleggen... Dan maar alleen patient opgeven
                 $patient = $this->model->getPatientById($pat_id);
             }
+            //regionaal dienstencentra ophalen (RDC)
+            $formmodel->updateRDCList($this->model->getRDC());
+            //zorgaanbieders ophalen (ZA)
+            $formmodel->updateZAList($this->model->getZA());
+            //zorgaanbieders profiel PSY ophalen
+            $formmodel->updatePSYList($this->model->getPSY());
             $this->view->newOverleg($step,$patient,$formmodel->getForm("new"));
         }else{
             $patienten = $this->model->getAllPatients();

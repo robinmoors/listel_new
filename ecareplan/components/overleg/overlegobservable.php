@@ -12,8 +12,11 @@
 interface ECP_OverlegObservable {
     public function attach(ECP_OverlegObserver $observer);
     public function detach(ECP_OverlegObserver $observer);
+    public function getObservers();
     
-    public function notify($message);
+    public function notify();
+    public function setState($state);
+    public function getState();
 }
 
 ?>

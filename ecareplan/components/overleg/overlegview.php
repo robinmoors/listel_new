@@ -13,24 +13,51 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
     private $title;
     private $script;
     private $observer = array();
+    private $state = "unset";
 
     public function __CONSTRUCT($app) {
         $this->app = $app;
         $this->app->setTemplate("listel");
+        $this->state = "view.constructed";
     }
-    //begin Observer pattern (Subject)
+    //Begin Observer pattern (Subject)
     public function attach(ECP_OverlegObserver $obs){
-        $this->observer["$obs"] = $obs;
+        $i = array_search($obs, $this->observer);
+        if($i===false){
+            $this->observers[]=$obs;
+        }
+        return $this;
     }
     public function detach(ECP_OverlegObserver $obs){
-        delete($this->observers["$obs"]);
-    }
-    public function notify($message){
-        foreach($this->observers as $obs){
-            $obs->update($this,$message);
+        if(!empty($this->observers)){
+            $i = array_search($obs, $this->observers);
+            if($i !== false){
+                delete($this->observers[$i]);
+            }
         }
+        return $this;
     }
-    //end Observer pattern (Subject)
+    public function notify(){
+        foreach($this->observers as $obs){
+            $obs->update($this);
+        }
+        return $this;
+    }
+    public function getObservers() {
+        return $this->observers;
+    }
+
+    public function getState() {
+        return $this->state;
+    }
+
+    public function setState($state) {
+        $old = $this->state;
+        $this->state = $state;
+        if($old !== $this->state) $this->notify(); //autonotify on statechange...
+        return $this;
+    }
+    //End Observer pattern (Subject
     
     public function viewList($data) {
         $keys = array('id', 'code', 'naam', 'voornaam', 'gebdatum', 'geboordeplaats', 'adres');
@@ -97,8 +124,25 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                         <div class='box' id='step_1'>
                             <h5>Stap 1: De organisator van het overleg</h5>
                             ";
-            $content.=$form[0]->getHtml("normal", array("organisator" => "Kies een organisator voor het overleg:<br/>"));
-            $content .="</div>";
+            $content.=$form[0]->getHtml("normal", array("organisator" => "Kies een organisator voor het overleg:<br/>")).
+                      $form[1]->getHtml("normal",array("rdclist"=> "Welk regionaal dienstencentrum?<br/>")).
+                      $form[2]->getHtml("normal",array("rdcwhy"=>"Waarom dit dienstencentrum?<br/>")).
+                      $form[3]->getHtml("normal",array("zalist"=> "Welke zorg aanbieder?<br/>")).
+                      $form[4]->getHtml("normal",array("zawhy"=>"Waarom deze zorgaanbieder?<br/>")).
+                      $form[5]->getHtml("normal",array("psylist"=> "Welke zorg aanbieder?<br/>")).
+                      $form[6]->getHtml("normal",array("psywhy"=>"Waarom deze zorgaanbieder?<br/>"));
+            $content .="</div><div class='box' id='step_2'>
+                            <h5>Stap 2: Doel van het overleg</h5>
+                            ".$form[7]->getHtml("normal",array())."
+                        </div><div class='box' id='step_3'>
+                            <h5>Stap 3: Informatie aanvrager</h5>
+                            ".$form[8]->getHtml("normal",array(
+                                "naam"=>"Naam en voornaam",
+                                "relatie"=>"Relatie tot pati&euml;nt:",
+                                "telefoon"=>"Telefoonnummer",
+                                "email"=>"Of emailadres",
+                                "organisatie"=>"Naam organisatie"
+                            ))."</div>";
 
             $this->title = "Overleg toevoegen";
             $this->content = $content;

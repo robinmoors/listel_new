@@ -38,6 +38,21 @@ class ECP_Comp_OverlegModel {
         return self::queryToArray($pat);
     }
     
+    public function getRDC(){
+        $rdc = $this->db->newQuery("select","rdc")->table("organisatie inner join logins")->rows("distinct organisatie.naam,organisatie.id")->where("organisatie.id = logins.organisatie AND organisatie.actief = 1 AND logins.actief = 1 AND logins.profiel","rdc","=")->execute();
+        return self::queryToArray($rdc);
+    }
+    
+    public function getZA(){
+        $za = $this->db->newQuery("select","za")->table("organisatie o inner join hulpverleners h")->rows("distinct o.naam, o.id")->where("o.id = h.organisatie and h.is_organisator = 1 and o.actief = 1 and h.actief",1,"=")->execute();
+        return self::queryToArray($za);
+    }
+    
+    public function getPSY(){
+        $psy = $this->db->newQuery("select","psy")->table("organisatie o inner join logins l")->rows("distinct o.naam, o.id")->where("o.id = l.organisatie and l.actief = 1 and o.actief = 1 and l.profiel","psy","=")->execute();
+        return self::queryToArray($psy);
+    }
+    
     public function getOverleg($patientid=null){
         if($patientid==null){
             return null; //geen patient opgegeven

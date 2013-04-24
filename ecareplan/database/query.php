@@ -318,6 +318,11 @@ class ECP_DatabaseQuery extends ECP_Object {
             return $this;
         }
     }
+    
+    public function debug(){
+        self::$debug = true;
+        return $this;
+    }
 
 }
 
