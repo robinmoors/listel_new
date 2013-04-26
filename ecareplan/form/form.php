@@ -229,6 +229,29 @@ class ECP_FormObj {
     }
 
 }
+class ECP_FormObj_Checkbox extends ECP_FormObj{
+    protected $checked = false;
+    protected $tobechecked = false;
+    
+    public function __CONSTRUCT($fieldname, $checked = false, $tobechecked = false){
+        $this->name = $fieldname;
+        $this->checked = $checked;
+        $this->script = "0,999,false";
+        $this->tobechecked = $tobechecked;
+    }
+    
+    public function validate(){
+        if($this->value == '1' && $this->tobechecked) return true;
+        else if($this->value == '0' && !$this->tobechecked) return true;
+        else return false;
+    }
+    
+    public function getHtml($formname, $class){
+        $html = "<span class='description {$class}'>{$this->placeholder}</span><input type='checkbox' name='{$this->name}' value='{$this->value}' class='{$class}'>"
+        ."<span id='{$formname}{$this->name}'></span></br>";
+        return $html;
+    }
+}
 class ECP_FormObj_Select extends ECP_FormObj{
     protected $select = false;
     protected $options = false;

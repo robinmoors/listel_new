@@ -121,8 +121,19 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                             Start van het overleg: {$data[0]['startdatum']}<br/>
                             Aanvrager: mr x
                             Doel: het doel
-                    </div><div class='box'>";
-            $content.=$form->getHtml("normal", array("locatie" => "Plaats van het overleg:<br/>", "aanwezig" => "Wie is er aanwezig op het overleg?<br/>", "instemming" => "Instemming met de deelnemers van het overleg. De pati&euml;nt of vertegenwoordiger?<br/>"));
+                    </div><div class='box inline'>
+                                <h5>Basisgegevens:</h5><br/>";
+            $content.=$form[0]->getHtml("normal", array("locatie" => "Plaats van het overleg:<br/>", "aanwezig" => "Wie is er aanwezig op het overleg?<br/>", "instemming" => "Instemming met de deelnemers van het overleg. De pati&euml;nt of vertegenwoordiger?<br/>"))
+                    ."</div><div class='box inline'>
+                                <h5>Teamoverleg:</h5><br/>
+                                Hier komt een tabel met teamleden - hun rechten - teamleider.
+                      </div><div class='box inline'>
+                                <h5>Attesten en bijlagen</h5>
+                      </div><div class='box inline'>
+                                <h5>Taakfiches</h5>
+                      </div><div class='box inline'>
+                                <h5>Afdrukpagina</h5>
+                      </div>";
 
 
             $this->title = "Overleg bewerken";

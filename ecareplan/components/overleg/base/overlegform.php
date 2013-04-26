@@ -21,7 +21,9 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
     private $requestorform =  null; //stap 4 = info aanvrager
     
     //overleg bewerken
-    private $basisgegevens = null;
+    private $basisgegevens = null; //tabblad basisgegevens
+    //private $teamoverleg = null; //tabblad teamoverleg
+    private $attestbijlagen = null;
     //formulier error
     private $formerror = 0;
     
@@ -63,9 +65,14 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
     
     private function createEditOverleg(){
         $this->setState("editoverleg.start");
-        $this->basisgegevens = ECPFactory::getForm("basisgegevens")->addField(new ECP_FormObj_Radio("locatie_overleg",array("0"=>"Bij de pati&euml;nt huis","1"=>"Elders")));
+        $this->basisgegevens = ECPFactory::getForm("basisgegevens")->addField(new ECP_FormObj_Radio("locatie",array("0"=>"Bij de pati&euml;nt huis","1"=>"Elders")));
         $this->basisgegevens->addField(new ECP_FormObj_Radio("aanwezig",array("0"=>"De pati&euml;nt","1"=>"Vertegenwoordigster (kies onderaan)","2"=>"Niemand")));
         $this->basisgegevens->addField(new ECP_FormObj_Radio("instemming", array("0"=>"Stemt in.","1"=>"Stemmen niet in.")));
+        $this->setState("editoverleg.basisgegevens.ready");
+        //$this->teamoverleg = ECPFactory::getForm("teamoverleg");
+        $this->attestbijlagen = ECPFactory::getForm("attestbijlagen")->addField(new ECP_FormObj_Radio("verblijf", array("0"=>"Thuis","1"=>"Opgenomen")));
+        $this->setState("editoverleg.attestbijlagen.ready");
+        
         $this->setState("editoverleg.end");
     }
     //Begin Observer pattern (Subject)
@@ -109,7 +116,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
     public function getForm($type){
         switch($type){
             case "edit": $this->createEditOverleg();
-                return $this->basisgegevens;
+                return array($this->basisgegevens,$this->attestbijlagen);
                 break;
             case "new": $this->createNewOverleg(); 
                 return array($this->orgform,$this->rdcform,$this->rdcwhyform,

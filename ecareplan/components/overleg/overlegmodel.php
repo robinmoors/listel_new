@@ -18,7 +18,7 @@ class ECP_Comp_OverlegModel {
 
     public function getPatients($limit = 30, $from = 0, $to = 30){
         $user = ECPFactory::getUser($this->uid);
-        $patients = $this->db->newQuery("select","patients")->table("patient INNER JOIN overleg ON patient.code = overleg.patient_code")->where("gem_id",$user->gem_id,"=")->limit($to,$from)->execute();
+        $patients = $this->db->newQuery("select","patients")->table("patient INNER JOIN overleg ON patient.code = overleg.patient_code INNER JOIN aanvraag_overleg ON overleg.id = aanvraag_overleg.overleg_id")->where("gem_id",$user->gem_id,"=")->limit($to,$from)->execute();
         return self::queryToArray($patients);
     }
     
@@ -29,7 +29,7 @@ class ECP_Comp_OverlegModel {
     }
     
     public function getOverlegByPatientId($pat_id){
-        $pat = $this->db->newQuery("select","patient")->table("patient INNER JOIN overleg ON patient.code = overleg.patient_code")->where("patient.id",$pat_id,"=")->execute();
+        $pat = $this->db->newQuery("select","patient")->table("patient INNER JOIN overleg ON patient.code = overleg.patient_code INNER JOIN aanvraag_overleg ON overleg.id = aanvraag_overleg.overleg_id")->where("patient.id",$pat_id,"=")->execute();
         return self::queryToArray($pat);
     }
     
@@ -70,7 +70,7 @@ class ECP_Comp_OverlegModel {
         if($overlegid==null){
             return null; //geen patient opgegeven
         }else{
-            $overleg = $this->db->newQuery("select","overleg")->table("patient p INNER JOIN overleg o ON p.code = o.patient_code INNER JOIN aanvraag_overleg a ON a.overleg_id = o.id")->where("o.id",$overlegid,"=")->execute();
+            $overleg = $this->db->newQuery("select","overleg")->table("patient p INNER JOIN overleg o ON p.code = o.patient_code INNER JOIN aanvraag_overleg a ON o.id = a.overleg_id")->where("o.id",$overlegid,"=")->execute();
             if($overleg->getRows()<1){
                 return false; //geen patient gevonden met deze id :s
             }else{
