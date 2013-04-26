@@ -434,6 +434,7 @@ CREATE  TABLE IF NOT EXISTS `listel5`.`logins` (
   `ipadres` VARCHAR(40) NOT NULL DEFAULT '' ,
   `logindatum` INT(30) NOT NULL DEFAULT '0' ,
   `actief` INT(1) NOT NULL DEFAULT '1' ,
+  `loginpin` TEXT NULL DEFAULT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `naam_idx` (`naam` ASC, `voornaam` ASC) ,
   INDEX `organisatie_idx` (`organisatie` ASC) ,
