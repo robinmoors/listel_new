@@ -124,6 +124,7 @@ class ECP_User extends ECP_Object {
     
     public function setUser($id){
         $db = ECPFactory::getDbo();
+        
         $user = $db->newQuery("select","user")->table("logins")->where("id",$id,"=")->execute();
         if($user->getRows()){
             $u = $user->getSingleResult();

@@ -154,6 +154,7 @@ class ECP_Session extends ECP_Object {
         if($this->_state === "unvalidated"){
             $ip = $_SERVER['REMOTE_ADDR'];
             if($ip!=$this->session['ipadres']){
+                echo "terug gast want~$ip~{$this->session['ipadres']}";
                 $this->user->setGuest();
                 $this->_state = "error";
             }else{

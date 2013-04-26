@@ -20,16 +20,17 @@ abstract class ECPLoader
       * @param filestring $doc string zoals "type.document.extra'
       * @return boolean true=imported
       */
-     public static function import($doc){
+     public static function import($doc,$ext=""){
          $paths = explode(DIRECTORY_SEPARATOR,__FILE__);
          array_pop($paths);
          $path = implode("/",$paths);
          $docpath=explode('.',$doc);
          $path = $path.DS.implode("/",$docpath);
-         if(file_exists($path.PHP)){
-            return (bool)include_once($path.PHP);
+         if($ext!="") $ext = ".".$ext;
+         if(file_exists($path.$ext.PHP)){
+            return (bool)include_once($path.$ext.PHP);
          }else{
-            echo "<hr/>Sorry, het loopt een beetje fout... Het bestand ".$path.PHP." bestaat niet.<br/>";
+            echo "<hr/>Sorry, het loopt een beetje fout... Het bestand ".$path.$ext.PHP." bestaat niet.<br/>";
             return false;
          }
      }
@@ -69,9 +70,9 @@ function ecpexit($message = NULL)
  * @param	filestring	string zoals "type.document.extra'
  * @since	1.0
  */
-function ecpimport($path)
+function ecpimport($path,$extention="")
 {
-	return ECPLoader::import($path);
+	return ECPLoader::import($path,$extention);
 }
 
 function ecplocate($path){
