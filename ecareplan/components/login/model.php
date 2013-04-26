@@ -22,8 +22,8 @@ class ECP_Comp_Login_Model {
 
     public function login() {
         $db = ECPFactory::getDbo();
-        $pasw = $this->loginform->password;
-        $email = $this->loginform->email;
+        $pasw = $this->loginform->password->value;
+        $email = $this->loginform->email->value;
         ecpimport("helpers.cryptology");
         //$pasw = ECP_Cryptology::generateHash(trim($post['password']));
         $where = array("email", "pasw");

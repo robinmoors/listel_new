@@ -189,6 +189,10 @@ nav ul{
 .box + .box{
     margin-top: 2em;
 }
+.inline{
+    display: inline-block;
+    vertical-align: top;
+}
 .contents
 {
     position: relative;
