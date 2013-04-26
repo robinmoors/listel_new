@@ -3708,7 +3708,13 @@ INSERT INTO `logins` (`id`, `voornaam`, `naam`, `profiel`, `organisatie`, `adres
 (2, 'Mariane', 'Verweijen', 'OC', 6, 'Michielsplein 1', 736, '011/80.55.50', '011/80.55.59', '', 'mariane.verweijen@ocmwhamontachel.be', NULL, 16, 3930, 'mv-achel', '4ffedc3de308e5e22c109de19d05bdb895230074', '', '193.190.120.66', 1224151205, 0),
 (3, 'Brenda', 'Matthijs', 'OC', 6, 'Peltanusstraat 9', 732, '011/80.94.02', '011/80.94.03', '', 'brenda.matthijs@overpelt.be', NULL, 16, 3900, 'bm-overpelt', '4ffedc3de308e5e22c109de19d05bdb895230074', '', '80.201.56.217', 1189171253, 0),
 (43, 'Kerkhofs', 'Karen', 'OC', 6, 'Don Boscostraat 8c', 739, '011730130', '011730131', '', 'karen.kerkhofs@ocmwhechtel-eksel.be', NULL, 16, 3940, 'kk-hechtel-eksel', '55107e193e648a27778fa98736b2e8e24b3cd6e1', '', '', 0, 0),
-(5, 'Katleen', 'Monnens', 'OC', 6, 'Burg. Dupontplein 3', 758, '011/61.01.12', '011/61.01.18', '', 'katleen.monnens@ocmwpeer.be', NULL, 16, 3990, 'km-peer', '4ffedc3de308e5e22c109de19d05bdb895230074', '', '', 0, 0);
+(5, 'Katleen', 'Monnens', 'OC', 6, 'Burg. Dupontplein 3', 758, '011/61.01.12', '011/61.01.18', '', 'katleen.monnens@ocmwpeer.be', NULL, 16, 3990, 'km-peer', '4ffedc3de308e5e22c109de19d05bdb895230074', '', '', 0, 0),
+(468, 'Joris', 'Jacobs', 'listel', 5, '', 9999, '', '', '', '', NULL, NULL, NULL, 'joris-listel', 'c17a1a963e2b9ebb228030c0615fdb4bd91bd982', '', '::1', 1348656575, 1),
+(469, 'Joris-ocwm', 'Jacobs', 'OC', 5, '', 9999, '', '', '', '', NULL, 6, 3500, 'joris-ocmw', 'c17a1a963e2b9ebb228030c0615fdb4bd91bd982', '', '::1', 1354890919, 1),
+(470, 'Joris-rdc', 'Jacobs', 'rdc', 5, '', 9999, '', '', '', '', NULL, NULL, NULL, 'joris-rdc', 'c17a1a963e2b9ebb228030c0615fdb4bd91bd982', '', '', 0, 1),
+(471, 'Joris', 'Jacobs ', 'psy', 5, '', 9999, '', '', '', '', NULL, NULL, NULL, 'joris-psy', 'c17a1a963e2b9ebb228030c0615fdb4bd91bd982', '', '::1', 1349808416, 1),
+(472, 'Joris-TP', 'Jacobs', 'hoofdproject', 6, '', 9999, '', '', '', '', 14, NULL, NULL, 'joris-tp', 'c17a1a963e2b9ebb228030c0615fdb4bd91bd982', '', '127.0.0.1', 1345188390, 1),
+(473, 'Joris-menos', 'Jacobs', 'menos', 6, '', 9999, '', '', '', '', NULL, NULL, NULL, 'joris-menos', 'c17a1a963e2b9ebb228030c0615fdb4bd91bd982', '', '127.0.0.1', 1345187594, 1);
 
 --
 -- Gegevens worden uitgevoerd voor tabel `omb_registratie`
