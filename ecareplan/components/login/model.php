@@ -1,5 +1,4 @@
 <?php
-ecpimport("database.Logins","class");
 //include_once '../../database/Logins.class.php';
 /*
  * To change this template, choose Tools | Templates
@@ -26,7 +25,7 @@ class ECP_Comp_Login_Model {
         $db = ECPFactory::getDbo();
          * */
         ecpimport("helpers.cryptology");
-        $db = new PDO('mysql:host=localhost;dbname=listel5', 'root');
+        $db = ECPFactory::getPDO("Logins");
         
         $pasw = 'c17a1a963e2b9ebb228030c0615fdb4bd91bd982';
         $login = 'joris-rdc';

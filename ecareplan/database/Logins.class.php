@@ -1,11 +1,5 @@
 <?php
 
-include_once 'util/Db2PhpEntityBase.class.php';
-include_once 'util/Db2PhpEntityModificationTracking.class.php';
-
-include_once 'util/DFCAggregate.class.php';
-include_once 'util/DSC.class.php';
-
 /**
  * 
  *

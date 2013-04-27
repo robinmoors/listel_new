@@ -8,49 +8,64 @@ defined("ECP_AC") or die("Stop! Wat we onder de motorkap hebben zitten houden we
 
 class ECP_Comp_OverlegModel {
 
-    protected $db = null;
     protected $uid = 0;
+    protected static $db; //db is een static object (zie factory)
 
     public function __CONSTRUCT($uid) {
         $this->uid = $uid;
-        $this->db = ECPFactory::getDbo();
     }
 
     public function getPatients($limit = 30, $from = 0, $to = 30){
         $user = ECPFactory::getUser($this->uid);
-        $patients = $this->db->newQuery("select","patients")->table("patient INNER JOIN overleg ON patient.code = overleg.patient_code INNER JOIN aanvraag_overleg ON overleg.id = aanvraag_overleg.overleg_id")->where("gem_id",$user->gem_id,"=")->limit($to,$from)->execute();
+        $db = ECPFactory::getPDO("Patient");
+        $patient = new Patient();
+        //$patients = $this->db->newQuery("select","patients")->table("patient INNER JOIN overleg ON patient.code = overleg.patient_code INNER JOIN aanvraag_overleg ON overleg.id = aanvraag_overleg.overleg_id")->where("gem_id",$user->gem_id,"=")->limit($to,$from)->execute();
         return self::queryToArray($patients);
     }
     
     public function getAllPatients($limit = 30, $from=0, $to=30){
         $user = ECPFactory::getUser($this->uid);
-        $patients = $this->db->newQuery("select","patients")->table("patient")->where("gem_id",$user->gem_id,"=")->limit($to,$from)->execute();
-        return self::queryToArray($patients);
+        $patient = self::startPatient();
+        $patient->setGemId($user->gem_id);
+        $result = Patient::findByExample(self::$db, $patient);
+        return self::resultToArray($result,Patient::getFieldNames());
     }
     
     public function getOverlegByPatientId($pat_id){
-        $pat = $this->db->newQuery("select","patient")->table("patient INNER JOIN overleg ON patient.code = overleg.patient_code INNER JOIN aanvraag_overleg ON overleg.id = aanvraag_overleg.overleg_id")->where("patient.id",$pat_id,"=")->execute();
-        return self::queryToArray($pat);
+       // $pat = $this->db->newQuery("select","patient")->table("patient INNER JOIN overleg ON patient.code = overleg.patient_code INNER JOIN aanvraag_overleg ON overleg.id = aanvraag_overleg.overleg_id")->where("patient.id",$pat_id,"=")->execute();
+       //  return self::queryToArray($pat);
+        return null;
     }
     
-    public function getPatientById($pat_id){
-        $pat = $this->db->newQuery("select","patient")->table("patient")->where("id",$pat_id,"=")->execute();
-        return self::queryToArray($pat);
+    public function getPatientById($id){
+        $patient = self::startPatient();
+        $patient->setId($id);
+        $result = Patient::findByExample(self::$db, $patient);
+        return self::resultToArray($result, Patient::getFieldNames());
     }
     
     public function getRDC(){
-        $rdc = $this->db->newQuery("select","rdc")->table("organisatie inner join logins")->rows("distinct organisatie.naam,organisatie.id")->where("organisatie.id = logins.organisatie AND organisatie.actief = 1 AND logins.actief = 1 AND logins.profiel","rdc","=")->execute();
-        return self::queryToArray($rdc);
+        self::$db = ECPFactory::getPDO("Organisatie");
+        $org = new Organisatie();
+        ecpimport("database.Logins","class"); //om te fetchen met logins moeten we logins includen!
+        $result = $org->fetchLoginsCollection(self::$db);
+        return self::resultToArray($result, Organisatie::getFieldNames());
     }
     
     public function getZA(){
-        $za = $this->db->newQuery("select","za")->table("organisatie o inner join hulpverleners h")->rows("distinct o.naam, o.id")->where("o.id = h.organisatie and h.is_organisator = 1 and o.actief = 1 and h.actief",1,"=")->execute();
-        return self::queryToArray($za);
+        self::$db = ECPFactory::getPDO("Organsatie");
+        $org = new Organisatie();
+        ecpimport("database.Hulpverleners","class");
+        $result = $org->fetchHulpverlenersCollection(self::$db);
+        return self::resultToArray($result, Organisatie::getFieldNames());
     }
     
     public function getPSY(){
-        $psy = $this->db->newQuery("select","psy")->table("organisatie o inner join logins l")->rows("distinct o.naam, o.id")->where("o.id = l.organisatie and l.actief = 1 and o.actief = 1 and l.profiel","psy","=")->execute();
-        return self::queryToArray($psy);
+        self::$db = ECPFactory::getPDO("Organisatie");
+        $org = new Organisatie();
+        ecpimport("database.Logins","class"); //om te fetchen met logins moeten we logins includen!
+        $result = $org->fetchLoginsCollection(self::$db);
+        return self::resultToArray($result, Organisatie::getFieldNames());
     }
     
     public function getOverleg($patientid=null){
@@ -86,6 +101,24 @@ class ECP_Comp_OverlegModel {
         return $data;
     }
     
+    private static function resultToArray($result,$names){
+        if(!is_array($names) || $result==null) return null;
+        foreach($result as $resource){//array van objecten dus een object nemen..
+            $res=$resource->toArray();//dat object omzetten naar array
+            echo "<hr>";
+            foreach($res as $key => $value){
+                $ar[$names[$key]] = $value; //hier gebeurd de key-wissel..
+            }
+            print_r($ar);
+            $data[] = $ar; //alles netjes terug in een array zetten :)
+        }
+        return $data;
+    }
+    
+    private static function startPatient(){
+        self::$db = ECPFactory::getPDO("patient");
+        return new Patient();
+    }
 
 }
 
