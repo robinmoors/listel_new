@@ -58,7 +58,8 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
             "2"=>"Er zijn andere redenen (vul vak reden in).")
                 ,true));
         //stap 3
-        $this->purposeform = ECPFactory::getForm("purpose");
+        $this->purposeform = ECPFactory::getForm("purpose")->addField(new ECP_FormObj_Checkbox("informeren"))->addField(new ECP_FormObj_Checkbox("overtuigen"))->addField(new ECP_FormObj_Checkbox("organiseren"))
+                ->addField(new ECP_FormObj_Checkbox("debriefen"))->addField(new ECP_FormObj_Checkbox("beslissen"))->addField(new ECP_FormObj_Checkbox("ander"));
         //stap 4
         $this->requestorform = ECPFactory::getForm("requestor")->addField(new ECP_FormObj_Input("naam", 3, 100))->addField(new ECP_FormObj_Select("relatie"));
         $this->requestorform->addField(new ECP_FormObj_Input("telefoon",9,12))->addField(new ECP_FormObj_Email("email"))->addField(new ECP_FormObj_Input("organisatie", 3, 100));

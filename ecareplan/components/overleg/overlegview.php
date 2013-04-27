@@ -174,7 +174,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                       $form[6]->getHtml("normal",array("psywhy"=>"Waarom deze zorgaanbieder?<br/>"));
             $content .="</div><div class='box' id='step_2'>
                             <h5>Stap 2: Doel van het overleg</h5>
-                            ".$form[7]->getHtml("normal",array())."
+                            ".$form[7]->getHtml("normal",array("informeren"=>"Informeren","debriefen"=>"Debriefen","ander"=>"Ander doel","overtuigen"=>"Overtuigen","organiseren"=>"Organiseren","beslissen"=>"Beslissen"))."
                         </div><div class='box' id='step_3'>
                             <h5>Stap 3: Informatie aanvrager</h5>
                             ".$form[8]->getHtml("normal",array(

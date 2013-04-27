@@ -105,11 +105,9 @@ class ECP_Comp_OverlegModel {
         if(!is_array($names) || $result==null) return null;
         foreach($result as $resource){//array van objecten dus een object nemen..
             $res=$resource->toArray();//dat object omzetten naar array
-            echo "<hr>";
             foreach($res as $key => $value){
                 $ar[$names[$key]] = $value; //hier gebeurd de key-wissel..
             }
-            print_r($ar);
             $data[] = $ar; //alles netjes terug in een array zetten :)
         }
         return $data;
