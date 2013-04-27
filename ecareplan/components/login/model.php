@@ -30,7 +30,7 @@ class ECP_Comp_Login_Model {
         
         $pasw = 'c17a1a963e2b9ebb228030c0615fdb4bd91bd982';
         $login = 'joris-rdc';
-        
+                
         $log=new Logins();
         $log->setLogin($login) ->setPaswoord($pasw);
         $results = Logins::findByExample($db, $log);
