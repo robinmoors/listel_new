@@ -54,14 +54,14 @@ class ECP_Comp_Login_Controller implements ECP_ComponentController{
     }
         
     public function login(){
-        if($_SERVER['REQUEST_METHOD']=="POST"){
+     //   if($_SERVER['REQUEST_METHOD']=="POST"){
             $form = ECPFactory::getForm("login");
             $form->smartInsert($_POST);
             $rapport = $form->validate();
-            if(is_array($rapport)){
+            /*if(is_array($rapport)){
                 echo '{"error":"'.$rapport[0][0].'"}'; //eerste index:: 1. velden met fouten, 2. fout per veld, 3. aantal fouten totaal.
                 exit(); //geen view doen :)
-            }else{
+            }else{*/
                 //this in orde dus hier iets met model gaan doen
                 $login = $this->model->login();
                 if(!$login){
@@ -74,10 +74,10 @@ class ECP_Comp_Login_Controller implements ECP_ComponentController{
                     echo '{"succes":"positive","uid":"'.$login["uid"].'","pin":"'.$login["pin"].'"}';
                     exit();
                 }
-            }
-        }else{
-            $this->std_command();
-        }
+            //}
+       // }else{
+       //     $this->std_command();
+       // }
         
     }
     

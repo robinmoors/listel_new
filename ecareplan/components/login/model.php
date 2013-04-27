@@ -1,5 +1,6 @@
 <?php
-
+ecpimport("database.Logins","class");
+//include_once '../../database/Logins.class.php';
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -21,11 +22,27 @@ class ECP_Comp_Login_Model {
     }
 
     public function login() {
+        /*
         $db = ECPFactory::getDbo();
-        $pasw = $this->loginform->password->value;
-        $email = $this->loginform->email->value;
+         * */
         ecpimport("helpers.cryptology");
+        $db = new PDO('mysql:host=localhost;dbname=listel5', 'root');
+        
+        $pasw = 'c17a1a963e2b9ebb228030c0615fdb4bd91bd982';
+        $login = 'joris-rdc';
+        
+        $log=new Logins();
+        $log->setLogin($login) ->setPaswoord($pasw);
+        $results = Logins::findByExample($db, $log);
+        foreach ($results as $result) {
+            $id = $result->getId();
+            $result->setIpadres($_SERVER['REMOTE_ADDR']);
+            $result->updateToDatabase($db);
+        }
+       
+        
         //$pasw = ECP_Cryptology::generateHash(trim($post['password']));
+        /*
         $where = array("email", "pasw");
         $wheres = array($email, $pasw);
         $echeck = $db->newQuery("select", "echeck")->table("logins")->where($where, $wheres, "=", "AND")->execute();
@@ -33,17 +50,25 @@ class ECP_Comp_Login_Model {
             //ongeldig, ww en e komt niet overeen!
             return false;
         } else {
+         */
+          
             //access dus we gaan een loginpin geven ;)
+        /*
             $uid = $echeck->getSingleResult();
             $loginpin = ECP_Cryptology::generateInteger(30);
             $pinhash = ECP_Cryptology::generateHash($loginpin);
+            
             $logtodb = $db->newQuery("update", "login")->table("logins")->updateset(array('loginpin', 'ipadres'), array($pinhash, $_SERVER['REMOTE_ADDR']))->where($where, $wheres, "=", "AND")->execute();
             if ($logtodb->getRows())
                 return array("uid"=>$uid["id"],"pin"=>$loginpin);
             else
                 return 2;
             exit();
-        }
+            */
+            //return array("uid"=>$uid["id"],"pin"=>$loginpin);
+            return array("uid"=>$id,"pin"=>$loginpin);
+        //}
+        
     }
 
     public function loginpage() {
