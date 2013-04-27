@@ -765,8 +765,6 @@ CREATE TABLE IF NOT EXISTS `hulpverleners` (
   INDEX fnct_id_idx (`fnct_id`),
   CONSTRAINT `FK_hulpverleners_id`
   FOREIGN KEY (`id`) REFERENCES persoon(`id`) ON UPDATE CASCADE ON DELETE RESTRICT,
-  CONSTRAINT `FK_hulpverleners_organisatie`
-  FOREIGN KEY (`organisatie`) REFERENCES organisatie(`id`) ON UPDATE CASCADE ON DELETE RESTRICT,
   CONSTRAINT `FK_hulpverleners_gem_id`
   FOREIGN KEY (`gem_id`) REFERENCES gemeente(`id`) ON UPDATE CASCADE ON DELETE RESTRICT,
   CONSTRAINT `FK_hulpverleners_fnct_id`

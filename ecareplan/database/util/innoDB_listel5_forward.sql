@@ -220,51 +220,6 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `listel5`.`organisatie`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `listel5`.`organisatie` ;
-
-CREATE  TABLE IF NOT EXISTS `listel5`.`organisatie` (
-  `id` INT(11) NOT NULL ,
-  `naam` VARCHAR(150) NOT NULL DEFAULT '' ,
-  `adres` VARCHAR(75) NOT NULL DEFAULT '' ,
-  `gem_id` SMALLINT(4) NOT NULL DEFAULT '9999' ,
-  `tel` VARCHAR(20) NOT NULL DEFAULT '' ,
-  `fax` VARCHAR(20) NOT NULL DEFAULT '' ,
-  `gsm` VARCHAR(20) NOT NULL DEFAULT '' ,
-  `reknr` VARCHAR(20) NOT NULL DEFAULT '' ,
-  `iban` VARCHAR(34) NOT NULL DEFAULT '' ,
-  `bic` VARCHAR(11) NOT NULL DEFAULT '' ,
-  `contact_inhoudelijk` VARCHAR(60) NOT NULL DEFAULT '' ,
-  `email_inhoudelijk` VARCHAR(80) NOT NULL DEFAULT '' ,
-  `contact_administratie` VARCHAR(60) NOT NULL DEFAULT '' ,
-  `email_administratie` VARCHAR(80) NOT NULL DEFAULT '' ,
-  `actief` INT(1) NOT NULL DEFAULT '1' ,
-  `genre` ENUM('ZVL','HVL','XVL','XVLNP','XVLP') NULL DEFAULT NULL ,
-  `hoofdzetel` INT(11) NOT NULL DEFAULT '-1' ,
-  `ggz` TINYINT(4) NOT NULL DEFAULT '0' ,
-  `art107` TINYINT(4) NOT NULL DEFAULT '0' ,
-  `mobiele_equipe` TINYINT(4) NOT NULL DEFAULT '0' ,
-  PRIMARY KEY (`id`) ,
-  INDEX `naam_idx` (`naam` ASC) ,
-  INDEX `gem_id_idx` (`gem_id` ASC) ,
-  CONSTRAINT `FK_organisatie_id`
-    FOREIGN KEY (`id` )
-    REFERENCES `listel5`.`persoon` (`id` )
-    ON DELETE RESTRICT
-    ON UPDATE CASCADE,
-  CONSTRAINT `FK_organisatie_gem_id`
-    FOREIGN KEY (`gem_id` )
-    REFERENCES `listel5`.`gemeente` (`id` )
-    ON DELETE RESTRICT
-    ON UPDATE CASCADE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 1909
-DEFAULT CHARACTER SET = utf8
-PACK_KEYS = 0;
-
-
--- -----------------------------------------------------
 -- Table `listel5`.`functiegroepen`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `listel5`.`functiegroepen` ;
@@ -359,11 +314,6 @@ CREATE  TABLE IF NOT EXISTS `listel5`.`hulpverleners` (
     REFERENCES `listel5`.`persoon` (`id` )
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
-  CONSTRAINT `FK_hulpverleners_organisatie`
-    FOREIGN KEY (`organisatie` )
-    REFERENCES `listel5`.`organisatie` (`id` )
-    ON DELETE RESTRICT
-    ON UPDATE CASCADE,
   CONSTRAINT `FK_hulpverleners_gem_id`
     FOREIGN KEY (`gem_id` )
     REFERENCES `listel5`.`gemeente` (`id` )
@@ -377,6 +327,51 @@ CREATE  TABLE IF NOT EXISTS `listel5`.`hulpverleners` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 12227
 DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `listel5`.`organisatie`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `listel5`.`organisatie` ;
+
+CREATE  TABLE IF NOT EXISTS `listel5`.`organisatie` (
+  `id` INT(11) NOT NULL ,
+  `naam` VARCHAR(150) NOT NULL DEFAULT '' ,
+  `adres` VARCHAR(75) NOT NULL DEFAULT '' ,
+  `gem_id` SMALLINT(4) NOT NULL DEFAULT '9999' ,
+  `tel` VARCHAR(20) NOT NULL DEFAULT '' ,
+  `fax` VARCHAR(20) NOT NULL DEFAULT '' ,
+  `gsm` VARCHAR(20) NOT NULL DEFAULT '' ,
+  `reknr` VARCHAR(20) NOT NULL DEFAULT '' ,
+  `iban` VARCHAR(34) NOT NULL DEFAULT '' ,
+  `bic` VARCHAR(11) NOT NULL DEFAULT '' ,
+  `contact_inhoudelijk` VARCHAR(60) NOT NULL DEFAULT '' ,
+  `email_inhoudelijk` VARCHAR(80) NOT NULL DEFAULT '' ,
+  `contact_administratie` VARCHAR(60) NOT NULL DEFAULT '' ,
+  `email_administratie` VARCHAR(80) NOT NULL DEFAULT '' ,
+  `actief` INT(1) NOT NULL DEFAULT '1' ,
+  `genre` ENUM('ZVL','HVL','XVL','XVLNP','XVLP') NULL DEFAULT NULL ,
+  `hoofdzetel` INT(11) NOT NULL DEFAULT '-1' ,
+  `ggz` TINYINT(4) NOT NULL DEFAULT '0' ,
+  `art107` TINYINT(4) NOT NULL DEFAULT '0' ,
+  `mobiele_equipe` TINYINT(4) NOT NULL DEFAULT '0' ,
+  PRIMARY KEY (`id`) ,
+  INDEX `naam_idx` (`naam` ASC) ,
+  INDEX `gem_id_idx` (`gem_id` ASC) ,
+  CONSTRAINT `FK_organisatie_id`
+    FOREIGN KEY (`id` )
+    REFERENCES `listel5`.`persoon` (`id` )
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `FK_organisatie_gem_id`
+    FOREIGN KEY (`gem_id` )
+    REFERENCES `listel5`.`gemeente` (`id` )
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 1909
+DEFAULT CHARACTER SET = utf8
+PACK_KEYS = 0;
 
 
 -- -----------------------------------------------------
