@@ -20,6 +20,8 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
     private $purposeform = null; //stap 3 = het doel kiezen
     private $requestorform =  null; //stap 4 = info aanvrager
     
+    private $newcreated = false;
+    
     //overleg bewerken
     private $basisgegevens = null; //tabblad basisgegevens
     //private $teamoverleg = null; //tabblad teamoverleg
@@ -60,6 +62,8 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
         //stap 4
         $this->requestorform = ECPFactory::getForm("requestor")->addField(new ECP_FormObj_Input("naam", 3, 100))->addField(new ECP_FormObj_Select("relatie"));
         $this->requestorform->addField(new ECP_FormObj_Input("telefoon",9,12))->addField(new ECP_FormObj_Email("email"))->addField(new ECP_FormObj_Input("organisatie", 3, 100));
+        
+        $this->newcreated = true;
         $this->setState("newoverleg.end");
     }
     
@@ -71,6 +75,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
         $this->setState("editoverleg.basisgegevens.ready");
         //$this->teamoverleg = ECPFactory::getForm("teamoverleg");
         $this->attestbijlagen = ECPFactory::getForm("attestbijlagen")->addField(new ECP_FormObj_Radio("verblijf", array("0"=>"Thuis","1"=>"Opgenomen")));
+        
         $this->setState("editoverleg.attestbijlagen.ready");
         
         $this->setState("editoverleg.end");
@@ -115,7 +120,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
     //End Observer pattern (Subject
     public function getForm($type){
         switch($type){
-            case "edit": $this->createEditOverleg();
+            case "edit": if(!$this->newcreated) $this->createEditOverleg();
                 return array($this->basisgegevens,$this->attestbijlagen);
                 break;
             case "new": $this->createNewOverleg(); 
@@ -130,6 +135,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
     }
     
     public function updatePatientList($patients){
+        //print_r($patients);
         $patientsnames = array();
         for($i=0; $i<count($patients); $i++){
             $patientsnames[$patients[$i]['id']]= $patients[$i]['naam']." ".$patients[$i]['voornaam'];
@@ -142,6 +148,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
         for($i=0; $i<count($rdc); $i++){
             $rdclist[$rdc[$i]['id']]= $rdc[$i]['naam'];
         }
+        if(!$this->newcreated) $this->createNewOverleg ();
         $this->rdcform->rdclist->insertOptions($rdclist);
     }
     
@@ -150,6 +157,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
         for($i=0; $i<count($za); $i++){
             $zalist[$za[$i]['id']]= $za[$i]['naam'];
         }
+        if(!$this->newcreated) $this->createNewOverleg ();
         $this->zaform->zalist->insertOptions($zalist);
     }
     
@@ -158,6 +166,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
         for($i=0; $i<count($psy); $i++){
             $psylist[$psy[$i]['id']]= $psy[$i]['naam'];
         }
+        if(!$this->newcreated) $this->createNewOverleg ();
         $this->psyform->psylist->insertOptions($psylist);
     }
 

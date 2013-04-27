@@ -18,6 +18,7 @@ abstract class ECPFactory {
     public static $app = null;
     public static $conf = null;
     public static $db = null;
+    public static $pdo = null;
     public static $template = null;
     public static $session = null;
     
@@ -55,6 +56,22 @@ abstract class ECPFactory {
             self::$db = self::_createDbo($conf);
         }
         return self::$db;
+    }
+    
+    public static function getPDO($dbclass){
+        $dbclass = ucfirst($dbclass);
+        if(!self::$pdo){ //pdo aanmaken en dan de standaard klassen al includen...
+            if(!self::$conf) self::getConfig(); //configuratie aanmaken indien nog niet bestaat
+            self::$pdo = new PDO("mysql:host=".self::$conf->host.";dbname=".self::$conf->db,self::$conf->user,self::$conf->password);
+            ecpimport("database.util.Db2PhpEntityBase","class");
+            ecpimport("database.util.Db2PhpEntityModificationTracking","class");
+            ecpimport("database.util.DFCAggregate","class");
+            ecpimport("database.util.DSC","class");
+        }
+        if(ecplocate("database.$dbclass","class")){ //database klasse invoegen die methodes bevat om met data te werken... (indien bestaat)
+            ecpimport ("database.$dbclass", "class");
+        }
+        return self::$pdo;
     }
     
     public static function getForm($formname=false){

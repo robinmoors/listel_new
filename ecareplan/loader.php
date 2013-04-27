@@ -41,13 +41,14 @@ abstract class ECPLoader
       * @param string $path
       * @return boolean true if exist
       */
-     public static function locate($doc){
+     public static function locate($doc,$ext=""){
          $paths = explode(DIRECTORY_SEPARATOR,__FILE__);
          array_pop($paths);
          $path = implode("/",$paths);
          $docpath=explode('.',$doc);
          $path = $path.DS.implode("/",$docpath);
-         if(file_exists($path.PHP)){
+          if($ext!="") $ext = ".".$ext;
+         if(file_exists($path.$ext.PHP)){
              return true;
          }else return false;
      }
@@ -75,6 +76,6 @@ function ecpimport($path,$extention="")
 	return ECPLoader::import($path,$extention);
 }
 
-function ecplocate($path){
-    return ECPLoader::locate($path);
+function ecplocate($path,$extention=""){
+    return ECPLoader::locate($path,$extention);
 }
