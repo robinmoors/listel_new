@@ -67,11 +67,15 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
             $content.="<td>{$keysnamed[$i]}</td>";
         }
         $content.="</tr>";
+        if($data!=null){
         foreach ($data as $patient) {
             $content.="<tr id='TableRow' onclick='EQ.reRoute(\"overlegbewerk\",true,{$patient[0]});'>";
             for ($i = 0; $i < count($keys); $i++) {
                 $content.="<td>{$patient[$keys[$i]]}</td>";
             }
+        }
+        }else{
+            $content.="<tr id='TableRow'><td colspan='".count($keys)."'><em>Geen overleggen beschikbaar om te bewerken. Kies nieuw overleg.</em></td></tr>";
         }
         $content.="</table>";
         $this->content = $content;
@@ -149,13 +153,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
             $this->export();
         } else {
             if($data[0]) $patient = $data[0]; else $patient = $data;
-            $script = $form[0]->getScript("/listel_new/ecareplan/login/login/", array("title" => "Aanmelden",
-                "action" => "Bezig met aanmelden...",
-                "succes" => "U bent aangemeld <br/><img src=\'/listel_new/lib/images/flat-loader.gif\' />",
-                "fail" => "Er is iets misgegaan. Probeer opnieuw!"), "EQ.reRoute('home');", "", "else if(json.reason && json.reason=='no-access'){
-                                EQ.OVR.content='Emailadres of wachtwoord fout!';
-                                EQ.OVR.refresh('c');
-                            }");
+            $huidigtoegewezen = $patient["toegewezen"] === 1 ? $patient['toegewezen'] === null ? $patient['toegewezen'] : "Is dit een oude patient?" : "Het OCMW van de gemeente.";
             $content = "<div class='box'>
                             <h5>Pati&euml;ntinfo</h5>
                             Rijksregisternummer: {$patient['rijksregister']} <br/>
@@ -164,6 +162,9 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                         </div>
                         <div class='box' id='step_1'>
                             <h5>Stap 1: De organisator van het overleg</h5>
+                            <div id='huidig'>De huidige organisator van het overleg is:<br/><strong>{$huidigtoegewezen}</strong><br/>
+                                Is deze keuze correct?<br/><input type='radio' name='huidigok' value='Ja' id='huidigja'/> Ja<br/><input type='radio' name='huidigok' value='Nee' id='huidignee'/> Nee
+                            </div><div id='niethuidig'>
                             ";
             $content.=$form[0]->getHtml("normal", array("organisator" => "Kies een organisator voor het overleg:<br/>")).
                       $form[1]->getHtml("normal",array("rdclist"=> "Welk regionaal dienstencentrum?<br/>")).
@@ -172,7 +173,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                       $form[4]->getHtml("normal",array("zawhy"=>"Waarom deze zorgaanbieder?<br/>")).
                       $form[5]->getHtml("normal",array("psylist"=> "Welke zorg aanbieder?<br/>")).
                       $form[6]->getHtml("normal",array("psywhy"=>"Waarom deze zorgaanbieder?<br/>"));
-            $content .="</div><div class='box' id='step_2'>
+            $content .="</div><div id='reden'>Reden:<br/><textarea name='reden' id='reden'></textarea></div></div><div class='box' id='step_2'>
                             <h5>Stap 2: Doel van het overleg</h5>
                             ".$form[7]->getHtml("normal",array("informeren"=>"Informeren","debriefen"=>"Debriefen","ander"=>"Ander doel","overtuigen"=>"Overtuigen","organiseren"=>"Organiseren","beslissen"=>"Beslissen"))."
                         </div><div class='box' id='step_3'>

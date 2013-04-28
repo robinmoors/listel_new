@@ -20,6 +20,8 @@ class ECP_User extends ECP_Object {
     private $guest;
     private $user = 0;
     private $locked = true;
+    
+    private $typeobj = null;
 
     /**
      * User parameters
@@ -130,8 +132,17 @@ class ECP_User extends ECP_Object {
             $u = $user->getSingleResult();
             $this->guest = false;
             $this->id = $id;
+            $u['profiel'] = strtolower($u['profiel']);
             $this->user = $u;
-            $this->locked = 1;
+            ecpimport("user.usertype"); //usertype interface
+            if(ecplocate("user.types.{$u['profiel']}")){
+                ecpimport("user.types.{$u['profiel']}"); //usertype class
+                $classname = "ECP_User_".$u['profiel'];
+                $this->typeobj = new $classname();
+            }else{
+                echo "fatal error.. usertype unknown<br/>Missing type is: {$u['profiel']}";
+                ecpexit();
+            }$this->locked = 1;
         }else{
             $this->guest = 1;
             $this->locked = 1;
@@ -159,6 +170,13 @@ class ECP_User extends ECP_Object {
             $this->locked = 1;
             $this->user = array("naam"=>"Gast","type"=>"Guest");
         }
+    }
+    
+    public function filterPatients($results=array()){
+        if(count($results)<1 || !is_array($results)) return null;
+        else if($this->guest == 1) return array();
+        else if($this->typeobj === null) return array();
+        else return $this->typeobj->filterPatients($results);
     }
 
 }
