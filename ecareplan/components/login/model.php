@@ -15,7 +15,7 @@ class ECP_Comp_Login_Model {
 
     public function __CONSTRUCT() {
         $this->loginform = ECPFactory::getForm("login");
-        $this->loginform->addField(new ECP_FormObj_Email("email"));
+        $this->loginform->addField(new ECP_FormObj_Input("login",3,30));
         $this->loginform->addField(new ECP_FormObj_Password("password", 8, 30));
         $this->loginform->addField(new ECP_FormObj_Button("Aanmelden"));
     }

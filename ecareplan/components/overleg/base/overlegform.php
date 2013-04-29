@@ -29,6 +29,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
     //formulier error
     private $formerror = 0;
     
+    //observable
     private $observers = array();
     private $state = "unset";
 
@@ -38,6 +39,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
     }
     
     private function createNewOverleg(){
+        if($this->newcreated) return true; 
         $this->setState("newoverleg.start");
         $this->orgform = ECPFactory::getForm("organisator_select");
         $this->orgform->addField(new ECP_FormObj_Radio("organisator",array("0"=>"Het plaatselijk OCMW,","1"=>"Het regionaal dientstencentrum","2"=>"Zorgverlener"),true));
@@ -58,7 +60,8 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
             "2"=>"Er zijn andere redenen (vul vak reden in).")
                 ,true));
         //stap 3
-        $this->purposeform = ECPFactory::getForm("purpose");
+        $this->purposeform = ECPFactory::getForm("purpose")->addField(new ECP_FormObj_Checkbox("informeren"))->addField(new ECP_FormObj_Checkbox("overtuigen"))->addField(new ECP_FormObj_Checkbox("organiseren"))
+                ->addField(new ECP_FormObj_Checkbox("debriefen"))->addField(new ECP_FormObj_Checkbox("beslissen"))->addField(new ECP_FormObj_Checkbox("ander"));
         //stap 4
         $this->requestorform = ECPFactory::getForm("requestor")->addField(new ECP_FormObj_Input("naam", 3, 100))->addField(new ECP_FormObj_Select("relatie"));
         $this->requestorform->addField(new ECP_FormObj_Input("telefoon",9,12))->addField(new ECP_FormObj_Email("email"))->addField(new ECP_FormObj_Input("organisatie", 3, 100));
@@ -148,7 +151,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
         for($i=0; $i<count($rdc); $i++){
             $rdclist[$rdc[$i]['id']]= $rdc[$i]['naam'];
         }
-        if(!$this->newcreated) $this->createNewOverleg ();
+        $this->createNewOverleg ();
         $this->rdcform->rdclist->insertOptions($rdclist);
     }
     
@@ -157,7 +160,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
         for($i=0; $i<count($za); $i++){
             $zalist[$za[$i]['id']]= $za[$i]['naam'];
         }
-        if(!$this->newcreated) $this->createNewOverleg ();
+        $this->createNewOverleg ();
         $this->zaform->zalist->insertOptions($zalist);
     }
     
@@ -166,7 +169,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
         for($i=0; $i<count($psy); $i++){
             $psylist[$psy[$i]['id']]= $psy[$i]['naam'];
         }
-        if(!$this->newcreated) $this->createNewOverleg ();
+        $this->createNewOverleg ();
         $this->psyform->psylist->insertOptions($psylist);
     }
 

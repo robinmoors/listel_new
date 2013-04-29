@@ -55,7 +55,7 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     }
 
     public function std_command() {
-        $patienten = $this->model->getPatients("overleg");
+        $patienten = $this->model->getPatientsWithOverleg("overleg");
         $this->view->viewList($patienten);
     }
 
@@ -92,6 +92,8 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
                 //patient had geen overleggen... Dan maar alleen patient opgeven
                 $patient = $this->model->getPatientById($pat_id);
             }
+            //de toegewezen OC ophalen en bij data patient steken...
+            $patient['toegewezen'] = $this->model->getPatientToewijzing($pat_id);
             //regionaal dienstencentra ophalen (RDC)
             $formmodel->updateRDCList($this->model->getRDC());
             //zorgaanbieders ophalen (ZA)
