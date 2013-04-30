@@ -14,6 +14,8 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
     private $script;
     private $observer = array();
     private $state = "unset";
+    
+    private $stack='';
 
     public function __CONSTRUCT($app) {
         $this->app = $app;
@@ -38,6 +40,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
         return $this;
     }
     public function notify(){
+        if(empty($this->observers)) return $this; //indien er niemand meekijkt snel wegwezen!
         foreach($this->observers as $obs){
             $obs->update($this);
         }
@@ -53,15 +56,28 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
 
     public function setState($state) {
         $old = $this->state;
-        $this->state = $state;
+        $this->state = "view.".$state;
         if($old !== $this->state) $this->notify(); //autonotify on statechange...
         return $this;
     }
     //End Observer pattern (Subject
-    
+    //Start special observer methods
+    public function getStack(){
+        return $this->stack;
+    }
+    public function setStack($stack){
+        $this->stack = $stack;
+        return $this;
+    }
+    //End special observer methods
+
     public function viewList($data) {
+        $this->setState("viewlist.start"); //naam.actie!
+        
         $keys = array('id', 'code', 'naam', 'voornaam', 'gebdatum', 'geboordeplaats', 'adres');
         $keysnamed = array('#', 'Code', 'Naam', 'Voornaam', 'Geboortedatum', 'Geboorteplaats', 'Adres');
+        $this->setState("viewlist.content.start");
+        
         $content = "<a class='RoundedButton2 login' href='' onclick='EQ.reRoute(\"overlegnieuw\",true);'>Nieuw overleg</a><br/><table id='ShowTable' class='wider'><tr id='TableHead'>";
         for ($i = 0; $i < count($keys); $i++) {
             $content.="<td>{$keysnamed[$i]}</td>";
@@ -78,14 +94,22 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
             $content.="<tr id='TableRow'><td colspan='".count($keys)."'><em>Geen overleggen beschikbaar om te bewerken. Kies nieuw overleg.</em></td></tr>";
         }
         $content.="</table>";
-        $this->content = $content;
+        $this->stack=$content;
+        $this->setState("viewlist.content.end");
+        
         $this->title = "Patientenlijst";
+        $this->moveToContent();
+        
+        $this->setState("viewlist.end");
         $this->export();
     }
     
     public function viewOverlegList($data) {
+        $this->setState("viewoverleglist.start");
         $keys = array('id', 'startdatum', 'afronddatum', 'afgerond', 'subsidiestatus');
         $keysnamed = array('#', 'Start', 'Afgerond op', 'Afgerond', 'Status subsidie');
+        
+        $this->setState("viewoverleglist.content.start");
         $content = "<div class='box'>
                             <h5>Pati&euml;ntinfo</h5>
                             Rijksregisternummer: {$data[0]['rijksregister']} <br/>
@@ -103,8 +127,13 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
             }
         }
         $content.="</table></div>";
-        $this->content = $content;
+        $this->stack = $content;
+        
+        $this->setState("viewoverleglist.content.end");
         $this->title = "Overleg bewerken";
+        $this->moveToContent();
+        
+        $this->setState("viewoverleglist.end");
         $this->export();
     }
 
@@ -148,10 +177,16 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
     }
 
     public function newOverleg($step, $data, $form) {
+        $this->setState("newoverleg.start");
+        $this->setState("newoverleg.content.start");
         if ($data == null) {
-            $this->content = "De opgegeven patient werd niet gevonden! <a onclick='EQ.reRoute(\"overleg\",true)'>Keer terug naar patientenlijst.</a>";
+            $this->stack .= "De opgegeven patient werd niet gevonden! <a onclick='EQ.reRoute(\"overleg\",true)'>Keer terug naar patientenlijst.</a>";
+            $this->setState("newoverleg.content.end");
+            $this->moveToContent();
+            $this->setState("newoverleg.end");
             $this->export();
         } else {
+            $this->setState("newoverleg.content.info.start");
             if($data[0]) $patient = $data[0]; else $patient = $data;
             $huidigtoegewezen = $patient["toegewezen"] === 1 ? $patient['toegewezen'] === null ? $patient['toegewezen'] : "Is dit een oude patient?" : "Het OCMW van de gemeente.";
             $content = "<div class='box'>
@@ -159,13 +194,74 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                             Rijksregisternummer: {$patient['rijksregister']} <br/>
                             Volgnummer: SO98 - {$patient['code']} <br/>
                             Pati&euml;ntnaam: {$patient['naam']} <br/>
-                        </div>
+                        </div>";
+            $this->stack .= $content;
+            $this->setState("newoverleg.content.info.end");
+            $this->moveToContent();
+            
+            $this->setState("newoverleg.content.step1.start");
+            $stap1="
                         <div class='box' id='step_1'>
                             <h5>Stap 1: De organisator van het overleg</h5>
                             <div id='huidig'>De huidige organisator van het overleg is:<br/><strong>{$huidigtoegewezen}</strong><br/>
                                 Is deze keuze correct?<br/><form name='huidig_organisator'><input type='radio' name='huidigok' value='1' id='huidigja' checked='checked'/> Ja<br/><input type='radio' name='huidigok' value='0' id='huidignee'/> Nee
                             </form></div><div id='niethuidig' class='hidden'>
                             ";
+            $stap1.=$form[0]->getHtml("normal", array("organisator" => "Kies een organisator voor het overleg:<br/>")).
+                      "<div id='rdc' class='hidden'>".$form[1]->getHtml("normal",array("rdclist"=> "Welk regionaal dienstencentrum?<br/>")).
+                      $form[2]->getHtml("normal",array("rdcwhy"=>"Waarom dit dienstencentrum?<br/>"))."</div><div id='za' class='hidden'>".
+                      $form[3]->getHtml("normal",array("zalist"=> "Welke zorg aanbieder?<br/>")).
+                      $form[4]->getHtml("normal",array("zawhy"=>"Waarom deze zorgaanbieder?<br/>"))."</div><div id='psy' class='hidden'>".
+                      $form[5]->getHtml("normal",array("psylist"=> "Welke zorg aanbieder?<br/>")).
+                      $form[6]->getHtml("normal",array("psywhy"=>"Waarom deze zorgaanbieder?<br/>"))."</div>";
+            $stap1 .="</div><div id='reden' class='hidden'>Reden:<br/><form name='organisator_reden'><textarea name='reden' id='reden'></textarea></form></div></div>";
+            $this->stack .= $stap1;
+            $this->setState("newoverleg.content.step1.end");
+            $this->moveToContent();
+            
+            $this->setState("newoverleg.content.step2.start");
+            $stap2="
+                    <div class='box hidden' id='step_2'>
+                            <h5>Stap 2: Doel van het overleg</h5>
+                            ".$form[7]->getHtml("normal",array("informeren"=>"Informeren","debriefen"=>"Debriefen","ander"=>"Ander doel","overtuigen"=>"Overtuigen","organiseren"=>"Organiseren","beslissen"=>"Beslissen"))."
+                        <div id='ander' class='hidden'><form name='ander'><textarea name='ander'></textarea></form></div>
+                        </div>";
+            $this->stack.=$stap2;
+            $this->setState("newovlerg.content.step2.end");
+            $this->moveToContent();
+            
+            $this->setState("newoverleg.content.step3.start");
+            $stap3="
+                    <div class='box hidden' id='step_3'>
+                            <h5>Stap 3: Informatie aanvrager</h5>
+                            ".$form[8]->getHtml("normal",array(
+                                "naam"=>"Naam en voornaam",
+                                "relatie"=>"Relatie tot pati&euml;nt:",
+                                "telefoon"=>"Telefoonnummer",
+                                "email"=>"Of emailadres",
+                                "organisatie"=>"Naam organisatie"
+                            ))."</div>";
+            $this->stack.=$stap3;
+            $this->setState("newoverleg.content.step3.end");
+            $this->moveToContent();
+            
+            $this->setState("newoverleg.content.step4.start");
+            $stap4="
+                    <div id='step_4' class='box'>
+                        U heeft alle nodige velden ingevuld. Indien u zeker bent dat alles juist is kan u verder.<br/>
+                        <input type='button' id='send' name='verzenden' value='Verzenden'/>
+                    </div>";
+            $this->stack.=$stap4;
+            $this->setState("newoverleg.content.step4.end");
+            $this->moveToContent();
+            
+            $this->setState("newoverleg.content.end");
+            $this->moveToContent(); //toch nog even moven indien observers nog iets hadden toegevoegd!
+            
+            unset($stap1); unset($stap2); unset($stap3); unset($stap4); unset($content);
+            
+            $this->setState("newoverleg.script.start");
+            $this->setState("newoverleg.script.base.start");
             $script = "
                 radioValue = function(radio){
                     var size = radio.length;
@@ -174,6 +270,52 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                     };
                     return null;
                 };
+                
+                //Variables
+                
+                var niethuidighidden = true;
+                var step2hidden = true;
+                var step3hidden = true;
+                var rdchidden = true;
+                var zahidden = true;
+                var psyhidden = true;
+                
+                //Ajax Process maken:
+                
+                var pname = 'nieuwoverleg';
+                EQ.CPU.makeProcess({
+                    name: pname,
+                    process: function(resp){
+                        var json = EQ.jsp(resp);
+                        if(json.error){
+                            $('#'+json.error).html(EQ.messages['form-wrong']).removeClass('succes').addClass('wrong');
+                            EQ.OVR.close();
+                        }else if(json.succes){
+                            if(json.succes=='positive'){
+                                EQ.OVR.content=json.message;
+                                EQ.OVR.refresh('c');
+                                EQ.login(json);
+                                endNewOverleg();
+                            }else{
+                                EQ.OVR.content=json.message;
+                                EQ.OVR.refresh('c');
+                                EQ.login(json);
+                            };
+                        };
+                    }
+               });
+               var newoverleg =  setInterval(function(){checkNewOverleg();},50);
+                endNewOverleg = function(){
+                    newoverleg = false;
+                    checkOrganisatie(false);
+                    step2hidden = true;
+                };";
+            $this->stack.=$script;
+            $this->setState("newoverleg.script.base.end");
+            $this->moveToScript();
+            unset($script);
+            $this->setState("newoverleg.script.collectvalues.start");
+            $colval = "               
                 collectValues = function(){
                         //stap 1
                         return {
@@ -198,13 +340,13 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                             email : document.requestor.email.value,
                             organisatie : document.requestor.organisatie.value
                         };
-                };
-                var niethuidighidden = true;
-                var step2hidden = true;
-                var step3hidden = true;
-                var rdchidden = true;
-                var zahidden = true;
-                var psyhidden = true;
+                };";
+            $this->stack.=$colval;
+            $this->setState("newoverleg.script.collectvalues.end");
+            $this->moveToScript();
+            unset($colval);
+            $this->setState("newoverleg.script.checknewoverleg.start");
+            $check = "
                 checkNewOverleg = function(){
                     var values = collectValues();
                     if(values.huidigok == '0'){
@@ -226,7 +368,13 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                     }else{
                         $('#step_3').hide(function(){step3hidden = true;});
                     }
-                };
+                };";
+            $this->stack.=$check;
+            $this->setState("newoverleg.script.checknewoverleg.end");
+            $this->moveToScript();
+            unset($check);
+            $this->setState("newoverleg.script.checkorganisator.start");
+            $org = "
                 checkOrganisator = function(values){
                     if(!values){
                         rdchidden = true; zahidden = true; psyhidden = true;
@@ -259,7 +407,13 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                             };
                         };
                     };
-                };
+                };";
+            $this->stack.=$org;
+            $this->setState("newoverleg.script.checkorganisator.end");
+            $this->moveToScript();
+            unset($org);
+            $this->setState("newoverleg.script.checkdoelen.start");
+            $doel = "
                 checkDoelen = function(values){
                     if(step2hidden) return false;
                     else{
@@ -275,38 +429,13 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                             return false;
                         };
                     };
-                };
-                var newoverleg =  setInterval(function(){checkNewOverleg();},50);
-                endNewOverleg = function(){
-                    newoverleg = false;
-                    checkOrganisatie(false);
-                    step2hidden = true;
-                };
-                
-                //Ajax Process maken:
-                
-                var pname = 'nieuwoverleg';
-                EQ.CPU.makeProcess({
-                    name: pname,
-                    process: function(resp){
-                        var json = EQ.jsp(resp);
-                        if(json.error){
-                            $('#'+json.error).html(EQ.messages['form-wrong']).removeClass('succes').addClass('wrong');
-                            EQ.OVR.close();
-                        }else if(json.succes){
-                            if(json.succes=='positive'){
-                                EQ.OVR.content=json.message;
-                                EQ.OVR.refresh('c');
-                                EQ.login(json);
-                                endNewOverleg();
-                            }else{
-                                EQ.OVR.content=json.message;
-                                EQ.OVR.refresh('c');
-                                EQ.login(json);
-                            };
-                        };
-                    }
-               });
+                };";
+            $this->stack.=$doel;
+            $this->setState("newoverleg.script.checkdoelen.end");
+            $this->moveToScript();
+            unset($doel);
+            $this->setState("newoverleg.script.submit.start");
+            $submit = "                
                submitNewOverleg = function(values){
                     EQ.OVR = new EQ.overflow({
                         title:'Nieuw overleg'
@@ -320,31 +449,16 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                     });
                     EQ.CPU.startProcess(pname);
                };
-               $('#send').bind('click',function(){submitNewOverleg(collectValues());});";
-            $content.=$form[0]->getHtml("normal", array("organisator" => "Kies een organisator voor het overleg:<br/>")).
-                      "<div id='rdc' class='hidden'>".$form[1]->getHtml("normal",array("rdclist"=> "Welk regionaal dienstencentrum?<br/>")).
-                      $form[2]->getHtml("normal",array("rdcwhy"=>"Waarom dit dienstencentrum?<br/>"))."</div><div id='za' class='hidden'>".
-                      $form[3]->getHtml("normal",array("zalist"=> "Welke zorg aanbieder?<br/>")).
-                      $form[4]->getHtml("normal",array("zawhy"=>"Waarom deze zorgaanbieder?<br/>"))."</div><div id='psy' class='hidden'>".
-                      $form[5]->getHtml("normal",array("psylist"=> "Welke zorg aanbieder?<br/>")).
-                      $form[6]->getHtml("normal",array("psywhy"=>"Waarom deze zorgaanbieder?<br/>"))."</div>";
-            $content .="</div><div id='reden' class='hidden'>Reden:<br/><form name='organisator_reden'><textarea name='reden' id='reden'></textarea></form></div></div><div class='box hidden' id='step_2'>
-                            <h5>Stap 2: Doel van het overleg</h5>
-                            ".$form[7]->getHtml("normal",array("informeren"=>"Informeren","debriefen"=>"Debriefen","ander"=>"Ander doel","overtuigen"=>"Overtuigen","organiseren"=>"Organiseren","beslissen"=>"Beslissen"))."
-                        <div id='ander' class='hidden'><form name='ander'><textarea name='ander'></textarea></form></div>
-                        </div><div class='box hidden' id='step_3'>
-                            <h5>Stap 3: Informatie aanvrager</h5>
-                            ".$form[8]->getHtml("normal",array(
-                                "naam"=>"Naam en voornaam",
-                                "relatie"=>"Relatie tot pati&euml;nt:",
-                                "telefoon"=>"Telefoonnummer",
-                                "email"=>"Of emailadres",
-                                "organisatie"=>"Naam organisatie"
-                            ))."</div><div id='step_5' class='box'><input type='button' id='send' name='verzenden' value='Verzenden'/></div>";
-
+               $('#send').bind('click',function(){submitNewOverleg(collectValues());});
+            ";
+            $this->stack.=$submit;
+            $this->setState("newoverleg.script.submit.end");
+            unset($submit);
+            $this->setState("newoverleg.script.end");
+            $this->moveToScript(); //toch nog een move doen omdat observers iets kunnen toegevoegd hebben
             $this->title = "Overleg toevoegen";
-            $this->content = $content;
-            $this->script = $script;
+            
+            $this->setState("newoverleg.end");
             $this->export();
         }
     }
@@ -369,6 +483,16 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
 
     private function export() {
         $this->app->setTemplateData(array("content" => $this->content, "content-title" => "Overleg", "content-sub-title" => $this->title, "title" => "Ecareplan ~ " . $this->title, "headscript" => $this->script));
+    }
+    
+    private function moveToContent(){
+        $this->content.=$this->stack; $this->stack = '';
+        return $this;
+    }
+    
+    private function moveToScript(){
+        $this->script.=$this->stack; $this->stack ='';
+        return $this;
     }
 
 }
