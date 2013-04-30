@@ -1793,21 +1793,6 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `listel5`.`overlegstructuur`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `listel5`.`overlegstructuur` ;
-
-CREATE  TABLE IF NOT EXISTS `listel5`.`overlegstructuur` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `overleggenre` VARCHAR(16) NOT NULL DEFAULT '' ,
-  `tabelnaam` VARCHAR(32) NOT NULL DEFAULT '' ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB
-AUTO_INCREMENT = 497
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
 -- Table `listel5`.`overlegextended`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `listel5`.`overlegextended` ;

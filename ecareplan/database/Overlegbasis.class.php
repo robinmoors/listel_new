@@ -9,7 +9,7 @@ include_once 'util/DSC.class.php';
  * @version 1.107
  * @package entity
  */
-class Overlegbasis extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking {
+abstract class Overlegbasis extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking {
 	private static $CLASS_NAME='Overlegbasis';
 	const SQL_IDENTIFIER_QUOTE='`';
 	const SQL_TABLE_NAME='overlegbasis';
