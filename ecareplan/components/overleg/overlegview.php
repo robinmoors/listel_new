@@ -276,7 +276,51 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                         };
                     };
                 };
-                        setInterval(function(){checkNewOverleg();},50);";
+                var newoverleg =  setInterval(function(){checkNewOverleg();},50);
+                endNewOverleg = function(){
+                    newoverleg = false;
+                    checkOrganisatie(false);
+                    step2hidden = true;
+                };
+                
+                //Ajax Process maken:
+                
+                var pname = 'nieuwoverleg';
+                EQ.CPU.makeProcess({
+                    name: pname,
+                    process: function(resp){
+                        var json = EQ.jsp(resp);
+                        if(json.error){
+                            $('#'+json.error).html(EQ.messages['form-wrong']).removeClass('succes').addClass('wrong');
+                            EQ.OVR.close();
+                        }else if(json.succes){
+                            if(json.succes=='positive'){
+                                EQ.OVR.content=json.message;
+                                EQ.OVR.refresh('c');
+                                EQ.login(json);
+                                endNewOverleg();
+                            }else{
+                                EQ.OVR.content=json.message;
+                                EQ.OVR.refresh('c');
+                                EQ.login(json);
+                            };
+                        };
+                    }
+               });
+               submitNewOverleg = function(values){
+                    EQ.OVR = new EQ.overflow({
+                        title:'Nieuw overleg'
+                    });
+                    EQ.OVR.content = 'Bezig met verzenden van het nieuwe overleg<br/><img src=\'/listel_new/lib/images/flat-loader.gif\' />';
+                    EQ.OVR.refresh('c').open();
+                    EQ.CPU.newRequest({
+                        process: pname,
+                        url: '/listel_new/ecareplan/overleg/nieuw/',
+                        parameters: 'values='+JSON.stringify(values)
+                    });
+                    EQ.CPU.startProcess(pname);
+               };
+               $('#send').bind('click',function(){submitNewOverleg(collectValues());});";
             $content.=$form[0]->getHtml("normal", array("organisator" => "Kies een organisator voor het overleg:<br/>")).
                       "<div id='rdc' class='hidden'>".$form[1]->getHtml("normal",array("rdclist"=> "Welk regionaal dienstencentrum?<br/>")).
                       $form[2]->getHtml("normal",array("rdcwhy"=>"Waarom dit dienstencentrum?<br/>"))."</div><div id='za' class='hidden'>".
@@ -296,7 +340,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                                 "telefoon"=>"Telefoonnummer",
                                 "email"=>"Of emailadres",
                                 "organisatie"=>"Naam organisatie"
-                            ))."</div>";
+                            ))."</div><div id='step_5' class='box'><input type='button' id='send' name='verzenden' value='Verzenden'/></div>";
 
             $this->title = "Overleg toevoegen";
             $this->content = $content;

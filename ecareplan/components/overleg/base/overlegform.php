@@ -65,6 +65,27 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
         //stap 4
         $this->requestorform = ECPFactory::getForm("requestor")->addField(new ECP_FormObj_Input("naam", 3, 100))->addField(new ECP_FormObj_Select("relatie"));
         $this->requestorform->addField(new ECP_FormObj_Input("telefoon",9,12))->addField(new ECP_FormObj_Email("email"))->addField(new ECP_FormObj_Input("organisatie", 3, 100));
+        $relatie = array("zzohv"=>"Zorg- of hulpverlener","huisarts"=>"Huisarts",
+            "thuisverpleging"=>"Thuisverpleging","kinesitherapeut"=>"Kinesitherapeut",
+            "gezinszorg"=>"Gezinszorg","sociale dienst"=>"Sociale Dienst",
+            "dienst patientenbegeleiding"=>"Dienst Pati&euml;ntenbegeleiding",
+            "zzohva"=>"Andere Zorg- of hulpverlener",
+            "logopedist"=>"Logopedist","apotheker"=>"Apotheker",
+            "dietist"=>"Di&euml;tist","ergotherapeut"=>"Ergotherapeut",
+            "geriater"=>"Geriater","oppasdienst"=>"Oppasdienst",
+            "poetshulp"=>"Poetshulp","palliatief deskundige"=>"Palliatief Deskundige",
+            "psychiater"=>"Psychiater","psycholoog"=>"Psycholoog","zorgkundige"=>"Zorgkundige",
+            "overige"=>"Overige","maz"=>"Mantelzorger","partner"=>"Partner",
+            "echtgenoot"=>"Echtgeno(o)t(e)","kind"=>"Dochter/Zoon",
+            "schoonkind"=>"Schoondochter/-zoon","ouder"=>"Moeder/Vader",
+            "buur"=>"Buur","grootouder"=>"Grootouder","oomtante"=>"Oom/Tante",
+            "neefnicht"=>"Neef/Nicht","vriend"=>"Vriend(in)",
+            "stiefkind"=>"Stiefdichter/-zoon","schoonouder"=>"Schoonouder",
+            "pleegouder"=>"Pleegouder","stiefouder"=>"Stiefouder",
+            "expartner"=>"Ex partner","kennis"=>"Kennis","verwant"=>"Aanverwant"
+            );
+        $this->requestorform->relatie->insertOptions($relatie)->disableOption("zzohv")->disableOption("zzohva");
+        $this->requestorform->relatie->disableOption("maz");
         
         $this->newcreated = true;
         $this->setState("newoverleg.end");

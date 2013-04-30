@@ -83,28 +83,33 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     public function nieuw() {
         ecpimport("components.overleg.base.overlegform");
         $formmodel = new ECP_Comp_OverlegForm();
-        if (!is_null($this->vars[1]) && !is_null($this->vars[2])) { //patientnummer opgeven en daarna de stap van het formulier...
-            $pat_id = $this->vars[1];
-            $step = $this->vars[2];
-            //patient met overleggen ophalen
-            $patient = $this->model->getOverlegByPatientId($pat_id);
-            if ($patient == null) {
-                //patient had geen overleggen... Dan maar alleen patient opgeven
-                $patient = $this->model->getPatientById($pat_id);
+        if($_SERVER['REQUEST_METHOD']!="POST"){
+            if (!is_null($this->vars[1]) && !is_null($this->vars[2])) { //patientnummer opgeven en daarna de stap van het formulier...
+                $pat_id = $this->vars[1];
+                $step = $this->vars[2];
+                //patient met overleggen ophalen
+                $patient = $this->model->getOverlegByPatientId($pat_id);
+                if ($patient == null) {
+                    //patient had geen overleggen... Dan maar alleen patient opgeven
+                    $patient = $this->model->getPatientById($pat_id);
+                }
+                //de toegewezen OC ophalen en bij data patient steken...
+                $patient['toegewezen'] = $this->model->getPatientToewijzing($pat_id);
+                //regionaal dienstencentra ophalen (RDC)
+                $formmodel->updateRDCList($this->model->getRDC());
+                //zorgaanbieders ophalen (ZA)
+                $formmodel->updateZAList($this->model->getZA());
+                //zorgaanbieders profiel PSY ophalen
+                $formmodel->updatePSYList($this->model->getPSY());
+                $this->view->newOverleg($step, $patient, $formmodel->getForm("new"));
+            } else {
+                $patienten = $this->model->getAllPatients();
+                $formmodel->updatePatientList($patienten);
+                $this->view->selectPatient($patienten, $formmodel->getForm("select"));
             }
-            //de toegewezen OC ophalen en bij data patient steken...
-            $patient['toegewezen'] = $this->model->getPatientToewijzing($pat_id);
-            //regionaal dienstencentra ophalen (RDC)
-            $formmodel->updateRDCList($this->model->getRDC());
-            //zorgaanbieders ophalen (ZA)
-            $formmodel->updateZAList($this->model->getZA());
-            //zorgaanbieders profiel PSY ophalen
-            $formmodel->updatePSYList($this->model->getPSY());
-            $this->view->newOverleg($step, $patient, $formmodel->getForm("new"));
-        } else {
-            $patienten = $this->model->getAllPatients();
-            $formmodel->updatePatientList($patienten);
-            $this->view->selectPatient($patienten, $formmodel->getForm("select"));
+        }else{
+            json_decode($_POST);
+            ecpexit();
         }
     }
 

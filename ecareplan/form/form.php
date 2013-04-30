@@ -255,11 +255,13 @@ class ECP_FormObj_Checkbox extends ECP_FormObj{
 class ECP_FormObj_Select extends ECP_FormObj{
     protected $select = false;
     protected $options = false;
+    protected $disabled = false;
     
     public function __CONSTRUCT($fieldname, $options=array(), $select=true){
         $this->name = $fieldname;
         $this->select = $select;
         $this->options = $options;
+        $this->disabled = array();
         if($this->select){
             $this->script = "1,999,false";
         }else{
@@ -269,6 +271,13 @@ class ECP_FormObj_Select extends ECP_FormObj{
     
     public function insertOptions($options = array()){
         $this->options = $options;
+        return $this;
+    }
+    
+    public function disableOption($optionkey){
+        foreach($this->options as $key => $value){
+            if($optionkey == $key) $this->disabled[$key] = $value;
+        }
         return $this;
     }
     
@@ -282,19 +291,26 @@ class ECP_FormObj_Select extends ECP_FormObj{
         }
     }
     
-    private function is_option($value){
+    protected function is_option($value){
         return array_key_exists($value, $this->options);
+    }
+    protected function is_disabled($optionkey){
+        if(array_key_exists($optionkey, $this->disabled)) return true;
+        else return false;
     }
     
     public function getHtml($formname, $class){
         $html = "<span class='description {$class}'>{$this->placeholder}</span><select name='{$this->name}' class='{$class}'>";
-        $first = true;
+        $first = false;
+        $disabled = '';
         foreach($this->options as $key => $value){
-            if($first){
+            if($this->is_disabled($key)) $disabled ="disabled='disabled'";
+            else $disabled = '';
+            if(!$first && $disabled===''){ //kan zijn dat 1ste value geblokkeerd is en die mag dus niet selected zijn!
                 $html.="<option value='$key' selected='selected'>$value</option>";
-                $first = false;
+                $first = true;
             }
-            else $html.="<option value='$key'>$value</option>";
+            else $html.="<option value='$key' $disabled>$value</option>";
         }
         $html.="</select><span id='{$formname}{$this->name}'></span></br>";
         return $html;
