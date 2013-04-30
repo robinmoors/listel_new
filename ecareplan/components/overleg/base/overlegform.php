@@ -141,7 +141,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
         //print_r($patients);
         $patientsnames = array();
         for($i=0; $i<count($patients); $i++){
-            $patientsnames[$patients[$i]['id']]= $patients[$i]['naam']." ".$patients[$i]['voornaam'];
+            $patientsnames[$patients[$i]['id']]= $patients[$i]['code']."-".$patients[$i]['genre']." ~ ".$patients[$i]['naam']." ".$patients[$i]['voornaam'];
         }
         $this->selectform->patientlist->insertOptions($patientsnames);
     }

@@ -163,20 +163,132 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                         <div class='box' id='step_1'>
                             <h5>Stap 1: De organisator van het overleg</h5>
                             <div id='huidig'>De huidige organisator van het overleg is:<br/><strong>{$huidigtoegewezen}</strong><br/>
-                                Is deze keuze correct?<br/><input type='radio' name='huidigok' value='Ja' id='huidigja'/> Ja<br/><input type='radio' name='huidigok' value='Nee' id='huidignee'/> Nee
-                            </div><div id='niethuidig'>
+                                Is deze keuze correct?<br/><form name='huidig_organisator'><input type='radio' name='huidigok' value='1' id='huidigja' checked='checked'/> Ja<br/><input type='radio' name='huidigok' value='0' id='huidignee'/> Nee
+                            </form></div><div id='niethuidig' class='hidden'>
                             ";
+            $script = "
+                radioValue = function(radio){
+                    var size = radio.length;
+                    for(i=0; i<size; i++){
+                        if(radio[i].checked) return radio[i].value;
+                    };
+                    return null;
+                };
+                collectValues = function(){
+                        //stap 1
+                        return {
+                            huidigok : radioValue(document.huidig_organisator.huidigok),
+                            organisator : radioValue(document.organisator_select.organisator),
+                            rdclist : document.rdc_select.rdclist.value,
+                            rdcwhy : radioValue(document.rdc_why.rdcwhy),
+                            zalist : document.za_select.zalist.value,
+                            psylist : document.psy_select.psylist.value,
+                            zawhy : radioValue(document.za_why.zawhy),
+                            psywhy : radioValue(document.psy_why.psywhy),
+                            reden : document.organisator_reden.reden.value,
+                            informeren : document.purpose.informeren.checked,
+                            overtuigen : document.purpose.overtuigen.checked,
+                            organiseren : document.purpose.organiseren.checked,
+                            debriefen : document.purpose.debriefen.checked,
+                            beslissen : document.purpose.beslissen.checked,
+                            ander : document.purpose.ander.checked,
+                            andertxt : document.ander.ander.value,
+                            relatie : document.requestor.relatie.value,
+                            telefoon : document.requestor.telefoon.value,
+                            email : document.requestor.email.value,
+                            organisatie : document.requestor.organisatie.value
+                        };
+                };
+                var niethuidighidden = true;
+                var step2hidden = true;
+                var step3hidden = true;
+                var rdchidden = true;
+                var zahidden = true;
+                var psyhidden = true;
+                checkNewOverleg = function(){
+                    var values = collectValues();
+                    if(values.huidigok == '0'){
+                        $('#niethuidig').show();
+                        niethuidighidden = false;
+                        if(checkOrganisator(values)){ //organisatievelden controleren
+                            $('#step_2').show(function(){step2hidden = false;});
+                        }else{
+                            $('#step_2').hide(function(){step2hidden = true;});
+                        }
+                    }else if(values.huidigok == '1'){
+                        $('#niethuidig').hide();
+                        checkOrganisator(false); //organisatievelden laten verdwijnen
+                        niethuidighidden = true;
+                        $('#step_2').show(function(){step2hidden = false;});
+                    };
+                    if(checkDoelen(values)){ //naar stap 2....
+                        $('#step_3').show(function(){step3hidden = false;});
+                    }else{
+                        $('#step_3').hide(function(){step3hidden = true;});
+                    }
+                };
+                checkOrganisator = function(values){
+                    if(!values){
+                        rdchidden = true; zahidden = true; psyhidden = true;
+                        $('#rdc').hide(function(){ $('#psy').hide(function(){ $('#za').hide(function(){ $('#redenhide').hide()})})});
+                        return true;
+                    }else{
+                        switch(values.organisator){
+                            default: case '0': checkOrganisator(false); break;
+                            case '1': if(rdchidden) $('#rdc').show(function(){rdchidden=false;}); 
+                                      if(!zahidden) $('#za').hide(function(){zahidden = true;});
+                                      if(!psyhidden) $('#psy').hide(function(){psyhidden = true;}); break;
+                            case '2': if(zahidden) $('#za').show(function(){zahidden = false;});
+                                      if(!rdchidden) $('#rdc').hide(function(){rdchidden=true;}); 
+                                      if(!psyhidden) $('#psy').hide(function(){psyhidden = true;}); break;
+                            case '3': if(!zahidden) $('#za').hide(function(){zahidden = true;});
+                                      if(!rdchidden) $('#rdc').hide(function(){rdchidden=true;}); 
+                                      if(psyhidden) $('#psy').show(function(){psyhidden = false;}); break;
+                        };
+                        if(rdchidden && zahidden && psyhidden){
+                            $('#reden').hide();
+                            return true;
+                        }else{
+                            if((values.rdcwhy == '2' && !rdchidden) || (values.zawhy == '2' && !zahidden) || (values.psywhy == '2' && !psyhidden)){
+                                $('#reden').show();
+                                if(values.reden.length > 3) return true;
+                                else return false;
+                            }else{
+                                $('#reden').hide();
+                                return true;
+                            };
+                        };
+                    };
+                };
+                checkDoelen = function(values){
+                    if(step2hidden) return false;
+                    else{
+                        if((values.informeren || values.overtuigen || values.organiseren || values.debriefen || values.beslissen) && !values.ander){
+                            $('#ander').hide();
+                            return true;
+                        }else if(values.ander){
+                            $('#ander').show();
+                            if(values.andertxt.length < 3) return false;
+                            else return true;
+                        }else{
+                            $('#ander').hide();
+                            return false;
+                        };
+                    };
+                };
+                        setInterval(function(){checkNewOverleg();},50);";
             $content.=$form[0]->getHtml("normal", array("organisator" => "Kies een organisator voor het overleg:<br/>")).
-                      $form[1]->getHtml("normal",array("rdclist"=> "Welk regionaal dienstencentrum?<br/>")).
-                      $form[2]->getHtml("normal",array("rdcwhy"=>"Waarom dit dienstencentrum?<br/>")).
+                      "<div id='rdc' class='hidden'>".$form[1]->getHtml("normal",array("rdclist"=> "Welk regionaal dienstencentrum?<br/>")).
+                      $form[2]->getHtml("normal",array("rdcwhy"=>"Waarom dit dienstencentrum?<br/>"))."</div><div id='za' class='hidden'>".
                       $form[3]->getHtml("normal",array("zalist"=> "Welke zorg aanbieder?<br/>")).
-                      $form[4]->getHtml("normal",array("zawhy"=>"Waarom deze zorgaanbieder?<br/>")).
+                      $form[4]->getHtml("normal",array("zawhy"=>"Waarom deze zorgaanbieder?<br/>"))."</div><div id='psy' class='hidden'>".
                       $form[5]->getHtml("normal",array("psylist"=> "Welke zorg aanbieder?<br/>")).
-                      $form[6]->getHtml("normal",array("psywhy"=>"Waarom deze zorgaanbieder?<br/>"));
-            $content .="</div><div id='reden'>Reden:<br/><textarea name='reden' id='reden'></textarea></div></div><div class='box' id='step_2'>
+                      $form[6]->getHtml("normal",array("psywhy"=>"Waarom deze zorgaanbieder?<br/>"))."</div>";
+            $content .="</div><div id='reden' class='hidden'>Reden:<br/><form name='organisator_reden'><textarea name='reden' id='reden'></textarea></form></div></div><div class='box hidden' id='step_2'>
                             <h5>Stap 2: Doel van het overleg</h5>
                             ".$form[7]->getHtml("normal",array("informeren"=>"Informeren","debriefen"=>"Debriefen","ander"=>"Ander doel","overtuigen"=>"Overtuigen","organiseren"=>"Organiseren","beslissen"=>"Beslissen"))."
-                        </div><div class='box' id='step_3'>
+                        <div id='ander' class='hidden'><form name='ander'><textarea name='ander'></textarea></form></div>
+                        </div><div class='box hidden' id='step_3'>
                             <h5>Stap 3: Informatie aanvrager</h5>
                             ".$form[8]->getHtml("normal",array(
                                 "naam"=>"Naam en voornaam",
@@ -201,7 +313,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
             //we nemen hier geen normaal formscript maar maken een reRoute adhv de geselecteerde patient
             $script = "$('#patient_select-form').bind('click',function(){EQ.reRoute('overlegnieuw',true,document.patient_select.patientlist.value+'/1/')});";
             $content = "";
-            $content.=$form->getHtml("normal", array("patientlist" => "Selecteer een patient om een overleg mee te starten.", "overleg_locatie_id" => "Plaats van het overleg:", "aanwezig_patient" => "Wie is er aanwezig op het overleg?", "overleg_instemming" => "Instemming met de deelnemers van het overleg. De pati&euml;nt of vertegenwoordiger?"));
+            $content.=$form->getHtml("normal", array("patientlist" => "Selecteer een patient om een overleg mee te starten."));
 
 
             $this->title = "Overleg toevoegen";

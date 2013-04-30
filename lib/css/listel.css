@@ -206,6 +206,8 @@ nav ul{
     float: left;
 }.nopadding{
     padding: 0;
+}.hidden{
+    display:none;
 }
 .selfclear{
     /*display:inline-block;*/

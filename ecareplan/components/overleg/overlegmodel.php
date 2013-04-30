@@ -66,6 +66,7 @@ class ECP_Comp_OverlegModel {
         if(count($result)<1) return 0;
         else{
             $pat = $result[0];
+            echo $pat->getToegewezenGenre();
             switch($pat->getToegewezenGenre()){
                 case "gemeente": return 1; break;
                 case "rdc": case "psy":
