@@ -165,7 +165,7 @@ class ECP_User extends ECP_Object {
      */
     public function setGuest(){
         $session= ECPFactory::getSession();
-        if($session->getState()==="unvalidated"){
+        if($session->getState()==="unvalidated" || $session->getState()==="postunvalidated"){
             $this->guest = 1;
             $this->locked = 1;
             $this->user = array("naam"=>"Gast","type"=>"Guest");

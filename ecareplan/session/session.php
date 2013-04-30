@@ -154,7 +154,7 @@ class ECP_Session extends ECP_Object {
         if($this->_state === "unvalidated"){
             $ip = $_SERVER['REMOTE_ADDR'];
             if($ip!=$this->session['ipadres']){
-                echo "terug gast want~$ip~{$this->session['ipadres']}";
+                //echo "terug gast want~$ip~{$this->session['ipadres']}";
                 $this->user->setGuest();
                 $this->_state = "error";
             }else{
@@ -163,6 +163,27 @@ class ECP_Session extends ECP_Object {
             }
         }else{
             return true;
+        }
+    }
+    
+    public function sessionToken(){
+        if($this->_state!=="guest") return false;
+        if($this->_state!=="error") return 0;
+        $this->_state = "postunvalidated";
+        if(array_key_exists("pin", $_POST)){
+            ecpimport("helpers.cryptology");
+            $pinhash = ECP_Cryptology::generateHash($_POST['pin']);
+            if($pinhash!==$this->session['loginpin']){
+                $this->user->setGuest();
+                return false;
+            }else{
+                //pin update?
+                $this->_state = "active";
+                return true; //hier normaal nieuwe pin teruggeven..
+            }
+        }else{
+            $this->_state = "error";
+            return 0;
         }
     }
 

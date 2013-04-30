@@ -176,7 +176,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
         }
     }
 
-    public function newOverleg($step, $data, $form) {
+    public function newOverleg($data, $form) {
         $this->setState("newoverleg.start");
         $this->setState("newoverleg.content.start");
         if ($data == null) {
@@ -263,6 +263,8 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
             $this->setState("newoverleg.script.start");
             $this->setState("newoverleg.script.base.start");
             $script = "
+                //Basic validation functions
+                
                 radioValue = function(radio){
                     var size = radio.length;
                     for(i=0; i<size; i++){
@@ -280,7 +282,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                 var zahidden = true;
                 var psyhidden = true;
                 
-                //Ajax Process maken:
+                //Ajax Process
                 
                 var pname = 'nieuwoverleg';
                 EQ.CPU.makeProcess({
@@ -456,7 +458,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
             unset($submit);
             $this->setState("newoverleg.script.end");
             $this->moveToScript(); //toch nog een move doen omdat observers iets kunnen toegevoegd hebben
-            $this->title = "Overleg toevoegen";
+            $this->title = "Nieuw overleg";
             
             $this->setState("newoverleg.end");
             $this->export();

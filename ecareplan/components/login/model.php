@@ -19,7 +19,17 @@ class ECP_Comp_Login_Model {
         $this->loginform->addField(new ECP_FormObj_Password("password", 8, 30));
         $this->loginform->addField(new ECP_FormObj_Button("Aanmelden"));
     }
-
+    private static function resultToArray($result,$names){
+        if(!is_array($names) || $result==null) return null;
+        foreach($result as $resource){//array van objecten dus een object nemen..
+            $res=$resource->toArray();//dat object omzetten naar array
+            foreach($res as $key => $value){
+                $ar[$names[$key]] = $value; //hier gebeurd de key-wissel..
+            }
+            $data[] = $ar; //alles netjes terug in een array zetten :)
+        }
+        return $data;
+    }
     public function login() {
         /*
         $db = ECPFactory::getDbo();
@@ -29,13 +39,17 @@ class ECP_Comp_Login_Model {
         
         $pasw = 'c17a1a963e2b9ebb228030c0615fdb4bd91bd982';
         $login = 'joris-rdc';
-                
+        
+        $loginpin = ECP_Cryptology::generateInteger(30);
+        $pinhash = ECP_Cryptology::generateHash($loginpin);
+        
+        
         $log=new Logins();
-        $log->setLogin($login) ->setPaswoord($pasw);
+        $log->setLogin($login)->setPaswoord($pasw);
         $results = Logins::findByExample($db, $log);
         foreach ($results as $result) {
             $id = $result->getId();
-            $result->setIpadres($_SERVER['REMOTE_ADDR']);
+            $result->setIpadres($_SERVER['REMOTE_ADDR']);//->setLoginPin($pinhash);
             $result->updateToDatabase($db);
         }
        
