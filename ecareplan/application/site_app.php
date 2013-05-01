@@ -59,6 +59,7 @@ class ECP_SiteApp extends ECP_App {
             $this->user->setUser($this->router->getUserId());
             $this->session->start();
             $this->router->dispatch();
+            //echo $this->session->getState();
             $this->state = "dispatched";
         }else{
             $this->setTemplate("offline");

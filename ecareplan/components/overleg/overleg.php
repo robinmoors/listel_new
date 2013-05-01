@@ -60,15 +60,15 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     }
 
     public function bewerk() {
-        if (!is_null($this->vars[1])) {
+        if (!is_null($this->vars[0])) {
             ecpimport("components.overleg.base.overlegform");
             $formmodel = new ECP_Comp_OverlegForm();
-            if (!is_null($this->vars[2])) {
+            if (!is_null($this->vars[1])) {
                 //er is ook een overlegid opgegeven...
-                $overleg = $this->model->getOverlegById($this->vars[2]);
+                $overleg = $this->model->getOverlegById($this->vars[1]);
                 $this->view->editOverleg($overleg, $formmodel->getForm("edit"));
             } else {
-                $patient = $this->model->getOverleg($this->vars[1]);
+                $patient = $this->model->getOverleg($this->vars[0]);
                 if (count($patient) > 1) { //meer dan 1 overleg gevonden dus daar uit kiezen...
                     $this->view->viewOverlegList($patient);
                 }
@@ -83,28 +83,43 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     public function nieuw() {
         ecpimport("components.overleg.base.overlegform");
         $formmodel = new ECP_Comp_OverlegForm();
-        if (!is_null($this->vars[1]) && !is_null($this->vars[2])) { //patientnummer opgeven en daarna de stap van het formulier...
-            $pat_id = $this->vars[1];
-            $step = $this->vars[2];
-            //patient met overleggen ophalen
-            $patient = $this->model->getOverlegByPatientId($pat_id);
-            if ($patient == null) {
-                //patient had geen overleggen... Dan maar alleen patient opgeven
-                $patient = $this->model->getPatientById($pat_id);
+        if($_SERVER['REQUEST_METHOD']!="POST"){
+            if (!is_null($this->vars[0])) { //patientnummer opgeven
+                $pat_id = $this->vars[0];
+                //patient met overleggen ophalen
+                $patient = $this->model->getOverlegByPatientId($pat_id);
+                if ($patient == null) {
+                    //patient had geen overleggen... Dan maar alleen patient opgeven
+                    $patient = $this->model->getPatientById($pat_id);
+                }
+                //de toegewezen OC ophalen en bij data patient steken...
+                $patient['toegewezen'] = $this->model->getPatientToewijzing($pat_id);
+                //regionaal dienstencentra ophalen (RDC)
+                $formmodel->updateRDCList($this->model->getRDC());
+                //zorgaanbieders ophalen (ZA)
+                $formmodel->updateZAList($this->model->getZA());
+                //zorgaanbieders profiel PSY ophalen
+                $formmodel->updatePSYList($this->model->getPSY());
+                $this->view->newOverleg($patient, $formmodel->getForm("new"));
+            } else {
+                $patienten = $this->model->getAllPatients();
+                $formmodel->updatePatientList($patienten);
+                $this->view->selectPatient($patienten, $formmodel->getForm("select"));
             }
-            //de toegewezen OC ophalen en bij data patient steken...
-            $patient['toegewezen'] = $this->model->getPatientToewijzing($pat_id);
-            //regionaal dienstencentra ophalen (RDC)
-            $formmodel->updateRDCList($this->model->getRDC());
-            //zorgaanbieders ophalen (ZA)
-            $formmodel->updateZAList($this->model->getZA());
-            //zorgaanbieders profiel PSY ophalen
-            $formmodel->updatePSYList($this->model->getPSY());
-            $this->view->newOverleg($step, $patient, $formmodel->getForm("new"));
-        } else {
-            $patienten = $this->model->getAllPatients();
-            $formmodel->updatePatientList($patienten);
-            $this->view->selectPatient($patienten, $formmodel->getForm("select"));
+        }else{
+            //we zouden nu data hebben mee gekregen :)
+            if(array_key_exists("values", $_POST)){
+                $session = ECPFactory::getSession();
+                if($session->isActive()){
+                    echo "actief";
+                }else{
+                    echo $session->getState();
+                }
+            }else {
+                echo "novalues";
+            }
+            json_decode($_POST);
+            ecpexit();
         }
     }
 

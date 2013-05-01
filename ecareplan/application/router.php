@@ -103,6 +103,13 @@ class ECP_Router extends ECP_Object{
     }
     
     public function getUserId(){
+        if($_SERVER['REQUEST_METHOD']==="POST"){ //in elke post method zit de uid erbij! (normaal)
+            if(array_key_exists("uid", $_POST)){ //dus hier ligt de voorwaarde via post ook vast!
+                return $_POST['uid'];
+            }else{
+                return null;
+            }
+        }
         if($this->state === "parsed"){
             return $this->uri->getUserId();
         }else{
