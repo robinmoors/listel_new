@@ -447,7 +447,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                     EQ.CPU.newRequest({
                         process: pname,
                         url: '/listel_new/ecareplan/overleg/nieuw/',
-                        parameters: 'values='+JSON.stringify(values)
+                        parameters: 'values='+JSON.stringify(values)+'&patid=".$data['id']."'
                     });
                     EQ.CPU.startProcess(pname);
                };
