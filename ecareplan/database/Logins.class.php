@@ -10,9 +10,9 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 	private static $CLASS_NAME='Logins';
 	const SQL_IDENTIFIER_QUOTE='`';
 	const SQL_TABLE_NAME='logins';
-	const SQL_INSERT='INSERT INTO `logins` (`id`,`voornaam`,`naam`,`profiel`,`organisatie`,`adres`,`gem_id`,`tel`,`fax`,`gsm`,`email`,`tp_project`,`sit_id`,`overleg_gemeente`,`login`,`paswoord`,`pwd_recovery`,`ipadres`,`logindatum`,`actief`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-	const SQL_INSERT_AUTOINCREMENT='INSERT INTO `logins` (`voornaam`,`naam`,`profiel`,`organisatie`,`adres`,`gem_id`,`tel`,`fax`,`gsm`,`email`,`tp_project`,`sit_id`,`overleg_gemeente`,`login`,`paswoord`,`pwd_recovery`,`ipadres`,`logindatum`,`actief`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-	const SQL_UPDATE='UPDATE `logins` SET `id`=?,`voornaam`=?,`naam`=?,`profiel`=?,`organisatie`=?,`adres`=?,`gem_id`=?,`tel`=?,`fax`=?,`gsm`=?,`email`=?,`tp_project`=?,`sit_id`=?,`overleg_gemeente`=?,`login`=?,`paswoord`=?,`pwd_recovery`=?,`ipadres`=?,`logindatum`=?,`actief`=? WHERE `id`=?';
+	const SQL_INSERT='INSERT INTO `logins` (`id`,`voornaam`,`naam`,`profiel`,`organisatie`,`adres`,`gem_id`,`tel`,`fax`,`gsm`,`email`,`tp_project`,`sit_id`,`overleg_gemeente`,`login`,`paswoord`,`pwd_recovery`,`ipadres`,`logindatum`,`actief`,`loginpin`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+	const SQL_INSERT_AUTOINCREMENT='INSERT INTO `logins` (`voornaam`,`naam`,`profiel`,`organisatie`,`adres`,`gem_id`,`tel`,`fax`,`gsm`,`email`,`tp_project`,`sit_id`,`overleg_gemeente`,`login`,`paswoord`,`pwd_recovery`,`ipadres`,`logindatum`,`actief`,`loginpin`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+	const SQL_UPDATE='UPDATE `logins` SET `id`=?,`voornaam`=?,`naam`=?,`profiel`=?,`organisatie`=?,`adres`=?,`gem_id`=?,`tel`=?,`fax`=?,`gsm`=?,`email`=?,`tp_project`=?,`sit_id`=?,`overleg_gemeente`=?,`login`=?,`paswoord`=?,`pwd_recovery`=?,`ipadres`=?,`logindatum`=?,`actief`=?,`loginpin`=? WHERE `id`=?';
 	const SQL_SELECT_PK='SELECT * FROM `logins` WHERE `id`=?';
 	const SQL_DELETE_PK='DELETE FROM `logins` WHERE `id`=?';
 	const FIELD_ID=-1718414497;
@@ -35,6 +35,7 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 	const FIELD_IPADRES=-1837273838;
 	const FIELD_LOGINDATUM=-345123606;
 	const FIELD_ACTIEF=-1685208772;
+	const FIELD_LOGINPIN=-898670384;
 	private static $PRIMARY_KEYS=array(self::FIELD_ID);
 	private static $AUTOINCREMENT_FIELDS=array(self::FIELD_ID);
 	private static $FIELD_NAMES=array(
@@ -57,7 +58,8 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 		self::FIELD_PWD_RECOVERY=>'pwd_recovery',
 		self::FIELD_IPADRES=>'ipadres',
 		self::FIELD_LOGINDATUM=>'logindatum',
-		self::FIELD_ACTIEF=>'actief');
+		self::FIELD_ACTIEF=>'actief',
+		self::FIELD_LOGINPIN=>'loginpin');
 	private static $PROPERTY_NAMES=array(
 		self::FIELD_ID=>'id',
 		self::FIELD_VOORNAAM=>'voornaam',
@@ -78,7 +80,8 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 		self::FIELD_PWD_RECOVERY=>'pwdRecovery',
 		self::FIELD_IPADRES=>'ipadres',
 		self::FIELD_LOGINDATUM=>'logindatum',
-		self::FIELD_ACTIEF=>'actief');
+		self::FIELD_ACTIEF=>'actief',
+		self::FIELD_LOGINPIN=>'loginpin');
 	private static $PROPERTY_TYPES=array(
 		self::FIELD_ID=>Db2PhpEntity::PHP_TYPE_INT,
 		self::FIELD_VOORNAAM=>Db2PhpEntity::PHP_TYPE_STRING,
@@ -99,7 +102,8 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 		self::FIELD_PWD_RECOVERY=>Db2PhpEntity::PHP_TYPE_STRING,
 		self::FIELD_IPADRES=>Db2PhpEntity::PHP_TYPE_STRING,
 		self::FIELD_LOGINDATUM=>Db2PhpEntity::PHP_TYPE_INT,
-		self::FIELD_ACTIEF=>Db2PhpEntity::PHP_TYPE_INT);
+		self::FIELD_ACTIEF=>Db2PhpEntity::PHP_TYPE_INT,
+		self::FIELD_LOGINPIN=>Db2PhpEntity::PHP_TYPE_STRING);
 	private static $FIELD_TYPES=array(
 		self::FIELD_ID=>array(Db2PhpEntity::JDBC_TYPE_INTEGER,10,0,false),
 		self::FIELD_VOORNAAM=>array(Db2PhpEntity::JDBC_TYPE_VARCHAR,25,0,false),
@@ -120,7 +124,8 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 		self::FIELD_PWD_RECOVERY=>array(Db2PhpEntity::JDBC_TYPE_VARCHAR,40,0,false),
 		self::FIELD_IPADRES=>array(Db2PhpEntity::JDBC_TYPE_VARCHAR,40,0,false),
 		self::FIELD_LOGINDATUM=>array(Db2PhpEntity::JDBC_TYPE_INTEGER,10,0,false),
-		self::FIELD_ACTIEF=>array(Db2PhpEntity::JDBC_TYPE_INTEGER,10,0,false));
+		self::FIELD_ACTIEF=>array(Db2PhpEntity::JDBC_TYPE_INTEGER,10,0,false),
+		self::FIELD_LOGINPIN=>array(Db2PhpEntity::JDBC_TYPE_LONGVARCHAR,65535,0,true));
 	private static $DEFAULT_VALUES=array(
 		self::FIELD_ID=>null,
 		self::FIELD_VOORNAAM=>'',
@@ -141,7 +146,8 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 		self::FIELD_PWD_RECOVERY=>'',
 		self::FIELD_IPADRES=>'',
 		self::FIELD_LOGINDATUM=>0,
-		self::FIELD_ACTIEF=>1);
+		self::FIELD_ACTIEF=>1,
+		self::FIELD_LOGINPIN=>null);
 	private $id;
 	private $voornaam;
 	private $naam;
@@ -162,6 +168,7 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 	private $ipadres;
 	private $logindatum;
 	private $actief;
+	private $loginpin;
 
 	/**
 	 * set value for id 
@@ -664,6 +671,31 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 	}
 
 	/**
+	 * set value for loginpin 
+	 *
+	 * type:TEXT,size:65535,default:null,nullable
+	 *
+	 * @param mixed $loginpin
+	 * @return Logins
+	 */
+	public function &setLoginpin($loginpin) {
+		$this->notifyChanged(self::FIELD_LOGINPIN,$this->loginpin,$loginpin);
+		$this->loginpin=$loginpin;
+		return $this;
+	}
+
+	/**
+	 * get value for loginpin 
+	 *
+	 * type:TEXT,size:65535,default:null,nullable
+	 *
+	 * @return mixed
+	 */
+	public function getLoginpin() {
+		return $this->loginpin;
+	}
+
+	/**
 	 * Get table name
 	 *
 	 * @return string
@@ -793,7 +825,8 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 			self::FIELD_PWD_RECOVERY=>$this->getPwdRecovery(),
 			self::FIELD_IPADRES=>$this->getIpadres(),
 			self::FIELD_LOGINDATUM=>$this->getLogindatum(),
-			self::FIELD_ACTIEF=>$this->getActief());
+			self::FIELD_ACTIEF=>$this->getActief(),
+			self::FIELD_LOGINPIN=>$this->getLoginpin());
 	}
 
 
@@ -1083,6 +1116,7 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 		$this->setIpadres($result['ipadres']);
 		$this->setLogindatum($result['logindatum']);
 		$this->setActief($result['actief']);
+		$this->setLoginpin($result['loginpin']);
 	}
 
 	/**
@@ -1137,6 +1171,7 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 		$stmt->bindValue(18,$this->getIpadres());
 		$stmt->bindValue(19,$this->getLogindatum());
 		$stmt->bindValue(20,$this->getActief());
+		$stmt->bindValue(21,$this->getLoginpin());
 	}
 
 
@@ -1168,6 +1203,7 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 			$stmt->bindValue(17,$this->getIpadres());
 			$stmt->bindValue(18,$this->getLogindatum());
 			$stmt->bindValue(19,$this->getActief());
+			$stmt->bindValue(20,$this->getLoginpin());
 		} else {
 			$stmt=self::prepareStatement($db,self::SQL_INSERT);
 			$this->bindValues($stmt);
@@ -1196,7 +1232,7 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 	public function updateToDatabase(PDO $db) {
 		$stmt=self::prepareStatement($db,self::SQL_UPDATE);
 		$this->bindValues($stmt);
-		$stmt->bindValue(21,$this->getId());
+		$stmt->bindValue(22,$this->getId());
 		$affected=$stmt->execute();
 		if (false===$affected) {
 			$stmt->closeCursor();
@@ -1280,16 +1316,16 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 	}
 
 	/**
-	 * Fetch Gemeente which references this Logins. Will return null in case reference is invalid.
-	 * `logins`.`overleg_gemeente` -> `gemeente`.`zip`
+	 * Fetch TpProject which references this Logins. Will return null in case reference is invalid.
+	 * `logins`.`tp_project` -> `tp_project`.`id`
 	 *
 	 * @param PDO $db a PDO Database instance
 	 * @param array $sort array of DSC instances
-	 * @return Gemeente
+	 * @return TpProject
 	 */
-	public function fetchGemeente(PDO $db, $sort=null) {
-		$filter=array(Gemeente::FIELD_ZIP=>$this->getOverlegGemeente());
-		$result=Gemeente::findByFilter($db, $filter, true, $sort);
+	public function fetchTpProject(PDO $db, $sort=null) {
+		$filter=array(TpProject::FIELD_ID=>$this->getTpProject());
+		$result=TpProject::findByFilter($db, $filter, true, $sort);
 		return empty($result) ? null : $result[0];
 	}
 
@@ -1308,16 +1344,16 @@ class Logins extends Db2PhpEntityBase implements Db2PhpEntityModificationTrackin
 	}
 
 	/**
-	 * Fetch TpProject which references this Logins. Will return null in case reference is invalid.
-	 * `logins`.`tp_project` -> `tp_project`.`id`
+	 * Fetch Gemeente which references this Logins. Will return null in case reference is invalid.
+	 * `logins`.`overleg_gemeente` -> `gemeente`.`zip`
 	 *
 	 * @param PDO $db a PDO Database instance
 	 * @param array $sort array of DSC instances
-	 * @return TpProject
+	 * @return Gemeente
 	 */
-	public function fetchTpProject(PDO $db, $sort=null) {
-		$filter=array(TpProject::FIELD_ID=>$this->getTpProject());
-		$result=TpProject::findByFilter($db, $filter, true, $sort);
+	public function fetchGemeente(PDO $db, $sort=null) {
+		$filter=array(Gemeente::FIELD_ZIP=>$this->getOverlegGemeente());
+		$result=Gemeente::findByFilter($db, $filter, true, $sort);
 		return empty($result) ? null : $result[0];
 	}
 
