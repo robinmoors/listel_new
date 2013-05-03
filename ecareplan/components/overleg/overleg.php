@@ -100,7 +100,7 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
                 $formmodel->updateZAList($this->model->getZA());
                 //zorgaanbieders profiel PSY ophalen
                 $formmodel->updatePSYList($this->model->getPSY());
-                $this->view->newOverleg($patient, $formmodel->getForm("new"));
+                $this->view->newOverleg($patient, $pat_id, $formmodel->getForm("new"));
             } else {
                 $patienten = $this->model->getAllPatients();
                 $formmodel->updatePatientList($patienten);
@@ -135,6 +135,7 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
                         ecpexit();
                     }
                     //en dan nu valideren :)
+                    print_r($report);
                     $error = $formmodel->validateNewOverleg($report);
                     print_r($error);
                 }else{
