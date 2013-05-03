@@ -43,7 +43,7 @@ class ECP_Template_Listel extends ECP_Template {
                     <img src='/listel_new/lib/images/drawer.png' alt='Z' title='Zorgplannen...'/> <span class='content'>Zorgplannen</span>
                 </li>
                 <li>
-                    <img src='/listel_new/lib/images/chair.png' alt='OZ' title='Ouderenzorg...'/> <span class='content'>Ouderenbehandeling</span>
+                    <img src='/listel_new/lib/images/chair.png' alt='OZ' title='Ouderenzorg...'/><a href='javascript:void()' onclick='EQ.reRoute(\"omb\",true);'> <span class='content'>Ouderenbehandeling</span></a>
                 </li>
                 <li>
                     <img src='/listel_new/lib/images/briefcase.png' alt='F' title='Formulieren...'/> <span class='fastcontent'>Formulieren</span>
