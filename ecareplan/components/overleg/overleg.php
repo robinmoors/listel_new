@@ -80,6 +80,9 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
         }
     }
 
+    public function ouderzorg(){
+        
+    }
     public function nieuw() {
         ecpimport("components.overleg.base.overlegform");
         $formmodel = new ECP_Comp_OverlegForm();
