@@ -282,7 +282,7 @@ class ECP_FormObj_Select extends ECP_FormObj{
     }
     
     public function validate(){
-        if($this->is_option($this->validate) && $this->select){ 
+        if($this->is_option($this->value) && $this->select){ 
             return true;
         }elseif (!$this->select) { 
             return true; //selectie moest niet gemaakt worden
@@ -292,6 +292,7 @@ class ECP_FormObj_Select extends ECP_FormObj{
     }
     
     protected function is_option($value){
+        if(!$value) $value = 0;
         return array_key_exists($value, $this->options);
     }
     protected function is_disabled($optionkey){

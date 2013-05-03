@@ -193,5 +193,53 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
         $this->createNewOverleg ();
         $this->psyform->psylist->insertOptions($psylist);
     }
+    
+    public function validateValuesNewOverleg($values = array()){
+        if(!is_array($values)) return 0;
+        $error[] = $this->orgform->smartInsert($values)->validate(); //selectie organisator stap 1
+        $error[] = $this->rdcform->smartInsert($values)->validate();  //selectie RDC stap 2
+        $error[] = $this->rdcwhyform->smartInsert($values)->validate();  //selectie reden RDC stap 2
+        $error[] = $this->zaform->smartInsert($values)->validate();  //selectie zorgaanbieder stap 2
+        $error[] = $this->zawhyform->smartInsert($values)->validate();  //selectie reden ZA stap 2
+        $error[] = $this->psyform->smartInsert($values)->validate();  //selectie PSY stap 2
+        $error[] = $this->psywhyform->smartInsert($values)->validate();  //selectie reden PSY stap 2
+        $error[] = $this->purposeform->smartInsert($values)->validate();  //stap 3 = het doel kiezen
+        $error[] = $this->requestorform->smartInsert($values)->validate();  //stap 4 = info aanvrager
+        return $error;
+    }
+    
+    public function validateNewOverleg($report = array()){
+        if(!is_array($report)) return 0;
+        //als alles goed is moet elke waarde in het veld 1 zijn, behalve voor form#7 waar er checkboxen leeg mogen zijn...
+        //die laatste bevat 6 checkboxen en er moet minstens 1 geselecteerd zijn...
+        //bij een error krijgen we array(0=>array met veldnamen, 1=>array met errors, 2=>errorcount)
+        //die laatste moet dus 5 zijn of lager om toch nog een geldig form te hebben
+        $valid = true;
+        $error = array();
+        if($report[7]!==true || $report[7][2]>5){ //hier dus form7
+            $valid = false;
+            $error[7] = true;
+        }
+        for($i=0; $i<7; $i++){ //tot aan 7 controleren want die laatste zijn speciaal
+            if($report[$i]!==true){
+                $valid = false;
+                $error[$i] = true;
+            }
+        }
+        //bij formulier 8 moet telefoon of email zijn ingevuld en de velden gecontroleerd.
+        if($report[8]!==true){
+            if(array_key_exists("email", $report[8][0]) && array_key_exists("telefoon", $report[8][0])){
+                $valid = false;
+                $error[8] = false;
+            }else{
+                //er loopt hier meer mis dan alleen email en telefoon
+                $valid = false;
+                $error[8]= $report[8]; //dus alle fouten maar meegeven...
+            }
+        }
+        
+        if(!$valid) return $error;
+        else return true;
+    }
 
 }

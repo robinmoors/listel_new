@@ -103,7 +103,7 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
                 $formmodel->updateZAList($this->model->getZA());
                 //zorgaanbieders profiel PSY ophalen
                 $formmodel->updatePSYList($this->model->getPSY());
-                $this->view->newOverleg($patient, $formmodel->getForm("new"));
+                $this->view->newOverleg($patient, $pat_id, $formmodel->getForm("new"));
             } else {
                 $patienten = $this->model->getAllPatients();
                 $formmodel->updatePatientList($patienten);
@@ -111,18 +111,43 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
             }
         }else{
             //we zouden nu data hebben mee gekregen :)
-            if(array_key_exists("values", $_POST)){
+            if(array_key_exists("values", $_POST) && array_key_exists("patid", $_POST)){
                 $session = ECPFactory::getSession();
                 if($session->isActive()){
-                    echo "actief";
+                    //hier normaal controle op loginpin
+                    $patient = $this->model->getOverlegByPatientId($_POST['patid']);
+                    if ($patient == null) {
+                        //patient had geen overleggen... Dan maar alleen patient opgeven
+                        $patient = $this->model->getPatientById($_POST['patid']);
+                    }
+                    if($patient == null) {
+                        echo '{"succes":"negative","message":"Oei het loopt even mis!<br/>De server kon de patient niet vinden..."}';
+                        ecpexit();
+                    }
+                    //regionaal dienstencentra ophalen (RDC)
+                    $formmodel->updateRDCList($this->model->getRDC());
+                    //zorgaanbieders ophalen (ZA)
+                    $formmodel->updateZAList($this->model->getZA());
+                    //zorgaanbieders profiel PSY ophalen
+                    $formmodel->updatePSYList($this->model->getPSY());
+                    //data insteken
+                    $values = json_decode($_POST['values'],true); //json string naar assoc array parsen..
+                    $report = $formmodel->validateValuesNewOverleg($values);
+                    if($report===0){
+                        echo '{"succes":"negative","message":"Oei het loopt even mis!<br/>De server kon niets opmaken uit de gestuurde waarden..."}';
+                        ecpexit();
+                    }
+                    //en dan nu valideren :)
+                    print_r($report);
+                    $error = $formmodel->validateNewOverleg($report);
+                    print_r($error);
                 }else{
                     echo $session->getState();
                 }
             }else {
-                echo "novalues";
+                echo '{"succes":"negative","message":"Oei het loopt even mis!<br/>De server ontving geen waarden van het formulier..."}';
+                ecpexit();
             }
-            json_decode($_POST);
-            ecpexit();
         }
     }
 

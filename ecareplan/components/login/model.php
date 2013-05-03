@@ -47,41 +47,20 @@ class ECP_Comp_Login_Model {
         $log=new Logins();
         $log->setLogin($login)->setPaswoord($pasw);
         $results = Logins::findByExample($db, $log);
-        foreach ($results as $result) {
-            $id = $result->getId();
-            $result->setIpadres($_SERVER['REMOTE_ADDR']);//->setLoginPin($pinhash);
-            $result->updateToDatabase($db);
-        }
-       
-        
-        //$pasw = ECP_Cryptology::generateHash(trim($post['password']));
-        /*
-        $where = array("email", "pasw");
-        $wheres = array($email, $pasw);
-        $echeck = $db->newQuery("select", "echeck")->table("logins")->where($where, $wheres, "=", "AND")->execute();
-        if (!$echeck->getRows()) {
-            //ongeldig, ww en e komt niet overeen!
+        if(empty($results)){
+            //email en ww komt niet overeen
             return false;
-        } else {
-         */
-          
-            //access dus we gaan een loginpin geven ;)
-        /*
-            $uid = $echeck->getSingleResult();
-            $loginpin = ECP_Cryptology::generateInteger(30);
-            $pinhash = ECP_Cryptology::generateHash($loginpin);
-            
-            $logtodb = $db->newQuery("update", "login")->table("logins")->updateset(array('loginpin', 'ipadres'), array($pinhash, $_SERVER['REMOTE_ADDR']))->where($where, $wheres, "=", "AND")->execute();
-            if ($logtodb->getRows())
-                return array("uid"=>$uid["id"],"pin"=>$loginpin);
-            else
-                return 2;
-            exit();
-            */
-            //return array("uid"=>$uid["id"],"pin"=>$loginpin);
-            return array("uid"=>$id,"pin"=>$loginpin);
-        //}
-        
+        }else{
+            foreach ($results as $result) {
+                $id = $result->getId();
+                $result->setIpadres($_SERVER['REMOTE_ADDR'])->setLoginpin($pinhash);
+                $count = $result->updateToDatabase($db);
+                if($count!=l) return 2; //fout bij updaten dus geen access!
+                else{
+                    return array("uid"=>$id,"pin"=>$loginpin);
+                }
+            }
+        }
     }
 
     public function loginpage() {

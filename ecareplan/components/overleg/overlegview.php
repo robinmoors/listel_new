@@ -176,7 +176,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
         }
     }
 
-    public function newOverleg($data, $form) {
+    public function newOverleg($data, $pat_id, $form) {
         $this->setState("newoverleg.start");
         $this->setState("newoverleg.content.start");
         if ($data == null) {
@@ -447,7 +447,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                     EQ.CPU.newRequest({
                         process: pname,
                         url: '/listel_new/ecareplan/overleg/nieuw/',
-                        parameters: 'values='+JSON.stringify(values)
+                        parameters: 'values='+JSON.stringify(values)+'&patid=".$pat_id."'
                     });
                     EQ.CPU.startProcess(pname);
                };
