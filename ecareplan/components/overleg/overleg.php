@@ -55,8 +55,9 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     }
 
     public function std_command() {
-        $patienten = $this->model->getPatientsWithOverleg("overleg");
-        $this->view->viewList($patienten);
+        //we tonen de overleg aanvragen zodat we die kunnen starten :)
+        $aanvragen = $this->model->getOverlegAanvragen();
+        $this->view->viewList($aanvragen);
     }
 
     public function bewerk() {
@@ -140,11 +141,16 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
                         ecpexit();
                     }
                     //en dan nu valideren :)
-                    print_r($report);
+                        //print_r($report);
                     $error = $formmodel->validateNewOverleg($report);
-                    print_r($error);
-                    $insert = $this->model->setAanvraag($_POST['padid'],$values);
-                    echo $insert;
+                        //print_r($error);
+                    if($this->model->setAanvraag($_POST['padid'],$values)){
+                        echo '{"succes":"positive","message":"Het overleg werd aangevraagd!<br/>Het systeem keert terug naar de overleglijst..."}';
+                        ecpexit();
+                    }else{
+                        echo '{"succes":"negative","message":"Oei het loopt even mis!<br/>Onze database kon de aanvraag niet verwerken.<br/>Probeer opnieuw of neem contact op met de beheerder."}';
+                        ecpexit();
+                    }
                 }else{
                     echo $session->getState();
                 }
