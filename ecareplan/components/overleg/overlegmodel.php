@@ -52,21 +52,25 @@ class ECP_Comp_OverlegModel {
         return null;
     }
     
-    public function getPatientById($id){
+    public function getPatientById($id,$getobject = false){
         $patient = self::startPatient();
         $patient->setId($id);
         $result = Patient::findByExample(self::$db, $patient);
+        if($getobject){
+            if(count($result)<1) return null;
+            else return $result[0];
+        }
         return self::resultToArray($result, Patient::getFieldNames());
     }
     
-    public function getPatientToewijzing($id){
+    public function getPatientToewijzing($id,$getobject = false){
         $patient = self::startPatient();
         $patient->setId($id);
         $result = Patient::findByExample(self::$db, $patient);
         if(count($result)<1) return 0;
         else{
             $pat = $result[0];
-            echo $pat->getToegewezenGenre();
+            if($getobject) return $pat; //patient object returnen
             switch($pat->getToegewezenGenre()){
                 case "gemeente": return 1; break;
                 case "rdc": case "psy":
@@ -169,6 +173,37 @@ class ECP_Comp_OverlegModel {
             self::$organisations = Organisatie::findByExample(self::$db, $org);
         }
         return self::$organisations;
+    }
+    
+    public function setAanvraag($pat_id,$data){
+        //rijksregister, patient_code, gemeente_id
+        $patient = $this->getPatientById($pat_id,true); //met true halen we het object op!
+        if($data['huidigok']==1){
+            //huidige organisator blijft behouden, wat was deze? :p
+            $data['organisator'] = $patient->getToegewezenGenre();
+        }
+        //rijksregister, patient_code, gemeente_id, keuze_organisator, reden_organisator
+        //andere_reden_organisator, id_organisator, id_organisator_user, doel_...
+        //naam_aanvrager, discipline_aanvrager, info_aanvrager, dringend, status (ENUM)
+        //reden_status, overleg_id, ontvangst, bron
+        
+        //rijksregister en gemeente_id gaan we niet gebruiken (zit bij patient, dus code is voldoende)
+        //overleg_id is er pas indien er ook effectief een overleg komt
+        self::$db = ECPFactory::getPDO("aanvraag.overleg");
+        $aanvraag = new AanvraagOverleg();
+        $aanvraag->setPatientCode($patient->getCode())->setRijksregister($patient->getRijksregister())->setGemeenteId($patient->getGemId());
+        $aanvraag->setKeuzeOrganisator($data['organisator'])->setRedenOrganisator($data['organisator_reden']);
+        $aanvraag->setAndereRedenOrganisator($data['organisator_reden_andere'])->setIdOrganisator($idorganisator)->setIdOrganisatorUser($aanvraag);
+        $aanvraag->setDoelInformeren($data['informeren'])->setDoelBeslissen($data['beslissen'])->setDoelDebriefen($data['debriefen']);
+        $aanvraag->setDoelOrganiseren($data['organiseren'])->setDoelOvertuigen($data['overtuigen'])->setDoelAndere($data['doel_andere']);
+        $aanvraag->setNaamAanvrager($data['naam'])->setDisciplineAanvrager($data['relatie'])->setOrganisatieAanvrager($data['organisatie']);
+        $aanvraag->setInfoAanvrager($data['email']."|".$data['telefoon'])->setDringend($data['dringend'])->setStatus("aanvraag");
+        $aanvraag->setTimestamp(time());
+        $insert = $aanvraag->insertIntoDatabase(self::$db);
+
+        //ontvangst? Bron?
+        
+        return $insert;
     }
 
 }

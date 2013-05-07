@@ -143,6 +143,8 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
                     print_r($report);
                     $error = $formmodel->validateNewOverleg($report);
                     print_r($error);
+                    $insert = $this->model->setAanvraag($_POST['padid'],$values);
+                    echo $insert;
                 }else{
                     echo $session->getState();
                 }

@@ -42,7 +42,7 @@ class ECP_Comp_OverlegForm implements ECP_OverlegObservable{
         if($this->newcreated) return true; 
         $this->setState("newoverleg.start");
         $this->orgform = ECPFactory::getForm("organisator_select");
-        $this->orgform->addField(new ECP_FormObj_Radio("organisator",array("0"=>"Het plaatselijk OCMW,","1"=>"Het regionaal dientstencentrum","2"=>"Zorgverlener"),true));
+        $this->orgform->addField(new ECP_FormObj_Radio("organisator",array("ocmw"=>"Het plaatselijk OCMW,","rdc"=>"Het regionaal dientstencentrum","hulp"=>"Zorgverlener"),true));
         $this->rdcform = ECPFactory::getForm("rdc_select")->addField(new ECP_FormObj_Select("rdclist"));
         $this->rdcwhyform = ECPFactory::getForm("rdc_why")->addField(new ECP_FormObj_Radio("rdcwhy",array(
             "0"=>"De pati&euml;nt heeft het expliciet gevraagd.",

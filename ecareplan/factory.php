@@ -57,9 +57,18 @@ abstract class ECPFactory {
         }
         return self::$db;
     }
-    
+    /**
+     * Maakt een PDO object aan en include de benodigde klassen voor het tabelobject
+     * Indien de naam bestaat uit meer dan 1 deel (bvb AanvraagOverleg) moet je aanvraag.overleg meegeven
+     * @code
+     * ECPFactory::getPDO("aanvraag.overleg"); //include "AanvraagOverleg.class.php"
+     * @endcode
+     * @param string $dbclass De naam van de tabelklasse
+     * @return type
+     */
     public static function getPDO($dbclass){
-        $dbclass = ucfirst($dbclass);
+        $class = explode(".",$dbclass);
+        $dbclass = ucfirst($class[0]).ucfirst($class[1]);
         if(!self::$pdo){ //pdo aanmaken en dan de standaard klassen al includen...
             if(!self::$conf) self::getConfig(); //configuratie aanmaken indien nog niet bestaat
             self::$pdo = new PDO("mysql:host=".self::$conf->host.";dbname=".self::$conf->db,self::$conf->user,self::$conf->password);
