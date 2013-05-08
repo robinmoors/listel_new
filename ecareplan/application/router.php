@@ -79,7 +79,9 @@ class ECP_Router extends ECP_Object{
             if(class_exists($componentname)){
                 $this->controller = new $componentname();
                 $this->controller->command($command);
-                $this->controller->params($this->uri->getVars());
+                $varr = $this->uri->getVars();
+                array_pop($varr);
+                $this->controller->params($varr);
                 $this->controller->execute();
             }else{
                 parent::addError("ECP_ROUTER::dispatch() - Couldn't open component because classname didn't exist. Component classnames wrong?");

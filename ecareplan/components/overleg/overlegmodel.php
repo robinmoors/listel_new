@@ -193,7 +193,7 @@ class ECP_Comp_OverlegModel {
             if($data['organisator']=="gemeente") $data['organisator'] = "ocmw";
             $data['organisatorid'] = $patient->getToegewezenId();
             //de organisatorid is ms onbekend.. dat is niet goed! dan maar 1 nemen
-            if($data['organisatorid']=="") $data['organisatorid'] = 1; //error of warning?
+            if($data['organisatorid']=="" || $data['organisatorid']==0) $data['organisatorid'] = 1; //error of warning?
         }
         
         //rijksregister en gemeente_id gaan we niet gebruiken (zit bij patient, dus code is voldoende)
@@ -219,7 +219,12 @@ class ECP_Comp_OverlegModel {
         $aanvraag->setNaamAanvrager($data['naam'])->setDisciplineAanvrager($data['relatie'])->setOrganisatieAanvrager($data['organisatie']);
         $aanvraag->setInfoAanvrager($data['email']."|".$data['telefoon'])->setDringend($data['dringend'])->setStatus("aanvraag");
         $aanvraag->setTimestamp(time())->setRedenStatus("Nieuwe aanvraag"); 
-        $insert = $aanvraag->insertIntoDatabase(self::$db);
+        try{
+            $insert = $aanvraag->insertIntoDatabase(self::$db);
+        }catch(Exception $e){
+            ecpexit('{"succes":"negative","message":"Er liep iets grandioos fout!<br/>'.htmlentities($e->getMessage()).'"}');
+        }
+        
 
         //ontvangst? Bron?
         
