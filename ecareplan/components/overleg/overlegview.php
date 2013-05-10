@@ -74,8 +74,8 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
     public function viewList($data) {
         $this->setState("viewlist.start"); //naam.actie!
         
-        $keys = array('id', 'code', 'naam', 'voornaam', 'gebdatum', 'geboordeplaats', 'adres');
-        $keysnamed = array('#', 'Code', 'Naam', 'Voornaam', 'Geboortedatum', 'Geboorteplaats', 'Adres');
+        $keys = array('id', 'patient_code', 'rijksregister', 'naam_aanvrager', 'timestamp');
+        $keysnamed = array('#', 'Patient Code', 'Rijksregister', 'Aanvrager', 'Datum aanvraag');
         $this->setState("viewlist.content.start");
         
         $content = "<a class='RoundedButton2 login' href='' onclick='EQ.reRoute(\"overlegnieuw\",true);'>Nieuw overleg</a><br/><table id='ShowTable' class='wider'><tr id='TableHead'>";
@@ -311,6 +311,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                     newoverleg = false;
                     checkOrganisatie(false);
                     step2hidden = true;
+                    EQ.reRoute('overleg');
                 };";
             $this->stack.=$script;
             $this->setState("newoverleg.script.base.end");
@@ -337,6 +338,7 @@ class ECP_Comp_OverlegView implements ECP_OverlegObservable{
                             beslissen : document.purpose.beslissen.checked,
                             ander : document.purpose.ander.checked,
                             andertxt : document.ander.ander.value,
+                            naam : document.requestor.naam.value,
                             relatie : document.requestor.relatie.value,
                             telefoon : document.requestor.telefoon.value,
                             email : document.requestor.email.value,

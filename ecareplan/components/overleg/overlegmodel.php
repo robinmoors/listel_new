@@ -17,6 +17,14 @@ class ECP_Comp_OverlegModel {
     public function __CONSTRUCT($uid) {
         $this->uid = $uid;
     }
+    
+    public function getOverlegAanvragen(){
+        self::$db = ECPFactory::getPDO("aanvraag.overleg");
+        $aanvragen = new AanvraagOverleg();
+        $aanvragen->setStatus("aanvraag");
+        $results = AanvraagOverleg::findByExample(self::$db, $aanvragen);//, true, array(AanvraagOverleg::FIELD_TIMESTAMP => "ASC"));
+        return self::resultToArray($results, AanvraagOverleg::getFieldNames());
+    }
 
     public function getPatientsWithOverleg($limit = 30, $from = 0, $to = 30){
         $user = ECPFactory::getUser($this->uid);
@@ -179,31 +187,56 @@ class ECP_Comp_OverlegModel {
         //rijksregister, patient_code, gemeente_id
         $patient = $this->getPatientById($pat_id,true); //met true halen we het object op!
         if($data['huidigok']==1){
-            //huidige organisator blijft behouden, wat was deze? :p
+            //huidige organisator blijft behouden, wat was deze?
             $data['organisator'] = $patient->getToegewezenGenre();
+            //gemeente moet eigenlijk ocmw worden anders klopt de enum niet :s
+            if($data['organisator']=="gemeente") $data['organisator'] = "ocmw";
+            $data['organisatorid'] = $patient->getToegewezenId();
+            //de organisatorid is ms onbekend.. dat is niet goed! dan maar 1 nemen
+            if($data['organisatorid']=="" || $data['organisatorid']==0) $data['organisatorid'] = 1; //error of warning?
         }
-        //rijksregister, patient_code, gemeente_id, keuze_organisator, reden_organisator
-        //andere_reden_organisator, id_organisator, id_organisator_user, doel_...
-        //naam_aanvrager, discipline_aanvrager, info_aanvrager, dringend, status (ENUM)
-        //reden_status, overleg_id, ontvangst, bron
         
         //rijksregister en gemeente_id gaan we niet gebruiken (zit bij patient, dus code is voldoende)
         //overleg_id is er pas indien er ook effectief een overleg komt
         self::$db = ECPFactory::getPDO("aanvraag.overleg");
+            //print_r($data);
         $aanvraag = new AanvraagOverleg();
         $aanvraag->setPatientCode($patient->getCode())->setRijksregister($patient->getRijksregister())->setGemeenteId($patient->getGemId());
+        //volgende waarden mogen niet leeg zijn, maar moeten tekst bevatten..
+         self::slashset($data['organisator_reden']);
+         self::slashset($data['organisator_reden_andere']);
         $aanvraag->setKeuzeOrganisator($data['organisator'])->setRedenOrganisator($data['organisator_reden']);
-        $aanvraag->setAndereRedenOrganisator($data['organisator_reden_andere'])->setIdOrganisator($idorganisator)->setIdOrganisatorUser($aanvraag);
+        $aanvraag->setAndereRedenOrganisator($data['organisator_reden_andere'])->setIdOrganisator($data['organisatorid']);
+        //doelen mogen niet leeg zijn, dat zijn ze wel als ze niet aangevinkt waren :s
+        //idem voor dringend || alle doelen behalve andere zijn integers.. dus preset.
+        self::preset($data['informeren']); self::preset($data['beslissen']); 
+        self::preset($data['organiseren']); self::preset($data['debriefen']);
+        self::preset($data['overtuigen']); self::slashset($data['doel_andere']);
         $aanvraag->setDoelInformeren($data['informeren'])->setDoelBeslissen($data['beslissen'])->setDoelDebriefen($data['debriefen']);
         $aanvraag->setDoelOrganiseren($data['organiseren'])->setDoelOvertuigen($data['overtuigen'])->setDoelAndere($data['doel_andere']);
+        self::preset($data['dringend']);
+        $aanvraag->setDringend($data['dringend']);
         $aanvraag->setNaamAanvrager($data['naam'])->setDisciplineAanvrager($data['relatie'])->setOrganisatieAanvrager($data['organisatie']);
         $aanvraag->setInfoAanvrager($data['email']."|".$data['telefoon'])->setDringend($data['dringend'])->setStatus("aanvraag");
-        $aanvraag->setTimestamp(time());
-        $insert = $aanvraag->insertIntoDatabase(self::$db);
+        $aanvraag->setTimestamp(time())->setRedenStatus("Nieuwe aanvraag"); 
+        try{
+            $insert = $aanvraag->insertIntoDatabase(self::$db);
+        }catch(Exception $e){
+            ecpexit('{"succes":"negative","message":"Er liep iets grandioos fout!<br/>'.htmlentities($e->getMessage()).'"}');
+        }
+        
 
         //ontvangst? Bron?
         
         return $insert;
+    }
+    
+    private static function preset(&$value){
+        if($value == "") $value = 0;
+    }
+    
+    private static function slashset(&$value){
+        if($value == "") $value = "/";
     }
 
 }

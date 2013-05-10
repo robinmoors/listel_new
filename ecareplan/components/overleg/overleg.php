@@ -55,8 +55,9 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
     }
 
     public function std_command() {
-        $patienten = $this->model->getPatientsWithOverleg("overleg");
-        $this->view->viewList($patienten);
+        //we tonen de overleg aanvragen zodat we die kunnen starten :)
+        $aanvragen = $this->model->getOverlegAanvragen();
+        $this->view->viewList($aanvragen);
     }
 
     public function bewerk() {
@@ -123,8 +124,7 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
                         $patient = $this->model->getPatientById($_POST['patid']);
                     }
                     if($patient == null) {
-                        echo '{"succes":"negative","message":"Oei het loopt even mis!<br/>De server kon de patient niet vinden..."}';
-                        ecpexit();
+                        ecpexit('{"succes":"negative","message":"Oei het loopt even mis!<br/>De server kon de patient niet vinden..."}');
                     }
                     //regionaal dienstencentra ophalen (RDC)
                     $formmodel->updateRDCList($this->model->getRDC());
@@ -136,15 +136,17 @@ class ECP_Comp_Overleg_Controller implements ECP_ComponentController {
                     $values = json_decode($_POST['values'],true); //json string naar assoc array parsen..
                     $report = $formmodel->validateValuesNewOverleg($values);
                     if($report===0){
-                        echo '{"succes":"negative","message":"Oei het loopt even mis!<br/>De server kon niets opmaken uit de gestuurde waarden..."}';
-                        ecpexit();
+                        ecpexit('{"succes":"negative","message":"Oei het loopt even mis!<br/>De server kon niets opmaken uit de gestuurde waarden..."}');
                     }
                     //en dan nu valideren :)
-                    print_r($report);
+                        //print_r($report);
                     $error = $formmodel->validateNewOverleg($report);
-                    print_r($error);
-                    $insert = $this->model->setAanvraag($_POST['padid'],$values);
-                    echo $insert;
+                        //print_r($error);
+                    if($this->model->setAanvraag($_POST['patid'],$values)){
+                        ecpexit('{"succes":"positive","message":"Het overleg werd aangevraagd!<br/>Het systeem keert terug naar de overleglijst..."}');
+                    }else{
+                        ecpexit('{"succes":"negative","message":"Oei het loopt even mis!<br/>Onze database kon de aanvraag niet verwerken.<br/>Probeer opnieuw of neem contact op met de beheerder."}');
+                    }
                 }else{
                     echo $session->getState();
                 }
