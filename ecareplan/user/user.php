@@ -58,6 +58,8 @@ class ECP_User extends ECP_Object {
      */
     public static function getInstance($identifier = 0) {
         // Find the user id 
+        //echo "$identifier == identifier";
+        if($identifier == "null" || $identifier == "") $identifier = 0;
         if (!is_numeric($identifier)) {
             //TODO helper maken of functie die via de username de user gaat ophalen
                 parent::addError("ECP_User getInstance::User doesn't exist.");

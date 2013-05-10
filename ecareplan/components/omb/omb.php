@@ -75,6 +75,7 @@ class ECP_Comp_Omb_Controller implements ECP_ComponentController {
     }
 
     public function nieuw() {
+        /*
         ecpimport("components.omb.listel.ombform");
         $formmodel = new ECP_Comp_OmbForm();
         if ($_SERVER['REQUEST_METHOD'] != "POST") {
@@ -86,6 +87,8 @@ class ECP_Comp_Omb_Controller implements ECP_ComponentController {
             echo '{"succes":"negative","message":"Oei het loopt even mis!<br/>De server ontving geen waarden van het formulier..."}';
             ecpexit();
         }
+         * */
+         
     }
 
 }

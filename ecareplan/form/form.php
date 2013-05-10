@@ -411,6 +411,42 @@ class ECP_FormObj_Button extends ECP_FormObj {
 
 }
 
+class ECP_FormObj_NormalButton extends ECP_FormObj {
+    private $text;
+    
+    public function __CONSTRUCT($name, $text){
+        $this->name = $name;
+        $this->text = $text;
+        $this->script= "0,0,false";
+    }
+
+    public function validate() {
+        return true;
+    }
+    
+    public function getHtml($formname,$class){
+        return "<input type='button' id='{$formname}-{$this->name}' name='{$this->name}' value='{$this->text}' class='{$class}'/><span id='{$formname}{$this->name}'></span><br/>";
+    }
+
+}
+
+
+class ECP_FormObj_Day extends ECP_FormObj_Input{
+    public function __CONSTRUCT($fieldname = false) {
+        parent::__CONSTRUCT($fieldname, 1, 2);
+    }
+    
+    public function validate(){
+        if(parent::validate()){
+            if($this->value >0 && $this->value <32){
+                return true;
+            }
+        } else{
+            return false;
+        }
+    }
+}
+
 class ECP_FormObj_Date extends ECP_FormObj{
 
     public function __construct() {

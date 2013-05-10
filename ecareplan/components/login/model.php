@@ -18,6 +18,7 @@ class ECP_Comp_Login_Model {
         $this->loginform->addField(new ECP_FormObj_Input("login",3,30));
         $this->loginform->addField(new ECP_FormObj_Password("password", 8, 30));
         $this->loginform->addField(new ECP_FormObj_Button("Aanmelden"));
+        $this->loginform->addField(new ECP_FormObj_NormalButton("eid","Login met eID"));
     }
     private static function resultToArray($result,$names){
         if(!is_array($names) || $result==null) return null;
@@ -65,7 +66,8 @@ class ECP_Comp_Login_Model {
     }
 
     public function loginpage() {
-        $script = $this->loginform->getScript("/listel_new/ecareplan/login/login/",
+        $script = "$('#login-eid').bind('click',function(){EQ.reRoute('eid',true);});";
+        $script .= $this->loginform->getScript("/listel_new/ecareplan/login/login/",
                 array("title"=>"Aanmelden",
                     "action"=>"Bezig met aanmelden...",
                     "succes"=>"U bent aangemeld <br/><img src=\'/listel_new/lib/images/flat-loader.gif\' />",
