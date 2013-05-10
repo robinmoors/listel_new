@@ -81,7 +81,7 @@ class ECP_Comp_OmbView implements ECP_OverlegObservable{
     }
 
     public function viewBase($form){
-        $this->content = $form->getHtml("normaal", array("contactwijze"=>"Tekst bij select:","probleemfactor"=>"probleemfactor"));
+        $this->content = $form->getHtml("normaal", array("contactwijze"=>"Tekst bij select:","probleemfactor"=>"probleemfactor"),true);
         $this->title = "Basisformulier";
         $this->export();
     }

@@ -11,6 +11,7 @@ class ECP_Comp_Login_Model {
     private $appobj = null;
     private $registerform = array("fname", "name", "email", "password");
     private $loginform = array("email", "password");
+    private $eidform;
     private $formerror = 0;
 
     public function __CONSTRUCT() {
@@ -18,7 +19,8 @@ class ECP_Comp_Login_Model {
         $this->loginform->addField(new ECP_FormObj_Input("login",3,30));
         $this->loginform->addField(new ECP_FormObj_Password("password", 8, 30));
         $this->loginform->addField(new ECP_FormObj_Button("Aanmelden"));
-        $this->loginform->addField(new ECP_FormObj_NormalButton("eid","Login met eID"));
+        $this->eidform = ECPFactory::getForm("eid");
+        $this->eidform->addField(new ECP_FormObj_NormalButton("eid","Login met eID"));
     }
     private static function resultToArray($result,$names){
         if(!is_array($names) || $result==null) return null;
@@ -66,7 +68,7 @@ class ECP_Comp_Login_Model {
     }
 
     public function loginpage() {
-        $script = "$('#login-eid').bind('click',function(){EQ.reRoute('eid',true);});";
+        $script = "$('#eid-eid').bind('click',function(){EQ.reRoute('eid',true);});";
         $script .= $this->loginform->getScript("/listel_new/ecareplan/login/login/",
                 array("title"=>"Aanmelden",
                     "action"=>"Bezig met aanmelden...",
@@ -82,6 +84,7 @@ class ECP_Comp_Login_Model {
                 "login", array("email" => "Email voor login",
             "password" => "Wachtwoord")
         );
+        $content.=$this->eidform->getHtml("login",array());
         
         
         

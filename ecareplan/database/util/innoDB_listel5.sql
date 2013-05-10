@@ -634,7 +634,7 @@ CREATE TABLE IF NOT EXISTS `factuur_organisatie` (
   `minimum` int(11) NOT NULL,
   `maximum` int(11) NOT NULL,
   `datum` varchar(12) COLLATE utf8_general_ci NOT NULL,
-  `deelvzw` enum('H','G') COLLATE utf8_general_ci NOT NULL,
+  `deelvzw` enum('H','G','D') COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   INDEX deelvzw_idx (`deelvzw`)
 ) ENGINE=INNODB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=16 ;

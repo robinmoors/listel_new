@@ -83,7 +83,7 @@ class ECP_Form extends ECP_Object {
         return $this;
     }
     
-    public function getHtml($class="default", $placeholders = array()){
+    public function getHtml($class="default", $placeholders = array(),$nobreak = false){
         if(!empty($placeholders)){
             foreach($this->obj as $key => $value){
                 $this->obj[$key]->setPlaceholder($placeholders[$key]);
@@ -95,6 +95,9 @@ class ECP_Form extends ECP_Object {
             $html .= $value->getHtml($this->name,$class);
         }
         $html.="</div></form>";
+        if($nobreak){
+            $html = str_replace("<br/>","",$html);
+        }
         return $html;
     }
     
@@ -425,11 +428,10 @@ class ECP_FormObj_NormalButton extends ECP_FormObj {
     }
     
     public function getHtml($formname,$class){
-        return "<input type='button' id='{$formname}-{$this->name}' name='{$this->name}' value='{$this->text}' class='{$class}'/><span id='{$formname}{$this->name}'></span><br/>";
+        return "<input type='button' id='{$formname}-{$this->name}' name='button' value='{$this->text}' class='{$class}'/><span id='{$formname}{$this->name}'></span><br/>";
     }
 
 }
-
 
 class ECP_FormObj_Day extends ECP_FormObj_Input{
     public function __CONSTRUCT($fieldname = false) {
@@ -444,6 +446,10 @@ class ECP_FormObj_Day extends ECP_FormObj_Input{
         } else{
             return false;
         }
+    }
+    
+    public function getHtml($formname,$class){
+        return "<input type='text' maxlength='2' name='{$this->name}' value='' placeholder='{$this->placeholder}' class='{$class}'/><span id='{$formname}{$this->name}'></span><br/>";
     }
 }
 
