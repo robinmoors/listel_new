@@ -18,13 +18,6 @@ class ECP_Comp_OmbModel {
         $this->uid = $uid;
     }
  
-    private static function queryToArray($mysqlresult){
-         for($i=0; $i<$mysqlresult->getRows(); $i++){
-            $data[$i] = $mysqlresult->nextResult()->get();
-        }
-        return $data;
-    }
-    
     private static function resultToArray($result,$names){
         if(!is_array($names) || $result==null) return null;
         foreach($result as $resource){//array van objecten dus een object nemen..
@@ -45,6 +38,13 @@ class ECP_Comp_OmbModel {
         return self::resultToArray($result, OmbContactwijze::getFieldNames());
     }
     
+    public static function getProbleemfactor(){
+        self::$db= ECPFactory::getPDO("OmbProbleemfactor");
+        $probleem= new OmbProbleemfactor();
+        $sql = "SELECT * FROM `omb_probleemfactor";
+        $result = $probleem->findBySql(self::$db, $sql);
+        return self::resultToArray($result, OmbProbleemfactor::getFieldNames());
+    }
+    
 }
-
 ?>

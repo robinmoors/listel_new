@@ -38,6 +38,7 @@ class ECP_Comp_Login_Model {
         $db = ECPFactory::getPDO("Logins");
         
         $pasw = 'c17a1a963e2b9ebb228030c0615fdb4bd91bd982';
+        //$pasw = ECPFactory::getForm("login")->pasw->value;
         $login = 'joris-rdc';
         
         $loginpin = ECP_Cryptology::generateInteger(30);

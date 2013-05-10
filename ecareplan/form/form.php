@@ -411,4 +411,13 @@ class ECP_FormObj_Button extends ECP_FormObj {
 
 }
 
+class ECP_FormObj_Date extends ECP_FormObj{
+
+    public function __construct() {
+        ;
+    }
+    public function getHtml($formname, $class){
+        return "<input type='date' id='$id/>";
+    }
+}
 ?>

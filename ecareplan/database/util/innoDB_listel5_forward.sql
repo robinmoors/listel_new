@@ -1723,7 +1723,7 @@ CREATE  TABLE IF NOT EXISTS `listel5`.`omb_mishandelvorm` (
   `registratie_id` INT(11) NOT NULL DEFAULT '0' ,
   `mishandeling` INT(11) NOT NULL DEFAULT '0' ,
   `genre` ENUM('aanmelding','opvolging') CHARACTER SET 'utf8' NOT NULL DEFAULT 'aanmelding' ,
-  PRIMARY KEY (`registratie_id`, `genre`) ,
+  PRIMARY KEY (`registratie_id`, `mishandeling`, `genre`) ,
   INDEX `mishandeling_idx` (`mishandeling` ASC) ,
   CONSTRAINT `FK_omb_mishandelvorm_mishandeling`
     FOREIGN KEY (`mishandeling` )

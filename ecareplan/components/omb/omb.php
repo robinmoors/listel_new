@@ -58,33 +58,15 @@ class ECP_Comp_Omb_Controller implements ECP_ComponentController {
         $this->ouderzorg();
     }
 
-    public function bewerk() {
-        if (!is_null($this->vars[0])) {
-            ecpimport("components.overleg.base.overlegform");
-            $formmodel = new ECP_Comp_OverlegForm();
-            if (!is_null($this->vars[1])) {
-                //er is ook een overlegid opgegeven...
-                $overleg = $this->model->getOverlegById($this->vars[1]);
-                $this->view->editOverleg($overleg, $formmodel->getForm("edit"));
-            } else {
-                $patient = $this->model->getOverleg($this->vars[0]);
-                if (count($patient) > 1) { //meer dan 1 overleg gevonden dus daar uit kiezen...
-                    $this->view->viewOverlegList($patient);
-                }
-                else
-                    $this->view->editOverleg($patient, $formmodel->getForm("edit")); //maar 1 overleg dus dat ook bewerken...
-            }
-        }else {
-            ecpexit();
-        }
-    }
-
     public function ouderzorg() {
         ecpimport("components.omb.listel.ombform");
         $formmodel = new ECP_Comp_OmbForm();
         if ($_SERVER['REQUEST_METHOD'] != "POST") {
             $contactwijze = $this->model->getContactwijze();
+            $probleemfactor = $this->model->getProbleemfactor();
+            
             $formmodel->updateContactwijzeList($contactwijze);
+            $formmodel->updateProbleemfactorList($probleemfactor);
             $this->view->viewBase($formmodel->getBaseForm());
         } else {
             echo '{"succes":"negative","message":"Oei het loopt even mis!<br/>De server ontving geen waarden van het formulier..."}';
