@@ -486,7 +486,7 @@ class ECP_FormObj_Year extends ECP_FormObj_Input{
     }
     
     public function getHtml($formname,$class){
-        return "<input type='text' maxlength='4' name='{$this->name}' value='' placeholder='{$this->placeholder}' class='{$class}'/><span id='{$formname}{$this->name}'></span>";
+        return "<input type='text' maxlength='4' name='{$this->name}' value='' placeholder='{$this->placeholder}' class='{$class}'/><span id='{$formname}{$this->name}'></span><br\>";
     }
 }
 ?>

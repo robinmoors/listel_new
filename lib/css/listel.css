@@ -338,7 +338,10 @@ input[type="button"].login{
     background: white;
 }
 input[maxlength="2"]{
-    width: 25px;
+    width: 35px;
+}
+input[maxlength="4"]{
+    width: 60px;
 }
 input.login.firstname{
     background: url("../images/first-name.png") no-repeat, white;
