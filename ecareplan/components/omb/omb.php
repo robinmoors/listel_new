@@ -74,6 +74,17 @@ class ECP_Comp_Omb_Controller implements ECP_ComponentController {
         }
     }
 
+    public function checkOmb(){
+        $form = ECPFactory::getForm("base");
+        $form->smartInsert($_POST);
+        $rapport = $form->validate();
+        if(is_array($rapport)){
+          echo '{"error":"'.$rapport[0][0].'"}'; //eerste index:: 1. velden met fouten, 2. fout per veld, 3. aantal fouten totaal.
+          exit(); //geen view doen :)
+        } else{
+            $omb = $this->model->newOmb();
+        }
+    }
     public function nieuw() {
         /*
         ecpimport("components.omb.listel.ombform");

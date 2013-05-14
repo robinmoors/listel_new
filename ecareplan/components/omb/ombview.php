@@ -81,8 +81,10 @@ class ECP_Comp_OmbView implements ECP_OverlegObservable{
     }
 
     public function viewBase($form){
-        $this->content = $form->getHtml("normaal", array("contactwijze"=>"Tekst bij select:","probleemfactor"=>"probleemfactor"),true);
+        $script = "$('#base-form').bind('click',function(){EQ.reRoute(\"omb\",true);});";
+        $this->content = $form->getHtml("normaal", array("contactwijze"=>"Contactwijze:","probleemfactor"=>"probleemfactor"),true);
         $this->title = "Basisformulier";
+        $this->script=$script;
         $this->export();
     }
 }

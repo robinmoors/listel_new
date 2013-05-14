@@ -46,5 +46,8 @@ class ECP_Comp_OmbModel {
         return self::resultToArray($result, OmbProbleemfactor::getFieldNames());
     }
     
+    public function newOmb(){
+        
+    }
 }
 ?>

@@ -13,9 +13,10 @@ class ECP_Comp_OmbForm implements ECP_OverlegObservable{
     public function __construct() {
         $this->baseform = ECPFactory::getForm("base")->addField(new ECP_FormObj_Select("contactwijze"));
         $this->baseform = ECPFactory::getForm("base")->addField(new ECP_FormObj_Select("probleemfactor"));
-        $this->baseform = ECPFactory::getForm("base")->addField(new ECP_FormObj_Input("dag", 1, 2));
-        $this->baseform = ECPFactory::getForm("base")->addField(new ECP_FormObj_Button("validate"));
         $this->baseform = ECPFactory::getForm("base")->addField(new ECP_FormObj_Day("dag"));
+        $this->baseform = ECPFactory::getForm("base")->addField(new ECP_FormObj_Day("maand"));
+        $this->baseform = ECPFactory::getForm("base")->addField(new ECP_FormObj_Day("jaar"));
+        $this->baseform = ECPFactory::getForm("base")->addField(new ECP_FormObj_Button("validate"));
     }
     public function attach(\ECP_OverlegObserver $observer) {
         

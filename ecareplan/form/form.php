@@ -439,27 +439,54 @@ class ECP_FormObj_Day extends ECP_FormObj_Input{
     }
     
     public function validate(){
-        if(parent::validate()){
-            if($this->value >0 && $this->value <32){
-                return true;
-            }
-        } else{
+        $reg = '/^(0[1-9]|[1-2][0-9]|3[0-1])/$';
+        if (!preg_match($reg, $this->value)) {
+            $this->msg = "match";
             return false;
         }
+        return true;
     }
     
     public function getHtml($formname,$class){
-        return "<input type='text' maxlength='2' name='{$this->name}' value='' placeholder='{$this->placeholder}' class='{$class}'/><span id='{$formname}{$this->name}'></span><br/>";
+        return "<input type='text' maxlength='2' name='{$this->name}' value='' placeholder='{$this->placeholder}' class='{$class}'/><span id='{$formname}{$this->name}'></span>";
     }
 }
 
-class ECP_FormObj_Date extends ECP_FormObj{
-
-    public function __construct() {
-        ;
+class ECP_FormObj_Month extends ECP_FormObj_Input{
+    public function __CONSTRUCT($fieldname = false) {
+        parent::__CONSTRUCT($fieldname, 1, 2);
     }
-    public function getHtml($formname, $class){
-        return "<input type='date' id='$id/>";
+    
+    public function validate(){
+        $reg = '/^(0[1-9]|1[0-2])/$';
+        if (!preg_match($reg, $this->value)) {
+            $this->msg = "match";
+            return false;
+        }
+        return true;
+    }
+    
+    public function getHtml($formname,$class){
+        return "<input type='text' maxlength='2' name='{$this->name}' value='' placeholder='{$this->placeholder}' class='{$class}'/><span id='{$formname}{$this->name}'></span>";
+    }
+}
+
+class ECP_FormObj_Year extends ECP_FormObj_Input{
+    public function __CONSTRUCT($fieldname = false) {
+        parent::__CONSTRUCT($fieldname, 4, 4);
+    }
+    
+    public function validate(){
+        $reg = '/^(19[0-9]{2}|20[0-9]{2})/$';
+        if (!preg_match($reg, $this->value)) {
+            $this->msg = "match";
+            return false;
+        }
+        return true;
+    }
+    
+    public function getHtml($formname,$class){
+        return "<input type='text' maxlength='4' name='{$this->name}' value='' placeholder='{$this->placeholder}' class='{$class}'/><span id='{$formname}{$this->name}'></span>";
     }
 }
 ?>
