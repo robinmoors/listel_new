@@ -20,6 +20,8 @@ class ECP_Comp_Omb_Controller implements ECP_ComponentController {
     protected $user = null;
 
     public function __CONSTRUCT() {
+        ecpimport("database.overleggen.overlegLok","trait");
+        
         ecpimport("components.overleg.overlegobserver"); //observer interface
         ecpimport("components.overleg.overlegobservable"); //observable (subject) interface
         ecpimport("components.omb.ombmodel"); //std model
@@ -64,7 +66,6 @@ class ECP_Comp_Omb_Controller implements ECP_ComponentController {
         if ($_SERVER['REQUEST_METHOD'] != "POST") {
             $contactwijze = $this->model->getContactwijze();
             $probleemfactor = $this->model->getProbleemfactor();
-            
             $formmodel->updateContactwijzeList($contactwijze);
             $formmodel->updateProbleemfactorList($probleemfactor);
             $this->view->viewBase($formmodel->getBaseForm());
