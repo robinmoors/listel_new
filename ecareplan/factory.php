@@ -80,7 +80,7 @@ abstract class ECPFactory {
         if(ecplocate("database.$dbclass","class")){ //database klasse invoegen die methodes bevat om met data te werken... (indien bestaat)
             ecpimport ("database.$dbclass", "class");
         }
-        if(ecplocate("database.overleggen.$dbclass","trait")){ //database klasse invoegen die methodes bevat om met data te werken... (indien bestaat)
+        elseif (ecplocate("database.overleggen.$dbclass","trait")){ //database klasse invoegen die methodes bevat om met data te werken... (indien bestaat)
             ecpimport ("database.overleggen.$dbclass", "trait");
         }
         return self::$pdo;

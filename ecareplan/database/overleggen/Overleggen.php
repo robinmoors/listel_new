@@ -11,21 +11,26 @@ ecpimport("database.overleggen.OverlegOmb", "trait");
 ecpimport("database.overleggen.OverlegOrg", "trait");
 ecpimport("database.overleggen.OverlegPsy", "trait");
 ecpimport("database.overleggen.OverlegTp", "trait");
-
-class OverlegGDT extends Overlegbasis{
-    use OverlegExtendedTrait, OverlegOrgTrait;
-}
+ecpimport("database.Overlegbasis", "class");
 
 class OverlegGewoon extends Overlegbasis{
     
 }
 
+class OverlegMenos extends Overlegbasis{
+    use OverlegOmbTrait;
+}
+
+/*
 class OverlegLok extends Overlegbasis{
     use OverlegLokTrait, OverlegOrgTrait;
 }
 
-class OverlegMenos extends Overlegbasis{
-    use OverlegOmbTrait;
+class OverlegGDT extends Overlegbasis{
+    use OverlegExtendedTrait, OverlegOrgTrait{
+        OverlegExtendedTrait:: setId insteadof OverlegOrgTrait;
+        OverlegOrgTrait:: setId insteadof OverlegExtendedTrait;
+    }
 }
 
 class OverlegPsy extends Overlegbasis {
@@ -39,4 +44,5 @@ Class OverlegPsy2013 extends Overlegbasis{
 class OverlegTp extends Overlegbasis{
     use OverlegTpTrait;
 }
+ * */
 ?>

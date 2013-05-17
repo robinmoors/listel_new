@@ -122,7 +122,10 @@ trait OverlegLokTrait {
 	}
         
         public function getFieldNames(){
-            
+            return array(1=>'id',
+                2=>'overleg_id',
+                3=>'lokaal_algemeen',
+                4=>'lokaal_doelstellingen');
         }
         
         public function insertIntoDatabase(PDO $db){
@@ -201,9 +204,7 @@ trait OverlegLokTrait {
             if(!$result) {
                     return null;
             }
-            $lok = new OverlegLokTrait();
-            $lok->assignByHash($result);
-            return $lok;
+            return toArray($result);
         }
         
         public function findByOverleg(PDO $db){
@@ -215,9 +216,7 @@ trait OverlegLokTrait {
             
             $resultInstances=array();
             while($result=$statement->fetch(PDO::FETCH_ASSOC)) {
-                $lok = new OverlegLokTrait();
-                    $lok->assignByHash($result);
-                    $resultInstances[]=$lok;
+                $resultInstances[]=toArray($result);
             }
             $statement->closeCursor();
             return $resultInstances;

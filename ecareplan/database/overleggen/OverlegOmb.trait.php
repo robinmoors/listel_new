@@ -139,5 +139,126 @@ trait OverlegOmbTrait {
 			'omb_actief'=>$this->getOmbActief(),
 			'omb_rangorde'=>$this->getOmbRangorde());
 	}
+        
+        public function assignByHash($result){
+            $this->setId($result['id']);
+            $this->setOverlegId($result['overleg_id']);
+            $this->setOmbFactuur($result['omb_factuur']);
+            $this->setOmbActief($result['omb_actief']);
+            $this->setOmbRangorde($result['omb_rangorde']);
+        }
+        
+        public function getFieldNames(){
+            return array(1=>'id',
+                2=>'overleg_id',
+                3=>'omb_factuur',
+                4=>'omb_actief',
+                5=>'omb_rangorde');
+        }
+        
+        public function insertIntoDatabase(PDO $db){
+            $overlegid  = $this->getOverlegId();
+            $ombfactuur = $this->getOmbFactuur();
+            $ombactief = $this->getOmbActief();
+            $ombrangorde = $this->getOmbRangorde();
+            
+            $query = 'INSERT INTO `overlegomb`
+                SET `id`= :id, `overleg_id`= :overleg_id, `omb_factuur`= :omb_factuur, `omb_actief`= :omb_actief, `omb_rangorde`= :omb_rangorde';
+            
+            try{
+                $statement= $db->prepare($query);
+                $statement->bindValue(':overleg_id',$overlegid);
+                $statement->bindValue(':omb_factuur',$ombfactuur);
+                $statement->bindValue(':omb_actief',$ombactief);
+                $statement->bindValue(':omb_rangorde',$ombrangorde);
+                $affected = $statement->execute();
+                $statement->closeCursor();
+            } catch (PDOException $e) {
+                $error_messsage = $e->getMessage();
+                //display
+            }
+            return $affected;
+        }
+        
+        public function updateToDatabase(PDO $db){
+            $id = $this->getId();
+            $overlegid  = $this->getOverlegId();
+            $ombfactuur = $this->getOmbFactuur();
+            $ombactief = $this->getOmbActief();
+            $ombrangorde = $this->getOmbRangorde();
+            
+            $query = 'UPDATE `overlegomb` 
+                SET `overleg_id`= :overleg_id,`omb_factuur`= :omb_factuur,`omb_actief`= :omb_actief,`omb_rangorde`= :omb_rangorde 
+                WHERE `id` = :id';
+            
+            try{
+                $statement= $db->prepare($query);
+                $statement->bindValue(':overleg_id',$overlegid);
+                $statement->bindValue(':omb_factuur',$ombfactuur);
+                $statement->bindValue(':omb_actief',$ombactief);
+                $statement->bindValue(':omb_rangorde',$ombrangorde);
+                $affected = $statement->execute();
+                $statement->closeCursor();
+            } catch (PDOException $e) {
+                $error_messsage = $e->getMessage();
+                //display
+            }
+        }
+            
+        public function deleteFromDatabase(PDO $db){
+            $id = $this->getId();
+            $query = 'DELETE FROM `overlegomb` 
+            WHERE `id`= :id';
+            try{
+                $statement=$db->prepare($query);
+                $statement->bindValue(':id',$id);
+                $statement->execute();
+                $valid = ($statement->rowCount() >=1);
+                $statement->closeCursor();
+            } catch (PDOException $e){
+                $error_message = $e->getMessage();
+                //display
+            }
+            return $valid;
+        }
+        
+        public function findById(PDO $db){
+            $id = $this->getId();
+            $query = 'SELECT `id`, `overleg_id`, `omb_factuur`, `omb_actief`, `omb_rangorde` 
+                FROM `overlegomb` 
+                WHERE id= :id';
+            
+            $statement = $db->prepare($query);
+            $statement->bindValue(':id', $id);
+            $affected= $statement->execute();
+            if (false===$affected) {
+                    $statement->closeCursor();			
+            }
+            $result = $statement->fetch();
+            $statement->closeCursor();
+            if(!$result) {
+                    return null;
+            }
+            return toArray($result);
+        }
+        
+        public function findByOverleg(PDO $db){
+            $overlegid = $this->getOverlegId();
+            $query = 'SELECT `id`, `overleg_id`, `omb_factuur`, `omb_actief`, `omb_rangorde` 
+                FROM `overlegomb` 
+                WHERE overleg_id= :overleg_id';
+            
+            $statement = $db->prepare($query);
+            $statement->bindValue(':overleg_id', $overlegid);
+            $statement->execute();
+            
+            $resultInstances=array();
+            while($result=$statement->fetch(PDO::FETCH_ASSOC)) {
+                $resultInstances[]=toArray($result);
+            }
+            $statement->closeCursor();
+            return $resultInstances;
+        }
+        
 }
 ?>

@@ -20,8 +20,6 @@ class ECP_Comp_Omb_Controller implements ECP_ComponentController {
     protected $user = null;
 
     public function __CONSTRUCT() {
-        ecpimport("database.overleggen.overlegLok","trait");
-        
         ecpimport("components.overleg.overlegobserver"); //observer interface
         ecpimport("components.overleg.overlegobservable"); //observable (subject) interface
         ecpimport("components.omb.ombmodel"); //std model
@@ -57,24 +55,41 @@ class ECP_Comp_Omb_Controller implements ECP_ComponentController {
     }
 
     public function std_command() {
-        $this->ouderzorg();
+        $ombs = $this->model->getOmbs();
+        $this->view->viewListOmb($ombs);
     }
 
-    public function ouderzorg() {
+    public function bewerk(){
+        $this->nieuw();
+    }
+    
+    public function nieuw(){
         ecpimport("components.omb.listel.ombform");
         $formmodel = new ECP_Comp_OmbForm();
         if ($_SERVER['REQUEST_METHOD'] != "POST") {
+            /*
+             * Model
+             */
             $contactwijze = $this->model->getContactwijze();
-            $probleemfactor = $this->model->getProbleemfactor();
+            $relatie = $this->model->getHoofdrelatie();
+            //$probleemfactor = $this->model->getProbleemfactor();
+            
+            //$test = $this->model->testFunction();
+            /*
+             * Form
+             */
             $formmodel->updateContactwijzeList($contactwijze);
-            $formmodel->updateProbleemfactorList($probleemfactor);
-            $this->view->viewBase($formmodel->getBaseForm());
+            $formmodel->updateHoofdrelatieList($relatie);
+            /*
+             * View
+             */
+            $this->view->viewMeldingForm($formmodel->getForm("melding"));
         } else {
             echo '{"succes":"negative","message":"Oei het loopt even mis!<br/>De server ontving geen waarden van het formulier..."}';
             ecpexit();
         }
     }
-
+    
     public function checkOmb(){
         $form = ECPFactory::getForm("base");
         $form->smartInsert($_POST);
@@ -86,23 +101,6 @@ class ECP_Comp_Omb_Controller implements ECP_ComponentController {
             $omb = $this->model->newOmb();
         }
     }
-    public function nieuw() {
-        /*
-        ecpimport("components.omb.listel.ombform");
-        $formmodel = new ECP_Comp_OmbForm();
-        if ($_SERVER['REQUEST_METHOD'] != "POST") {
-            $contactwijze = $this->model->getContactwijze();
-
-            $formmodel->updateContactwijzeList($contactwijze);
-            $this->view->viewBase($formmodel->getBaseForm());
-        } else {
-            echo '{"succes":"negative","message":"Oei het loopt even mis!<br/>De server ontving geen waarden van het formulier..."}';
-            ecpexit();
-        }
-         * */
-         
-    }
-
 }
 
 ?>

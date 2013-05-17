@@ -433,13 +433,43 @@ class ECP_FormObj_NormalButton extends ECP_FormObj {
 
 }
 
-class ECP_FormObj_Day extends ECP_FormObj_Input{
-    public function __CONSTRUCT($fieldname = false) {
-        parent::__CONSTRUCT($fieldname, 1, 2);
+/*
+ * Speciale FormObj met javascript
+ */
+class ECP_FormObj_Date extends ECP_FormObj_Input{
+    public function __CONSTRUCT($fieldname = false, $minlength = 0, $maxlength = 30) {
+        parent::__CONSTRUCT($fieldname, 11, 11);
+    }
+    
+    public function validate() {
+        
+    }
+    
+    public function getHtml($formname, $class) {
+        return "<input type='text' maxlength='11' name='{$this->name}' value='' placeholder='{$this->placeholder}' class='{$class}'
+            onchange='EQ.formCheckDate();'
+            /><span id='{$formname}{$this->name}'></span><br></br>";
+    }
+    
+}
+
+
+class ECP_FormObj_Hulpverlener extends ECP_FormObj_Input {
+    public function getHtml($formname, $class) {
+        return "<input type='text' name='{$this->name}' value='' placeholder='{$this->placeholder}' 
+            onkeyup='' 
+            onclick='' 
+            class='{$class}'/><span id='{$formname}{$this->name}'></span><br/>";
+    }
+}
+
+class ECP_FormObj_Telefoon extends ECP_FormObj_Input {
+    public function __CONSTRUCT($fieldname = false, $minlength = 9, $maxlength = 9) {
+        parent::__CONSTRUCT($fieldname, $minlength, $maxlength);
     }
     
     public function validate(){
-        $reg = '/^(0[1-9]|[1-2][0-9]|3[0-1])/$';
+        $reg = '/^[0-9]{9}/$';
         if (!preg_match($reg, $this->value)) {
             $this->msg = "match";
             return false;
@@ -447,37 +477,20 @@ class ECP_FormObj_Day extends ECP_FormObj_Input{
         return true;
     }
     
-    public function getHtml($formname,$class){
-        return "<input type='text' maxlength='2' name='{$this->name}' value='' placeholder='{$this->placeholder}' class='{$class}'/><span id='{$formname}{$this->name}'></span>";
+    public function getHtml($formname, $class) {
+        return "<input type='text' maxlength='9' name='{$this->name}' value='' placeholder='{$this->placeholder}' class='{$class}'
+            onfocus=''
+            onchange=''
+            /><span id='{$formname}{$this->name}'></span><br></br>";
     }
 }
-
-class ECP_FormObj_Month extends ECP_FormObj_Input{
-    public function __CONSTRUCT($fieldname = false) {
-        parent::__CONSTRUCT($fieldname, 1, 2);
-    }
-    
-    public function validate(){
-        $reg = '/^(0[1-9]|1[0-2])/$';
-        if (!preg_match($reg, $this->value)) {
-            $this->msg = "match";
-            return false;
-        }
-        return true;
-    }
-    
-    public function getHtml($formname,$class){
-        return "<input type='text' maxlength='2' name='{$this->name}' value='' placeholder='{$this->placeholder}' class='{$class}'/><span id='{$formname}{$this->name}'></span>";
-    }
-}
-
-class ECP_FormObj_Year extends ECP_FormObj_Input{
+class ECP_FormObj_Postcode extends ECP_FormObj_Input {
     public function __CONSTRUCT($fieldname = false) {
         parent::__CONSTRUCT($fieldname, 4, 4);
     }
     
     public function validate(){
-        $reg = '/^(19[0-9]{2}|20[0-9]{2})/$';
+        $reg = '/^[1-9]{1}[0-9]{3}/$';
         if (!preg_match($reg, $this->value)) {
             $this->msg = "match";
             return false;
@@ -486,7 +499,11 @@ class ECP_FormObj_Year extends ECP_FormObj_Input{
     }
     
     public function getHtml($formname,$class){
-        return "<input type='text' maxlength='4' name='{$this->name}' value='' placeholder='{$this->placeholder}' class='{$class}'/><span id='{$formname}{$this->name}'></span><br></br>";
+        return "<input type='text' maxlength='4' name='{$this->name}' value='' placeholder='{$this->placeholder}' class='{$class}'
+            onfocus=''
+            onmouseup=''
+            onkeyup=''
+            /><span id='{$formname}{$this->name}'></span><br></br>";
     }
 }
 ?>

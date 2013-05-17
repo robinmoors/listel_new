@@ -343,6 +343,9 @@ input[maxlength="2"]{
 input[maxlength="4"]{
     width: 60px;
 }
+input[maxlength="11"]{
+    width:110px;
+}
 input.login.firstname{
     background: url("../images/first-name.png") no-repeat, white;
 }input.login.lastname{
