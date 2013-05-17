@@ -84,6 +84,9 @@ class ECP_Comp_OmbView implements ECP_OverlegObservable{
         $this->setState("meldingform.start");
         $this->setState("meldingform.content.start");
 
+        /**
+         * 
+         */
         /*
          * melding
          */
